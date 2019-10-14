@@ -1,0 +1,16 @@
+[
+{
+  "modid": "extraacc",
+  "name": "ExtraAcC",
+  "description": "Sub mod for AcademyCraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Chitose"],
+  "credits": "Nulladev",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
