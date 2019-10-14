@@ -1,0 +1,39 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+build.gradle
+.gitattributes
+build.properties
+CREDITS.txt
+forge-1.12.2-14.23.5.2768-changelog.txt
+forge-1.12.2-14.23.5.2768-mdk.zip
+gradle.properties
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+lib/AcademyCraft-1.1.2.jar
+LICENSE-Paulscode SoundSystem CodecIBXM.txt
+LICENSE-Paulscode IBXM Library.txt
+LICENSE.txt
+README.txt
+.gitattributes
