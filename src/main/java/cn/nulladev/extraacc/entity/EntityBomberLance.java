@@ -46,18 +46,15 @@ public class EntityBomberLance extends EntityFlying {
         this.direc = _dir;
         this.setStartPos(thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ);
         this.setVelocity(_dir, getVelocity(_exp));
+        this.ignoreFrustumCheck = true;
     }
     
     private static float getVelocity(float exp) {
     	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, exp);
     }
     
-    private float getBasicDamage(float exp) {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
-    }
-    
     private float getDamage(float exp) {
-    	return getBasicDamage(exp);
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
     }
     
     @Override
@@ -84,9 +81,8 @@ public class EntityBomberLance extends EntityFlying {
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			float value = this.getVelocity(exp) * ( 2.0F / pos.entityHit.height);
 			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(this.getOwner()).setProjectile(), getDamage(exp));
-			double v = 16 / pos.entityHit.height; 
+			double v = MathUtils.lerpf(5, 7.5F, exp) / pos.entityHit.height; 
 			pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
 			pos.entityHit.setAir(300);
 		}

@@ -54,7 +54,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		
 		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION);
 		for (int i = 0; i <= 40; i++) {
-			float d = (float) (i * 0.1 - 2);
+			double d = i * 0.1 - 2;
 			b.pos(r1[i], -0.01, d).endVertex();
 			b.pos(r2[i], -0.01, d).endVertex();
 		}
@@ -62,7 +62,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		
 		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION);
 		for (int i = 0; i <= 40; i++) {
-			float d = (float) (i * 0.1 - 2);
+			double d = i * 0.1 - 2;
 			b.pos(r1[i], 0.01, d).endVertex();
 			b.pos(r2[i], 0.01, d).endVertex();
 		}
@@ -70,12 +70,12 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		
 		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION);
 		for (int i = 0; i <= 40; i++) {
-			float d = (float) (i * 0.1 - 2);
+			double d = i * 0.1 - 2;
 			b.pos(r1[i], -0.01, d).endVertex();
 			b.pos(r1[i], 0.01, d).endVertex();
 		}
 		for (int i = 40; i >= 0; i--) {
-			float d = (float) (i * 0.1 - 2);
+			double d = i * 0.1 - 2;
 			b.pos(r2[i], -0.01, d).endVertex();
 			b.pos(r2[i], 0.01, d).endVertex();
 		}

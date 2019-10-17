@@ -2,8 +2,9 @@ ac.ability.aerohand.name=空力使
 
 ac.ability.aerohand.air_cannon.name=空气弹
 ac.ability.aerohand.air_control.name=空气控制
-ac.ability.aerohand.air_blade.name=空气刃
+ac.ability.aerohand.air_blade.name=气刃
 ac.ability.aerohand.air_cooling.name=风冷
+ac.ability.aerohand.air_wall.name=气之壁
 ac.ability.aerohand.air_jet.name=喷气
 ac.ability.aerohand.bomber_lance.name=氮气爆枪
 ac.ability.aerohand.updraft.name=上升气流
@@ -12,6 +13,7 @@ ac.ability.aerohand.air_cannon.desc=大气系能力，将空气从各方向均�
 ac.ability.aerohand.air_control.desc=被动技能，通过控制空气流动，几乎完全免疫受到的窒息和坠落伤害。
 ac.ability.aerohand.air_blade.desc=将空气沿一个方向压缩，形成一道不太稳定的风刃并发射，造成破甲伤害。
 ac.ability.aerohand.air_cooling.desc=使用强力风冷散热，降低自身过载。
+ac.ability.aerohand.air_wall.desc=制造出压缩气体墙，击退周围的所有目标并阻挡飞行道具。
 ac.ability.aerohand.air_jet.desc=通过向后喷气，使自身快速前冲一段距离。
 ac.ability.aerohand.bomber_lance.desc=喷出高压的氮气长枪，冲击并大幅击退目标。
 

@@ -5,6 +5,7 @@ import cn.nulladev.extraacc.ability.aerohand.CatAeroHand;
 import cn.nulladev.extraacc.client.render.RenderAirGun;
 import cn.nulladev.extraacc.entity.EntityAirBlade;
 import cn.nulladev.extraacc.entity.EntityAirCannon;
+import cn.nulladev.extraacc.entity.EntityAirWall;
 import cn.nulladev.extraacc.entity.EntityBomberLance;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -28,6 +29,7 @@ public class ExtraAcCRegistry {
 		int modID = 1;
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_cannon"), EntityAirCannon.class, "air_cannon", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_blade"), EntityAirBlade.class, "air_blade", modID++, ModObject, 128, 1, true);
+    	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_wall"), EntityAirWall.class, "air_wall", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
 	}
 	

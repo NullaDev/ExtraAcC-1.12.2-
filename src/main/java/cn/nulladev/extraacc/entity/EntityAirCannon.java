@@ -57,9 +57,8 @@ public class EntityAirCannon extends EntityFlying {
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			float value = this.getVelocity(exp) * MathUtils.lerpf(1, DAMAGE_DECREASE_RATE, this.ticksExisted / this.age);
 			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(this.getOwner()).setProjectile(), getDamage(exp));
-			double v = 8 / pos.entityHit.height; 
+			double v = MathUtils.lerpf(2, 3, exp) / pos.entityHit.height; 
 			pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
 			pos.entityHit.setAir(300);
 		}
@@ -71,7 +70,7 @@ public class EntityAirCannon extends EntityFlying {
 		super.onUpdate();
 		this.width += 0.02F;
 		this.height += 0.02F;
-		this.getEntityBoundingBox().grow(0.1F);
+		this.setSize(width, height);
 	}
 
 }
