@@ -39,9 +39,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		
-		GlStateManager.color(0.7F, 1F, 1F, 0.5F);
-		
+				
 		Tessellator t = Tessellator.getInstance();
 		BufferBuilder b = t.getBuffer();
 		
@@ -52,32 +50,32 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 			r2[i] = Math.sqrt(18.0625D - d * d) - 3.75;
 		}
 		
-		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION);
+		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
 		for (int i = 0; i <= 40; i++) {
 			double d = i * 0.1 - 2;
-			b.pos(r1[i], -0.01, d).endVertex();
-			b.pos(r2[i], -0.01, d).endVertex();
+			b.pos(r1[i], -0.01, d).color(0.7F, 1F, 1F, 0.5F).endVertex();
+			b.pos(r2[i], -0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
 		}
 		t.draw();
 		
-		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION);
+		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
 		for (int i = 0; i <= 40; i++) {
 			double d = i * 0.1 - 2;
-			b.pos(r1[i], 0.01, d).endVertex();
-			b.pos(r2[i], 0.01, d).endVertex();
+			b.pos(r1[i], 0.01, d).color(0.7F, 1F, 1F, 0.5F).endVertex();
+			b.pos(r2[i], 0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
 		}
 		t.draw();
 		
-		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION);
+		b.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
 		for (int i = 0; i <= 40; i++) {
 			double d = i * 0.1 - 2;
-			b.pos(r1[i], -0.01, d).endVertex();
-			b.pos(r1[i], 0.01, d).endVertex();
+			b.pos(r1[i], -0.01, d).color(0.7F, 1F, 1F, 0.5F).endVertex();
+			b.pos(r1[i],  0.01, d).color(0.7F, 1F, 1F, 0.5F).endVertex();
 		}
 		for (int i = 40; i >= 0; i--) {
 			double d = i * 0.1 - 2;
-			b.pos(r2[i], -0.01, d).endVertex();
-			b.pos(r2[i], 0.01, d).endVertex();
+			b.pos(r2[i], -0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
+			b.pos(r2[i],  0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
 		}
 		t.draw();
 		

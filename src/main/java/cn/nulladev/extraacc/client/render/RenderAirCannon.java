@@ -7,6 +7,7 @@ import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
 
 import cn.lambdalib2.registry.mc.RegEntityRender;
+import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.extraacc.entity.EntityAirCannon;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,9 +22,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @RegEntityRender(EntityAirCannon.class)
-public class RenderAirGun extends Render<EntityAirCannon> {
+public class RenderAirCannon extends Render<EntityAirCannon> {
 	
-	public RenderAirGun(RenderManager renderManager) {
+	public RenderAirCannon(RenderManager renderManager) {
 		super(renderManager);
 	}
 
@@ -42,7 +43,8 @@ public class RenderAirGun extends Render<EntityAirCannon> {
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		GlStateManager.color(0.7F, 1F, 1F, 0.5F);
+		float a = MathUtils.lerpf(0.5F, 0.1F, (float)entity.ticksExisted / 80);
+		GlStateManager.color(0.7F, 1F, 1F, a);
 		
 		Tessellator t = Tessellator.getInstance();
 		BufferBuilder b = t.getBuffer();

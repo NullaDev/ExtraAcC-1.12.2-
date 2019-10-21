@@ -4,7 +4,7 @@ import cn.academy.ability.RegCategory;
 import cn.nulladev.extraacc.ability.aerohand.CatAeroHand;
 import cn.nulladev.extraacc.ability.aerohand.skill.Airflow;
 import cn.nulladev.extraacc.ability.aerohand.skill.AscendingAir;
-import cn.nulladev.extraacc.client.render.RenderAirGun;
+import cn.nulladev.extraacc.client.render.RenderAirCannon;
 import cn.nulladev.extraacc.entity.EntityAirBlade;
 import cn.nulladev.extraacc.entity.EntityAirCannon;
 import cn.nulladev.extraacc.entity.EntityAirWall;

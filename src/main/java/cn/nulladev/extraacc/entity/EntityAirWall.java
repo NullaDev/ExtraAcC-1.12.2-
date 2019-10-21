@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAirWall extends EntityHasOwner {
 	
-	public static final float BASIC_RADIUS = 4;
-	public static final float MAX_RADIUS = 8;
+	public static final float BASIC_RADIUS = 6;
+	public static final float MAX_RADIUS = 9;
 	public static final float BASIC_DAMAGE = 8;
 	public static final float MAX_DAMAGE = 12;
 	

@@ -3,6 +3,7 @@ package cn.nulladev.extraacc.client.render;
 import org.lwjgl.opengl.GL11;
 
 import cn.lambdalib2.registry.mc.RegEntityRender;
+import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.extraacc.entity.EntityAirWall;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -36,7 +37,8 @@ public class RenderAirWall extends Render<EntityAirWall> {
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		GlStateManager.color(0.7F, 1F, 1F, 0.5F);
+		float a = MathUtils.lerpf(0.5F, 0.1F, entity.getCurrentRadius() / entity.getMaxRadius());
+		GlStateManager.color(0.7F, 1F, 1F, a);
 		
 		Tessellator t = Tessellator.getInstance();
 		BufferBuilder b = t.getBuffer();

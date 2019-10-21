@@ -10,9 +10,8 @@ import net.minecraft.world.World;
 
 public class EntityAirCannon extends EntityFlying {
 	
-	public static final int BASIC_AGE = 60;
-	public static final int MAX_AGE = 80;
-	public static final float BASIC_VELOCITY = 0.4F;
+	public static final int AGE = 80;
+	public static final float BASIC_VELOCITY = 0.3F;
 	public static final float MAX_VELOCITY = 0.6F;
 	public static final float BASIC_DAMAGE = 8;
 	public static final float MAX_DAMAGE = 16;
@@ -30,16 +29,12 @@ public class EntityAirCannon extends EntityFlying {
     }
 	
     public EntityAirCannon(World world, EntityPlayer thrower, float _exp, Vec3d _dir) {
-        super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, INITIAL_SIZE, INITIAL_SIZE, getAge(_exp));
+        super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, INITIAL_SIZE, INITIAL_SIZE, AGE);
         this.setNoGravity();
         this.setDecrease(0.98F);
         this.exp = _exp;
         this.direc = _dir;
         this.setVelocity(_dir, getVelocity(_exp));
-    }
-    
-    private static int getAge(float exp) {
-    	return (int) MathUtils.lerpf(BASIC_AGE, MAX_AGE, exp);
     }
     
     private static float getVelocity(float exp) {
