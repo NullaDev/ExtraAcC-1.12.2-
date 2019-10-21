@@ -10,8 +10,8 @@ import net.minecraft.world.World;
 
 public class EntityAirBlade extends EntityFlying {
 	
-	public static final int BASIC_AGE = 20;
-	public static final int MAX_AGE = 30;
+	public static final int BASIC_AGE = 30;
+	public static final int MAX_AGE = 40;
 	
 	public static final float BASIC_VELOCITY = 1F;
 	public static final float MAX_VELOCITY = 1.5F;
@@ -31,13 +31,13 @@ public class EntityAirBlade extends EntityFlying {
 	public EntityAirBlade(World world) {
         super(world, SIZE, 0.02F);
         this.setNoGravity();
-        this.setDecrease(0.98F);
+        this.setDecrease(0.99F);
     }
 	
     public EntityAirBlade(World world, EntityPlayer thrower, float _exp, Vec3d _dir) {
         super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, SIZE, 0.02F, getAge(_exp));
         this.setNoGravity();
-        this.setDecrease(0.98F);
+        this.setDecrease(0.99F);
         this.exp = _exp;
         this.direc = _dir;
         this.setVelocity(_dir, getVelocity(_exp));

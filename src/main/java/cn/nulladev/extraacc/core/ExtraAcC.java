@@ -13,7 +13,7 @@ public class ExtraAcC {
 
 	public static final String MODID = "extraacc";
 	public static final String MODNAME = "ExtraAcC";
-	public static final String VERSION = "beta-1.1";
+	public static final String VERSION = "beta-1.2";
 	
 	static {
 		AcCConfigHacker.try_to_register_firstly();
@@ -33,7 +33,7 @@ public class ExtraAcC {
 
 	@EventHandler
 	public void Init(FMLInitializationEvent event) {
-		ExtraAcCRegistry.register(instance);
+		EXACRegistry.register(instance);
 		proxy.init(event);
 	}
 

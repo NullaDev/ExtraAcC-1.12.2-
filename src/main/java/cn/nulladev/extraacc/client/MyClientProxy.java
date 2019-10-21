@@ -3,7 +3,7 @@ package cn.nulladev.extraacc.client;
 import org.lwjgl.opengl.Display;
 
 import cn.nulladev.extraacc.core.MyCommonProxy;
-import cn.nulladev.extraacc.core.ExtraAcCRegistry;
+import cn.nulladev.extraacc.core.EXACRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -17,7 +17,7 @@ public class MyClientProxy extends MyCommonProxy {
 	
 	@Override
 	public void init(FMLInitializationEvent event) {
-    	ExtraAcCRegistry.registerClient();
+    	EXACRegistry.registerClient();
 	}
 	
 	@Override

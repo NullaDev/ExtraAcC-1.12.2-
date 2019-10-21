@@ -7,22 +7,26 @@ import cn.nulladev.extraacc.entity.EntityAirBlade;
 import cn.nulladev.extraacc.entity.EntityAirCannon;
 import cn.nulladev.extraacc.entity.EntityAirWall;
 import cn.nulladev.extraacc.entity.EntityBomberLance;
+import cn.nulladev.extraacc.event.HandlerAirflow;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ExtraAcCRegistry {
+public class EXACRegistry {
 	
 	@RegCategory
     public static final CatAeroHand aerohand = new CatAeroHand();
 	
 	public static void register(Object ModObject) {
 		registerEntities(ModObject);
+		registerEvents();
 	}
 	
 	private static void registerEntities(Object ModObject) {
@@ -31,6 +35,11 @@ public class ExtraAcCRegistry {
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_blade"), EntityAirBlade.class, "air_blade", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_wall"), EntityAirWall.class, "air_wall", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
+	}
+	
+	private static void registerEvents() {
+		MinecraftForge.EVENT_BUS.register(new HandlerAirflow());
+		FMLCommonHandler.instance().bus().register(new HandlerAirflow());
 	}
 	
 	@SideOnly(Side.CLIENT)
