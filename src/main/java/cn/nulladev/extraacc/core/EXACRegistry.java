@@ -9,6 +9,7 @@ import cn.nulladev.extraacc.entity.EntityAirBlade;
 import cn.nulladev.extraacc.entity.EntityAirCannon;
 import cn.nulladev.extraacc.entity.EntityAirWall;
 import cn.nulladev.extraacc.entity.EntityBomberLance;
+import cn.nulladev.extraacc.entity.client.EntityCooler;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -36,6 +37,8 @@ public class EXACRegistry {
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_blade"), EntityAirBlade.class, "air_blade", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:air_wall"), EntityAirWall.class, "air_wall", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
+    	
+    	EntityRegistry.registerModEntity(new ResourceLocation("extraacc:cooler"), EntityCooler.class, "cooler", modID++, ModObject, 128, 1, true);
 	}
 	
 	private static void registerEvents() {
