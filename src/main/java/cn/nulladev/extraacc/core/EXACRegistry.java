@@ -2,12 +2,13 @@ package cn.nulladev.extraacc.core;
 
 import cn.academy.ability.RegCategory;
 import cn.nulladev.extraacc.ability.aerohand.CatAeroHand;
+import cn.nulladev.extraacc.ability.aerohand.skill.Airflow;
+import cn.nulladev.extraacc.ability.aerohand.skill.AscendingAir;
 import cn.nulladev.extraacc.client.render.RenderAirGun;
 import cn.nulladev.extraacc.entity.EntityAirBlade;
 import cn.nulladev.extraacc.entity.EntityAirCannon;
 import cn.nulladev.extraacc.entity.EntityAirWall;
 import cn.nulladev.extraacc.entity.EntityBomberLance;
-import cn.nulladev.extraacc.event.HandlerAirflow;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -38,8 +39,9 @@ public class EXACRegistry {
 	}
 	
 	private static void registerEvents() {
-		MinecraftForge.EVENT_BUS.register(new HandlerAirflow());
-		FMLCommonHandler.instance().bus().register(new HandlerAirflow());
+		MinecraftForge.EVENT_BUS.register(AscendingAir.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(Airflow.INSTANCE);
+		FMLCommonHandler.instance().bus().register(Airflow.INSTANCE);
 	}
 	
 	@SideOnly(Side.CLIENT)
