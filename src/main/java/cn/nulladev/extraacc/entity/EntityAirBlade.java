@@ -1,6 +1,8 @@
 package cn.nulladev.extraacc.entity;
 
+import cn.academy.ability.SkillDamageSource;
 import cn.lambdalib2.util.MathUtils;
+import cn.nulladev.extraacc.ability.aerohand.skill.AirBlade;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -62,7 +64,7 @@ public class EntityAirBlade extends EntityFlying {
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(this.getOwner()).setProjectile().setDamageBypassesArmor(), getDamage(exp));
+			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirBlade.INSTANCE).setProjectile().setDamageBypassesArmor(), getDamage(exp));
 		}
 		this.setDead();
 	}

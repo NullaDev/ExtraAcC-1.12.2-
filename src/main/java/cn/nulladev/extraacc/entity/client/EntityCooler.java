@@ -23,8 +23,10 @@ public class EntityCooler extends EntityHasOwner {
 	public void onUpdate() {
 		super.onUpdate();
 		EntityPlayer owner = this.getOwner();
-		if (owner == null)
+		if (owner == null) {
 			this.setDead();
+			return;
+		}
 		this.setPosition(owner.posX, owner.posY, owner.posZ);
 		if (this.h >= 0)
 			this.h -= 0.1F;

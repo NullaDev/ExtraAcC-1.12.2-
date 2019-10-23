@@ -1,6 +1,8 @@
 package cn.nulladev.extraacc.entity;
 
+import cn.academy.ability.SkillDamageSource;
 import cn.lambdalib2.util.MathUtils;
+import cn.nulladev.extraacc.ability.aerohand.skill.AirCannon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -52,7 +54,7 @@ public class EntityAirCannon extends EntityFlying {
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(this.getOwner()).setProjectile(), getDamage(exp));
+			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirCannon.INSTANCE).setProjectile(), getDamage(exp));
 			double v = MathUtils.lerpf(2, 3, exp) / pos.entityHit.height; 
 			pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
 			pos.entityHit.setAir(300);

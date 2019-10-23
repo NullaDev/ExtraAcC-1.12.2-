@@ -3,7 +3,9 @@ package cn.nulladev.extraacc.entity;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.academy.ability.SkillDamageSource;
 import cn.lambdalib2.util.MathUtils;
+import cn.nulladev.extraacc.ability.aerohand.skill.AirWall;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -77,12 +79,13 @@ public class EntityAirWall extends EntityHasOwner {
 						continue;
 					float d = (float) Math.sqrt(Math.pow(entity.posX - posX, 2) + Math.pow(entity.posZ - posZ, 2));
 		            if (d >= curRadius - 0.4 && d <= curRadius + 0.4) {
-		            	entity.attackEntityFrom(DamageSource.causePlayerDamage(this.getOwner()), getDamage(exp));
+		            	entity.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirWall.INSTANCE), getDamage(exp));
 		            	Vec3d direc = new Vec3d(entity.posX - this.posX, 0, entity.posZ - this.posZ).normalize();
 		            	entity.addVelocity(direc.x, 0, direc.z);
 		            }
 				} else if (target instanceof IProjectile) {
-					target.setDead();
+					//target.setDead();
+					target.setVelocity(0, target.motionY, 0);
 				}
 				
 	        }
