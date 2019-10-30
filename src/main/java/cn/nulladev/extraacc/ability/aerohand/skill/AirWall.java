@@ -37,7 +37,7 @@ public class AirWall extends Skill {
 		}
 		
 		private boolean consume() {
-			float overload = MathUtils.lerpf(60, 40, ctx.getSkillExp());
+			float overload = MathUtils.lerpf(90, 60, ctx.getSkillExp());
 			return ctx.consume(overload, cp);
 		}
 		

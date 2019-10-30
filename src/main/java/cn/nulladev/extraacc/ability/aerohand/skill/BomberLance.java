@@ -35,7 +35,7 @@ public class BomberLance extends Skill {
 		public ContextBomberLance(EntityPlayer _player) {
 			super(_player, BomberLance.INSTANCE);
 			
-			cp = MathUtils.lerpf(500, 800, ctx.getSkillExp());
+			cp = MathUtils.lerpf(600, 900, ctx.getSkillExp());
 		}
 		
 		private boolean consume() {

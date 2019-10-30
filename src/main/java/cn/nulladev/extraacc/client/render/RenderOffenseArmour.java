@@ -36,7 +36,7 @@ public class RenderOffenseArmour extends Render<EntityOffenseArmour> {
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		float a = (float) (0.5 * (0.5 * Math.sin(entity.ticksExisted * Math.PI / 80) + 0.5));
+		float a = 0.4F + (float) (0.1 * Math.sin(entity.ticksExisted * Math.PI / 80));
 		GlStateManager.color(0.7F, 1F, 1F, a);
 		
 		Tessellator t = Tessellator.getInstance();

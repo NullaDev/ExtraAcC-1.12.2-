@@ -2,6 +2,7 @@ package cn.nulladev.extraacc.ability.aerohand.skill;
 
 import cn.academy.ability.Skill;
 import cn.academy.datapart.AbilityData;
+import cn.academy.datapart.CPData;
 import cn.lambdalib2.util.MathUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -25,11 +26,14 @@ public class AscendingAir extends Skill {
 		
 		if (event.getSource().getDamageType().equals("fall")) {
 			if (AbilityData.get(player).isSkillLearned(AscendingAir.INSTANCE)) {
-				float exp = AbilityData.get(player).getSkillExp(AscendingAir.INSTANCE);
-				float maxDamage = MathUtils.lerpf(10, 5, exp);
-				if (event.getAmount() > maxDamage)
-					event.setAmount(maxDamage);
-				AbilityData.get(player).addSkillExp(AscendingAir.INSTANCE, 0.01F);
+				float dmg = event.getAmount();
+				if (CPData.get(player).perform(0, 4 * dmg)) {
+					float exp = AbilityData.get(player).getSkillExp(AscendingAir.INSTANCE);
+					float maxDamage = MathUtils.lerpf(10, 5, exp);
+					if (event.getAmount() > maxDamage)
+						event.setAmount(maxDamage);
+					AbilityData.get(player).addSkillExp(AscendingAir.INSTANCE, dmg * 0.001F);
+				}
 			}
 		}
     }

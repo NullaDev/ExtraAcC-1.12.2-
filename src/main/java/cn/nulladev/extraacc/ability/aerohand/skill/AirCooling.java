@@ -54,13 +54,13 @@ public class AirCooling extends Skill {
 					if (player.world.provider.isNether()) {
 						new_overload = Math.min(ctx.cpData.getOverload(), ctx.cpData.getMaxOverload() / 2);
 					} else {
-						float f = MathUtils.lerpf(50, 500, ctx.getSkillExp());
+						float f = MathUtils.lerpf(160, 800, ctx.getSkillExp());
 						new_overload = Math.max(ctx.cpData.getOverload() - f, 0);
 						player.extinguish();
 					}
 					ctx.cpData.setOverload(new_overload);
 					ctx.addSkillExp(getExpIncr());
-					ctx.setCooldown((int)MathUtils.lerpf(800, 100, ctx.getSkillExp()));
+					ctx.setCooldown((int)MathUtils.lerpf(500, 100, ctx.getSkillExp()));
 				}
 			    terminate();
 			}
@@ -72,7 +72,7 @@ public class AirCooling extends Skill {
 			}
 
 			private float getExpIncr()  {
-				return MathUtils.lerpf(0.001f, 0.002f, ctx.getSkillExp());
+				return MathUtils.lerpf(0.002f, 0.001f, ctx.getSkillExp());
 			}
 
 		}

@@ -34,7 +34,7 @@ public class AirBlade extends Skill {
 		public ContextAirBlade(EntityPlayer _player) {
 			super(_player, AirBlade.INSTANCE);
 			
-			cp = MathUtils.lerpf(150, 300, ctx.getSkillExp());
+			cp = MathUtils.lerpf(100, 200, ctx.getSkillExp());
 		}
 		
 		private boolean consume() {

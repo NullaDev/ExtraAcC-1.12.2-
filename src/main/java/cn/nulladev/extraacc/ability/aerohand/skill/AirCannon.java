@@ -33,11 +33,11 @@ public class AirCannon extends Skill {
 
 		public ContextAirCannon(EntityPlayer _player) {
 			super(_player, AirCannon.INSTANCE);
-			cp = MathUtils.lerpf(40, 200, ctx.getSkillExp());
+			cp = MathUtils.lerpf(40, 160, ctx.getSkillExp());
 		}
 		
 		private boolean consume() {
-			float overload = MathUtils.lerpf(20, 15, ctx.getSkillExp());
+			float overload = MathUtils.lerpf(30, 20, ctx.getSkillExp());
 			return ctx.consume(overload, cp);
 		}
 		

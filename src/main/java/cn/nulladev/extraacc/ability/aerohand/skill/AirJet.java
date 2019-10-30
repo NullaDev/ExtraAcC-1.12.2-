@@ -35,7 +35,7 @@ public class AirJet extends Skill {
 			public ContextAirJet(EntityPlayer _player) {
 				super(_player, AirJet.INSTANCE);
 				
-				cp = MathUtils.lerpf(600, 900, ctx.getSkillExp());
+				cp = MathUtils.lerpf(400, 600, ctx.getSkillExp());
 				spd = MathUtils.lerpf(2, 4, ctx.getSkillExp());
 			}
 			
