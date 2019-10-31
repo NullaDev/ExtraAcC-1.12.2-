@@ -12,17 +12,16 @@ import net.minecraft.world.World;
 
 public class EntityAirBlade extends EntityFlying {
 	
-	public static final int BASIC_AGE = 30;
-	public static final int MAX_AGE = 40;
+	public static final int BASIC_AGE = 40;
+	public static final int MAX_AGE = 60;
 	
-	public static final float BASIC_VELOCITY = 1F;
-	public static final float MAX_VELOCITY = 1.5F;
+	public static final float VELOCITY = 1F;
 	
 	public static final float BASIC_DAMAGE = 12;
 	public static final float MAX_DAMAGE = 16;
 	
 	public static final float DAMAGE_DECREASE_RATE = 0.75F;
-	public static final float SIZE = 4F;
+	public static final float SIZE = 2F;
 	
 	private float exp;
 	private Vec3d direc;
@@ -42,15 +41,11 @@ public class EntityAirBlade extends EntityFlying {
         this.setDecrease(0.99F);
         this.exp = _exp;
         this.direc = _dir;
-        this.setVelocity(_dir, getVelocity(_exp));
+        this.setVelocity(_dir, VELOCITY);
     }
     
     private static int getAge(float exp) {
     	return (int) MathUtils.lerpf(BASIC_AGE, MAX_AGE, exp);
-    }
-    
-    private static float getVelocity(float exp) {
-    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, exp);
     }
     
     private float getBasicDamage(float exp) {
@@ -75,8 +70,8 @@ public class EntityAirBlade extends EntityFlying {
 		Vec3d xzVec = new Vec3d(this.motionX, 0, this.motionZ).normalize();
 		this.posX -= offsetX;
 		this.posZ -= offsetZ;
-		offsetX = xzVec.z * Math.sin(this.ticksExisted * Math.PI / 10) * 0.5 * getVelocity(exp);
-		offsetZ = - xzVec.x * Math.sin(this.ticksExisted * Math.PI / 10) * 0.5 * getVelocity(exp);
+		offsetX = 2F * xzVec.z * Math.sin(this.ticksExisted * Math.PI / 10);
+		offsetZ = 2F * - xzVec.x * Math.sin(this.ticksExisted * Math.PI / 10);
 		this.posX += offsetX;
 		this.posZ += offsetZ;
 	}

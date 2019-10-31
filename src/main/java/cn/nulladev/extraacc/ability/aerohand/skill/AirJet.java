@@ -1,10 +1,15 @@
 package cn.nulladev.extraacc.ability.aerohand.skill;
 
+import java.util.Optional;
+
 import cn.academy.ability.Skill;
 import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.Context;
+import cn.academy.ability.context.ContextManager;
+import cn.academy.ability.context.Context.Status;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
+import cn.nulladev.extraacc.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
@@ -50,7 +55,11 @@ public class AirJet extends Skill {
 			}
 			
 			@Listener(channel=MSG_PERFORM, side=Side.SERVER)
-			public void s_perform()  {
+			public void s_perform() {
+				Optional<ContextOffenseArmour> context = ContextManager.instance.find(ContextOffenseArmour.class);
+				if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
+					return;
+				}
 				if(consume()) {
 					sendToClient(MSG_PERFORM2);
 					player.fallDistance = 0;

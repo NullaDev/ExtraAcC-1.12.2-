@@ -32,7 +32,7 @@ public class RenderOffenseArmour extends Render<EntityOffenseArmour> {
 		
 		GlStateManager.disableTexture2D();
 		GlStateManager.disableLighting();
-		GlStateManager.disableCull();
+		//GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
@@ -62,7 +62,7 @@ public class RenderOffenseArmour extends Render<EntityOffenseArmour> {
 	    }
 		
 	    GlStateManager.disableBlend();
-	    GlStateManager.enableCull();
+	    //GlStateManager.enableCull();
 	    GlStateManager.enableLighting();
 	    GlStateManager.enableTexture2D();
 		

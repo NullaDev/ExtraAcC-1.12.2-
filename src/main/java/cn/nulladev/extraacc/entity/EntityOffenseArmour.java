@@ -12,6 +12,7 @@ import cn.nulladev.extraacc.ability.aerohand.skill.OffenseArmour;
 import cn.nulladev.extraacc.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -73,6 +74,12 @@ public class EntityOffenseArmour extends EntityHasOwner {
 	            	}
 	            }
 			} else if (target instanceof IProjectile) {
+				if (target instanceof IEntityOwnable) {
+					IEntityOwnable target1 = (IEntityOwnable)target;
+					if (target1.getOwner() == this.getOwner()) {
+						return;
+					}
+				}
 				if (context.get().ctx.consume(0, 10)) {
 					target.setVelocity(0, 0, 0);
 					context.get().ctx.addSkillExp(0.001f);

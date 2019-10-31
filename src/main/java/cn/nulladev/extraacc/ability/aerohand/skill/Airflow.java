@@ -27,12 +27,15 @@ public class Airflow extends Skill {
 		
 		if (event.getSource().getDamageType().equals("inWall") || event.getSource().getDamageType().equals("drown")) {
 			if (AbilityData.get(player).isSkillLearned(Airflow.INSTANCE)) {
+				float exp = AbilityData.get(player).getSkillExp(AscendingAir.INSTANCE);
 				float dmg = event.getAmount();
-				if (CPData.get(player).perform(0, 4 * dmg)) {
-					float exp = AbilityData.get(player).getSkillExp(Airflow.INSTANCE);
-					float ratio = MathUtils.lerpf(0.5F, 0.1F, exp);
-					event.setAmount(dmg * ratio);
-					AbilityData.get(player).addSkillExp(Airflow.INSTANCE, dmg * 0.001F);
+				float cp = MathUtils.lerpf(40, 20, exp);
+				if (!CPData.get(player).isOverloaded() &&
+						!CPData.get(player).isOverloadRecovering() && 
+						CPData.get(player).perform(0, cp * dmg)) {
+					float dmg1 = dmg * MathUtils.lerpf(0.5F, 0.1F, exp);
+					event.setAmount(dmg1);
+					AbilityData.get(player).addSkillExp(Airflow.INSTANCE, dmg * 0.002F);
 				}		
 			}
 		}
@@ -43,9 +46,11 @@ public class Airflow extends Skill {
 		if (event.player.getAir() < 300 && event.player.world.getTotalWorldTime() % 10 == 0) {
 			if (AbilityData.get(event.player).isSkillLearned(Airflow.INSTANCE)) {
 				if (AbilityData.get(event.player).getSkillExp(Airflow.INSTANCE) >= 0.5F) {
-					if (CPData.get(event.player).perform(0, 20)) {
+					if (!CPData.get(event.player).isOverloaded() &&
+							!CPData.get(event.player).isOverloadRecovering() && 
+							CPData.get(event.player).perform(0, 20)) {
 						event.player.setAir(300);
-						AbilityData.get(event.player).addSkillExp(Airflow.INSTANCE, 0.0001F);
+						AbilityData.get(event.player).addSkillExp(Airflow.INSTANCE, 0.001F);
 					}
 				}
 			}

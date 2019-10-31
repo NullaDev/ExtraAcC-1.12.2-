@@ -54,7 +54,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		for (int i = 0; i <= 40; i++) {
 			double d = i * 0.1 - 2;
 			b.pos(r1[i], -0.01, d).color(0.7F, 1F, 1F, 0.5F).endVertex();
-			b.pos(r2[i], -0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
+			b.pos(r2[i], -0.01, d).color(0.7F, 1F, 1F, 0.3F).endVertex();
 		}
 		t.draw();
 		
@@ -62,7 +62,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		for (int i = 0; i <= 40; i++) {
 			double d = i * 0.1 - 2;
 			b.pos(r1[i], 0.01, d).color(0.7F, 1F, 1F, 0.5F).endVertex();
-			b.pos(r2[i], 0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
+			b.pos(r2[i], 0.01, d).color(0.7F, 1F, 1F, 0.3F).endVertex();
 		}
 		t.draw();
 		
@@ -74,8 +74,8 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		}
 		for (int i = 40; i >= 0; i--) {
 			double d = i * 0.1 - 2;
-			b.pos(r2[i], -0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
-			b.pos(r2[i],  0.01, d).color(0.7F, 1F, 1F, 0.1F).endVertex();
+			b.pos(r2[i], -0.01, d).color(0.7F, 1F, 1F, 0.3F).endVertex();
+			b.pos(r2[i],  0.01, d).color(0.7F, 1F, 1F, 0.3F).endVertex();
 		}
 		t.draw();
 		

@@ -22,17 +22,22 @@ public class AscendingAir extends Skill {
 		if (!(event.getEntity() instanceof EntityPlayer)) {
 			return;
 		}
-		EntityPlayer player = (EntityPlayer) event.getEntity();
-		
+		EntityPlayer player = (EntityPlayer) event.getEntity();		
 		if (event.getSource().getDamageType().equals("fall")) {
+			if (AbilityData.get(player) == null) 
+				return;
 			if (AbilityData.get(player).isSkillLearned(AscendingAir.INSTANCE)) {
+				float exp = AbilityData.get(player).getSkillExp(AscendingAir.INSTANCE);
 				float dmg = event.getAmount();
-				if (CPData.get(player).perform(0, 4 * dmg)) {
-					float exp = AbilityData.get(player).getSkillExp(AscendingAir.INSTANCE);
-					float maxDamage = MathUtils.lerpf(10, 5, exp);
-					if (event.getAmount() > maxDamage)
-						event.setAmount(maxDamage);
-					AbilityData.get(player).addSkillExp(AscendingAir.INSTANCE, dmg * 0.001F);
+				float dmg1 = MathUtils.lerpf(10, 5, exp);
+				if (dmg <= dmg1)
+					return;
+				float cp = MathUtils.lerpf(40, 20, exp);
+				if (!CPData.get(player).isOverloaded() &&
+						!CPData.get(player).isOverloadRecovering() &&
+						CPData.get(player).perform(0, cp * (dmg - dmg1))) {
+					event.setAmount(dmg1);
+					AbilityData.get(player).addSkillExp(AscendingAir.INSTANCE, (dmg - dmg1) * 0.002F);
 				}
 			}
 		}

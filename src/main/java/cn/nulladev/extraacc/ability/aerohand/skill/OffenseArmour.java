@@ -3,9 +3,13 @@ package cn.nulladev.extraacc.ability.aerohand.skill;
 import java.util.Optional;
 
 import cn.academy.ability.Skill;
+import cn.academy.ability.context.ClientContext;
 import cn.academy.ability.context.ClientRuntime;
+import cn.academy.ability.context.ClientRuntime.ActivateHandlers;
+import cn.academy.ability.context.ClientRuntime.IActivateHandler;
 import cn.academy.ability.context.Context;
 import cn.academy.ability.context.ContextManager;
+import cn.academy.ability.context.RegClientContext;
 import cn.academy.ability.ctrl.KeyDelegates;
 import cn.academy.datapart.AbilityData;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
@@ -58,7 +62,6 @@ public class OffenseArmour extends Skill {
 		private void s_madeAlive() {
 			float overload = MathUtils.lerpf(80, 50, ctx.getSkillExp());
 			ctx.consume(overload, 0);
-			//player.getEntityData().setBoolean("offense_armour", true);
 			EntityOffenseArmour armor = new EntityOffenseArmour(player.world, player);
 			player.world.spawnEntity(armor);
 			MinecraftForge.EVENT_BUS.register(this);
@@ -77,7 +80,6 @@ public class OffenseArmour extends Skill {
 		@Listener(channel=MSG_TERMINATED, side=Side.SERVER)
 		private void s_terminate() {
 			MinecraftForge.EVENT_BUS.unregister(this);
-			//player.getEntityData().setBoolean("offense_armour", false);
 		}
 		
 		@SubscribeEvent
@@ -103,9 +105,33 @@ public class OffenseArmour extends Skill {
 					}
 				}
 	        }
-			
 	    }
-	
+	}
+		
+	@SideOnly(Side.CLIENT)
+	@RegClientContext(ContextOffenseArmour.class)
+	public static class ContextOffenseArmourC extends ClientContext {
+		
+		private IActivateHandler activateHandler;
+		  
+		public ContextOffenseArmourC(ContextOffenseArmour ctx) {
+			super(ctx);
+		}
+
+		@Listener(channel=MSG_MADEALIVE, side=Side.CLIENT)
+		private void l_alive() {
+			if (isLocal()) {
+				activateHandler = ActivateHandlers.terminatesContext(this.parent);
+				ClientRuntime.instance().addActivateHandler(activateHandler);
+			}
+		}
+
+		@Listener(channel=MSG_TERMINATED, side=Side.CLIENT)
+		private void l_terminate() {
+			if (isLocal()) {
+				ClientRuntime.instance().removeActiveHandler(activateHandler);
+			}
+		}		    
 	}
 
 }
