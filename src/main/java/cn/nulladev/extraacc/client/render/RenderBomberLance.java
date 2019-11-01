@@ -40,7 +40,7 @@ public class RenderBomberLance extends Render<EntityBomberLance> {
         GlStateManager.disableCull();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GlStateManager.depthMask(false);
+        GlStateManager.disableDepth();
         
         Tessellator t = Tessellator.getInstance();
         BufferBuilder b = t.getBuffer();
@@ -65,7 +65,7 @@ public class RenderBomberLance extends Render<EntityBomberLance> {
             t.draw();
         }
 
-        GlStateManager.depthMask(true);
+		GlStateManager.enableDepth();
         GlStateManager.disableBlend();;
         GlStateManager.enableCull();
         GlStateManager.enableTexture2D();

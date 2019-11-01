@@ -5,7 +5,7 @@ import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.Context;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
-import cn.nulladev.extraacc.entity.client.EntityCooler;
+import cn.nulladev.extraacc.entity.EntityCooler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,7 +27,6 @@ public class AirCooling extends Skill {
 	public static class ContextAirCooling extends Context {
 		
 		static final String MSG_PERFORM = "perform";
-		static final String MSG_EFFECT = "effect";
 			
 			private float cp;
 
@@ -49,7 +48,8 @@ public class AirCooling extends Skill {
 			@Listener(channel=MSG_PERFORM, side=Side.SERVER)
 			public void s_perform()  {
 				if(consume()) {
-					this.sendToClient(MSG_EFFECT);
+					EntityCooler cooler = new EntityCooler(player.world, player);
+					player.world.spawnEntity(cooler);
 					float new_overload;
 					if (player.world.provider.isNether()) {
 						new_overload = Math.min(ctx.cpData.getOverload(), ctx.cpData.getMaxOverload() / 2);
@@ -60,15 +60,9 @@ public class AirCooling extends Skill {
 					}
 					ctx.cpData.setOverload(new_overload);
 					ctx.addSkillExp(getExpIncr());
-					ctx.setCooldown((int)MathUtils.lerpf(500, 100, ctx.getSkillExp()));
+					ctx.setCooldown((int)MathUtils.lerpf(400, 100, ctx.getSkillExp()));
 				}
 			    terminate();
-			}
-			
-			@Listener(channel=MSG_EFFECT, side=Side.CLIENT)
-			public void l_effect()  {
-				EntityCooler cooler = new EntityCooler(player.world, player);
-				player.world.spawnEntity(cooler);
 			}
 
 			private float getExpIncr()  {

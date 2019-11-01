@@ -33,6 +33,11 @@ public class EntityOffenseArmour extends EntityHasOwner {
 		this.setOwner(owner);
 		this.setPosition(owner.posX, owner.posY, owner.posZ);
 	}
+    
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
 	
 	@Override
 	public void onUpdate() {

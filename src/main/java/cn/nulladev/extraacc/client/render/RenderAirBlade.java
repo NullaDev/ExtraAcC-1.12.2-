@@ -39,6 +39,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableDepth();
 				
 		Tessellator t = Tessellator.getInstance();
 		BufferBuilder b = t.getBuffer();
@@ -79,6 +80,7 @@ public class RenderAirBlade extends Render<EntityAirBlade> {
 		}
 		t.draw();
 		
+		GlStateManager.enableDepth();
 	    GlStateManager.disableBlend();
 	    GlStateManager.enableCull();
 	    GlStateManager.enableLighting();

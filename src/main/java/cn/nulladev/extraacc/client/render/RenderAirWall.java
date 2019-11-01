@@ -36,6 +36,7 @@ public class RenderAirWall extends Render<EntityAirWall> {
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableDepth();
 		
 		float a = MathUtils.lerpf(0.5F, 0.1F, entity.getCurrentRadius() / entity.getMaxRadius());
 		GlStateManager.color(0.7F, 1F, 1F, a);
@@ -52,6 +53,7 @@ public class RenderAirWall extends Render<EntityAirWall> {
 		}
 		t.draw();
 		
+		GlStateManager.enableDepth();
 	    GlStateManager.disableBlend();
 	    GlStateManager.enableCull();
 	    GlStateManager.enableLighting();

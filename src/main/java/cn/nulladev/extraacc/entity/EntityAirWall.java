@@ -43,6 +43,11 @@ public class EntityAirWall extends EntityHasOwner {
 		this.setOwner(owner);
 		this.setPosition(owner.posX, owner.posY, owner.posZ);
 	}
+    
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
 	
 	private float getDamage(float exp) {
     	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);

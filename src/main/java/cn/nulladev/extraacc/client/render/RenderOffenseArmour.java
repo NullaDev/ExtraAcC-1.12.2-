@@ -32,9 +32,10 @@ public class RenderOffenseArmour extends Render<EntityOffenseArmour> {
 		
 		GlStateManager.disableTexture2D();
 		GlStateManager.disableLighting();
-		//GlStateManager.disableCull();
+		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableDepth();
 		
 		float a = 0.4F + (float) (0.1 * Math.sin(entity.ticksExisted * Math.PI / 80));
 		GlStateManager.color(0.7F, 1F, 1F, a);
@@ -61,8 +62,9 @@ public class RenderOffenseArmour extends Render<EntityOffenseArmour> {
 	        t.draw();
 	    }
 		
+		GlStateManager.enableDepth();
 	    GlStateManager.disableBlend();
-	    //GlStateManager.enableCull();
+	    GlStateManager.enableCull();
 	    GlStateManager.enableLighting();
 	    GlStateManager.enableTexture2D();
 		

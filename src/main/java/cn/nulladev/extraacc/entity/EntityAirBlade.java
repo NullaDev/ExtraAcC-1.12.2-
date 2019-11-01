@@ -43,6 +43,11 @@ public class EntityAirBlade extends EntityFlying {
         this.direc = _dir;
         this.setVelocity(_dir, VELOCITY);
     }
+     
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
     
     private static int getAge(float exp) {
     	return (int) MathUtils.lerpf(BASIC_AGE, MAX_AGE, exp);

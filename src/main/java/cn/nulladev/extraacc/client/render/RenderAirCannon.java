@@ -1,7 +1,5 @@
 package cn.nulladev.extraacc.client.render;
 
-import java.nio.FloatBuffer;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
@@ -42,6 +40,7 @@ public class RenderAirCannon extends Render<EntityAirCannon> {
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableDepth();
 		
 		float a = MathUtils.lerpf(0.5F, 0.1F, (float)entity.ticksExisted / 80);
 		GlStateManager.color(0.7F, 1F, 1F, a);
@@ -69,7 +68,7 @@ public class RenderAirCannon extends Render<EntityAirCannon> {
 	        t.draw();
 	    }
 	    
-	    GlStateManager.disableBlend();
+		GlStateManager.enableDepth();
 	    GlStateManager.enableCull();
 	    GlStateManager.enableLighting();
 	    GlStateManager.enableTexture2D();

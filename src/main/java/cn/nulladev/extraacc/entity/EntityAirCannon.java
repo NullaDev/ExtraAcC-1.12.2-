@@ -39,6 +39,11 @@ public class EntityAirCannon extends EntityFlying {
         this.setVelocity(_dir, getVelocity(_exp));
     }
     
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
+    
     private static float getVelocity(float exp) {
     	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, exp);
     }

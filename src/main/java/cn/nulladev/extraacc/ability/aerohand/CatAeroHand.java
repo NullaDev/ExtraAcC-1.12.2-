@@ -11,6 +11,7 @@ import cn.nulladev.extraacc.ability.aerohand.skill.AirWall;
 import cn.nulladev.extraacc.ability.aerohand.skill.Airflow;
 import cn.nulladev.extraacc.ability.aerohand.skill.AscendingAir;
 import cn.nulladev.extraacc.ability.aerohand.skill.BomberLance;
+import cn.nulladev.extraacc.ability.aerohand.skill.Flying;
 import cn.nulladev.extraacc.ability.aerohand.skill.OffenseArmour;
 
 public class CatAeroHand extends Category {
@@ -27,6 +28,7 @@ public class CatAeroHand extends Category {
 	
 	public static Skill bomber_lance = BomberLance.INSTANCE;
 	public static Skill offense_armour = OffenseArmour.INSTANCE;
+	public static Skill flying = Flying.INSTANCE;
 	
 	//public static Skill turbulent_storm = SkillTurbulentStorm.INSTANCE;
 
@@ -46,6 +48,7 @@ public class CatAeroHand extends Category {
 		
 		addSkill(bomber_lance);
 		addSkill(offense_armour);
+		addSkill(flying);
 		
 		//addSkill(turbulent_storm);
 		
@@ -55,7 +58,7 @@ public class CatAeroHand extends Category {
 		ascending_air.setPosition(35, 60);
 		
 		air_blade.setPosition(70, 20);
-		airflow.setPosition(75, 75);
+		airflow.setPosition(75, 70);
 		air_cooling.setPosition(85, 45);
 		
 		air_wall.setPosition(110, 35);
@@ -63,6 +66,7 @@ public class CatAeroHand extends Category {
 			
 		bomber_lance.setPosition(140, 10);
 		offense_armour.setPosition(160, 50);
+		flying.setPosition(155, 80);
 		
 		//turbulent_storm.setPosition(200, 35);
 		
@@ -74,6 +78,7 @@ public class CatAeroHand extends Category {
 		air_cooling.setParent(ascending_air);
 		airflow.setParent(ascending_air, 0.5F);
 		air_jet.setParent(airflow, 0.5F);
+		flying.setParent(air_jet, 0.5F);
 
 	}
 

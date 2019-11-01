@@ -7,6 +7,7 @@ import cn.academy.ability.context.ClientContext;
 import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.ClientRuntime.ActivateHandlers;
 import cn.academy.ability.context.ClientRuntime.IActivateHandler;
+import cn.academy.ability.context.Context.Status;
 import cn.academy.ability.context.Context;
 import cn.academy.ability.context.ContextManager;
 import cn.academy.ability.context.RegClientContext;
@@ -14,6 +15,8 @@ import cn.academy.ability.ctrl.KeyDelegates;
 import cn.academy.datapart.AbilityData;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
+import cn.nulladev.extraacc.ability.aerohand.skill.Flying.ContextFlying;
+import cn.nulladev.extraacc.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
 import cn.nulladev.extraacc.entity.EntityOffenseArmour;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -44,24 +47,26 @@ public class OffenseArmour extends Skill {
 		        return new ContextOffenseArmour(p);
 		    }
 		};
-		ClassTag<Context> tag = scala.reflect.ClassTag$.MODULE$.apply(Context.class);
+		ClassTag<Context> tag = scala.reflect.ClassTag$.MODULE$.apply(ContextOffenseArmour.class);
 		rt.addKey(keyID, KeyDelegates.contextActivate(this, f, tag));
 	}
 	
 	public static class ContextOffenseArmour extends Context {
 				
-		private float cp;
-
 		public ContextOffenseArmour(EntityPlayer _player) {
 			super(_player, OffenseArmour.INSTANCE);
-			
-			cp = MathUtils.lerpf(500, 400, ctx.getSkillExp());
 		}
 		
 		@Listener(channel=MSG_MADEALIVE, side=Side.SERVER)
 		private void s_madeAlive() {
 			float overload = MathUtils.lerpf(80, 50, ctx.getSkillExp());
-			ctx.consume(overload, 0);
+			float cp = MathUtils.lerpf(600, 400, ctx.getSkillExp());
+			ctx.consume(overload, cp);
+			//关闭飞行
+			Optional<ContextFlying> context = ContextManager.instance.find(ContextFlying.class);
+			if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
+				context.get().terminate();
+			}
 			EntityOffenseArmour armor = new EntityOffenseArmour(player.world, player);
 			player.world.spawnEntity(armor);
 			MinecraftForge.EVENT_BUS.register(this);
@@ -70,7 +75,8 @@ public class OffenseArmour extends Skill {
 		@Listener(channel=MSG_TICK, side=Side.SERVER)
 		private void s_tick() {
 			if(ctx.consume(0.5F, 1F)) {
-				player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 39, 3));
+				int level = ctx.getSkillExp() >= 0.5F? 3:4;
+				player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 39, level));
 				ctx.addSkillExp(0.0001f);
 			}
 			else
@@ -79,6 +85,8 @@ public class OffenseArmour extends Skill {
 		
 		@Listener(channel=MSG_TERMINATED, side=Side.SERVER)
 		private void s_terminate() {
+			int cd = (int) MathUtils.lerpf(200, 100, ctx.getSkillExp());
+			ctx.setCooldown(cd);
 			MinecraftForge.EVENT_BUS.unregister(this);
 		}
 		

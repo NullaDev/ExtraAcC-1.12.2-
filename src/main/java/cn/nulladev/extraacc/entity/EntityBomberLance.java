@@ -51,6 +51,11 @@ public class EntityBomberLance extends EntityFlying {
         this.ignoreFrustumCheck = true;
     }
     
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
+    
     private static float getVelocity(float exp) {
     	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, exp);
     }

@@ -3,7 +3,7 @@ package cn.nulladev.extraacc.client.render;
 import org.lwjgl.opengl.GL11;
 
 import cn.lambdalib2.registry.mc.RegEntityRender;
-import cn.nulladev.extraacc.entity.client.EntityCooler;
+import cn.nulladev.extraacc.entity.EntityCooler;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -35,6 +35,7 @@ public class RenderCooler extends Render<EntityCooler> {
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableDepth();
 		
 		GlStateManager.color(0.7F, 1F, 1F, 0.5F);
 		
@@ -49,6 +50,7 @@ public class RenderCooler extends Render<EntityCooler> {
 		}
 		t.draw();
 		
+		GlStateManager.enableDepth();
 	    GlStateManager.disableBlend();
 	    GlStateManager.enableCull();
 	    GlStateManager.enableLighting();

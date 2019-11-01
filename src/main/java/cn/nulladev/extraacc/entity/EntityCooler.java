@@ -1,7 +1,6 @@
-package cn.nulladev.extraacc.entity.client;
+package cn.nulladev.extraacc.entity;
 
 import cn.lambdalib2.util.MathUtils;
-import cn.nulladev.extraacc.entity.EntityHasOwner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
