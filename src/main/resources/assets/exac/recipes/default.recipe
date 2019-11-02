@@ -1,0 +1,23 @@
+; ExtraAcademy recipe script file, why don't I use the ready-made register?
+
+shaped(exac:constraint_helmet){
+	[academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
+	[academy:constraint_ingot, nil,                      academy:constraint_ingot]
+}
+
+shaped(exac:constraint_chestplate){
+    [academy:constraint_ingot, nil,                      academy:constraint_ingot]
+    [academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
+    [academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
+}
+
+shaped(exac:constraint_leggings){
+    [academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
+    [academy:constraint_ingot, nil,                      academy:constraint_ingot]
+    [academy:constraint_ingot, nil,                      academy:constraint_ingot]
+}
+
+shaped(exac:constraint_boots){
+    [academy:constraint_ingot, nil, academy:constraint_ingot]
+    [academy:constraint_ingot, nil, academy:constraint_ingot]
+}
