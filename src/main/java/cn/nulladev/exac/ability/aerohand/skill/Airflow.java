@@ -35,7 +35,7 @@ public class Airflow extends Skill {
 						CPData.get(player).perform(0, cp * dmg)) {
 					float dmg1 = dmg * MathUtils.lerpf(0.5F, 0.1F, exp);
 					event.setAmount(dmg1);
-					AbilityData.get(player).addSkillExp(Airflow.INSTANCE, dmg * 0.001F);
+					AbilityData.get(player).addSkillExp(Airflow.INSTANCE, dmg * 0.0002F);
 				}		
 			}
 		}
@@ -43,12 +43,12 @@ public class Airflow extends Skill {
 	
 	@SubscribeEvent
     public void air(PlayerTickEvent event) {
-		if (event.player.getAir() < 300 && event.player.world.getTotalWorldTime() % 10 == 0) {
+		if (event.player.getAir() < 300 && event.player.world.getTotalWorldTime() % 20 == 0) {
 			if (AbilityData.get(event.player).isSkillLearned(Airflow.INSTANCE)) {
 				if (AbilityData.get(event.player).getSkillExp(Airflow.INSTANCE) >= 0.5F) {
 					if (!CPData.get(event.player).isOverloaded() &&
 							!CPData.get(event.player).isOverloadRecovering() && 
-							CPData.get(event.player).perform(0, 20)) {
+							CPData.get(event.player).perform(0, 40)) {
 						event.player.setAir(300);
 						AbilityData.get(event.player).addSkillExp(Airflow.INSTANCE, 0.001F);
 					}

@@ -1,7 +1,10 @@
 package cn.nulladev.exac.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +22,7 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
 	
     protected float gravity = 0.03F;
     protected float velocityDecreaseRate = 0.99F;
+    protected boolean shouldDestroyBlocks = false;
     public final int age;
 
     public EntityFlying(World world, float width, float height) {
@@ -72,45 +76,73 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
 			return;
 		}
 
-        Vec3d currentPos = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d nextPos = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(currentPos, nextPos);
-
-        if (raytraceresult != null) {
-            nextPos = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
-        }
-
-        if (!this.world.isRemote) {
-            Entity flag = null;
-            List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ));
-            EntityPlayer player = this.getOwner();
-
-            for (int j = 0; j < list.size(); ++j) {
-                Entity entity = (Entity)list.get(j);
-
-                if (entity.canBeCollidedWith() && (entity != player)) {
-                	RayTraceResult raytraceresult1 = entity.getEntityBoundingBox().calculateIntercept(currentPos, nextPos);
-                    flag = entity;
-                }
-            }
-
-            if (flag != null) {
-            	raytraceresult = new RayTraceResult(flag);
-            }
-        }
-
-        if (raytraceresult != null) {
-            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && this.world.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.PORTAL) {
-            	this.setPortal(raytraceresult.getBlockPos());
-            } else if (!ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
-                this.onImpact(raytraceresult);
-            }
-        }
-
+		Vec3d nextPos = this.calcHit();
         this.posX = nextPos.x;
         this.posY = nextPos.y;
         this.posZ = nextPos.z;
-        double xz = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        
+        this.calcRotation();
+
+        float f2 = velocityDecreaseRate;
+        if (this.isInWater()) {
+            for (int i = 0; i < 4; ++i) {
+                this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
+            }
+            f2 = 0.8F;
+        }
+
+        this.motionX *= (double)f2;
+        this.motionY *= (double)f2;
+        this.motionZ *= (double)f2;
+        
+        this.motionY -= (double)this.gravity;
+        this.setPosition(this.posX, this.posY, this.posZ);
+    }
+    
+    protected Vec3d calcHit() {
+    	if (this.world.isRemote) {
+        	return new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        }
+    	
+    	Vec3d currentPos = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d nextPos = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        RayTraceResult raytraceresult = this.world.rayTraceBlocks(currentPos, nextPos);
+        
+        if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
+        	IBlockState hitBlock = this.world.getBlockState(raytraceresult.getBlockPos());
+        	if (this.shouldDestroyBlocks && hitBlock.getBlockHardness(this.world, raytraceresult.getBlockPos()) <= 0.2) {
+        		this.world.setBlockToAir(raytraceresult.getBlockPos());
+        		raytraceresult = null;
+        	} else if (hitBlock.getBlock() == Blocks.PORTAL) {
+        		this.setPortal(raytraceresult.getBlockPos());
+        		raytraceresult = null;
+        	}
+        }
+        
+        Entity flag = null;
+        List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ));
+        for (int j = 0; j < list.size(); ++j) {
+            Entity entity = (Entity)list.get(j);
+            if (entity.canBeCollidedWith() && (entity != this.getOwner())) {
+                flag = entity;
+            }
+        }
+        if (flag != null) {
+        	raytraceresult = new RayTraceResult(flag);
+        }
+
+        if (raytraceresult != null) {
+        	nextPos = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z); 
+        	if (!ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+                this.onImpact(raytraceresult);
+        	}
+        }
+        
+        return nextPos;
+    }
+    
+    protected void calcRotation() {
+    	double xz = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
         for (this.rotationPitch = (float)(Math.atan2(this.motionY, xz) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
@@ -131,21 +163,6 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
 
         this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
         this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-
-        float f2 = velocityDecreaseRate;
-        if (this.isInWater()) {
-            for (int i = 0; i < 4; ++i) {
-                this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
-            }
-            f2 = 0.8F;
-        }
-
-        this.motionX *= (double)f2;
-        this.motionY *= (double)f2;
-        this.motionZ *= (double)f2;
-        
-        this.motionY -= (double)this.gravity;
-        this.setPosition(this.posX, this.posY, this.posZ);
     }
 
     @Deprecated

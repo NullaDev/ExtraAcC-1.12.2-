@@ -37,7 +37,7 @@ public class AscendingAir extends Skill {
 						!CPData.get(player).isOverloadRecovering() &&
 						CPData.get(player).perform(0, cp * (dmg - dmg1))) {
 					event.setAmount(dmg1);
-					AbilityData.get(player).addSkillExp(AscendingAir.INSTANCE, (dmg - dmg1) * 0.002F);
+					AbilityData.get(player).addSkillExp(AscendingAir.INSTANCE, (dmg - dmg1) * 0.001F);
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 package cn.nulladev.exac.core;
 
+import cn.academy.ability.CategoryManager;
 import cn.academy.ability.RegCategory;
 import cn.lambdalib2.crafting.RecipeRegistry;
 import cn.nulladev.exac.ability.aerohand.CatAeroHand;
@@ -33,8 +34,10 @@ public class EXACRegistry {
 	
 	public static final EXACRegistry INSTANCE = new EXACRegistry();
 	
-	@RegCategory
-    public static final CatAeroHand aerohand = new CatAeroHand();
+	public void registerAbility() {
+	    CatAeroHand aerohand = new CatAeroHand();
+	    CategoryManager.INSTANCE.register(aerohand);
+	}
 	
 	public void registerEntities(Object ModObject) {
 		int modID = 1;

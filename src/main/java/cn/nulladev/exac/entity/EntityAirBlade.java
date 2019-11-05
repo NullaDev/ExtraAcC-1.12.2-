@@ -4,6 +4,7 @@ import cn.academy.ability.SkillDamageSource;
 import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.ability.aerohand.skill.AirBlade;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
@@ -12,13 +13,13 @@ import net.minecraft.world.World;
 
 public class EntityAirBlade extends EntityFlying {
 	
-	public static final int BASIC_AGE = 40;
-	public static final int MAX_AGE = 60;
+	public static final int BASIC_AGE = 20;
+	public static final int MAX_AGE = 30;
 	
 	public static final float VELOCITY = 1F;
 	
 	public static final float BASIC_DAMAGE = 12;
-	public static final float MAX_DAMAGE = 16;
+	public static final float MAX_DAMAGE = 18;
 	
 	public static final float DAMAGE_DECREASE_RATE = 0.75F;
 	public static final float SIZE = 2F;
@@ -42,6 +43,7 @@ public class EntityAirBlade extends EntityFlying {
         this.exp = _exp;
         this.direc = _dir;
         this.setVelocity(_dir, VELOCITY);
+        this.shouldDestroyBlocks = true;
     }
      
     @Override
