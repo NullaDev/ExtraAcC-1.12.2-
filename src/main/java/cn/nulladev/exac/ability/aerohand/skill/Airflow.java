@@ -48,7 +48,7 @@ public class Airflow extends Skill {
 				if (AbilityData.get(event.player).getSkillExp(Airflow.INSTANCE) >= 0.5F) {
 					if (!CPData.get(event.player).isOverloaded() &&
 							!CPData.get(event.player).isOverloadRecovering() && 
-							CPData.get(event.player).perform(0, 40)) {
+							CPData.get(event.player).perform(0, 50)) {
 						event.player.setAir(300);
 						AbilityData.get(event.player).addSkillExp(Airflow.INSTANCE, 0.001F);
 					}

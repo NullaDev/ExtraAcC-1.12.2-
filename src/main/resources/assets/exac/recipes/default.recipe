@@ -1,23 +1,35 @@
 ; ExtraAcademy recipe script file, why don't I use the ready-made register?
 
-shaped(exac:constraint_helmet){
-	[academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
-	[academy:constraint_ingot, nil,                      academy:constraint_ingot]
+shaped(exac:optical_chip){
+	[nil,                        academy:imag_silicon_ingot, nil]
+	[academy:imag_silicon_ingot, academy:calc_chip,          academy:imag_silicon_ingot]
+	[nil,                        academy:imag_silicon_ingot, nil]
 }
 
-shaped(exac:constraint_chestplate){
-    [academy:constraint_ingot, nil,                      academy:constraint_ingot]
-    [academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
-    [academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
+shaped(exac:ray_twister){
+    [nil,                    academy:resonance_component]
+    [academy:info_component, academy:energy_convert_component]
+    [academy:calc_chip,      exac:optical_chip]
 }
 
-shaped(exac:constraint_leggings){
-    [academy:constraint_ingot, academy:constraint_ingot, academy:constraint_ingot]
-    [academy:constraint_ingot, nil,                      academy:constraint_ingot]
-    [academy:constraint_ingot, nil,                      academy:constraint_ingot]
+shaped(exac:reso_helmet){
+	[academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
+	[academy:constraint_plate, nil,                  academy:constraint_plate]
 }
 
-shaped(exac:constraint_boots){
-    [academy:constraint_ingot, nil, academy:constraint_ingot]
-    [academy:constraint_ingot, nil, academy:constraint_ingot]
+shaped(exac:reso_chestplate){
+    [academy:constraint_plate, nil,                      academy:constraint_plate]
+    [academy:constraint_plate, academy:reso_crystal,     academy:constraint_plate]
+    [academy:constraint_plate, academy:constraint_plate, academy:constraint_plate]
+}
+
+shaped(exac:reso_leggings){
+    [academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
+    [academy:constraint_plate, nil,                  academy:constraint_plate]
+    [academy:constraint_plate, nil,                  academy:constraint_plate]
+}
+
+shaped(exac:reso_boots){
+    [academy:constraint_plate, nil,                  academy:constraint_plate]
+    [academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
 }

@@ -1,5 +1,6 @@
 package cn.nulladev.exac.core;
 
+import cn.academy.ACItems;
 import cn.academy.ability.CategoryManager;
 import cn.academy.ability.RegCategory;
 import cn.lambdalib2.crafting.RecipeRegistry;
@@ -12,7 +13,7 @@ import cn.nulladev.exac.entity.EntityAirWall;
 import cn.nulladev.exac.entity.EntityBomberLance;
 import cn.nulladev.exac.entity.EntityCooler;
 import cn.nulladev.exac.entity.EntityOffenseArmour;
-import cn.nulladev.exac.item.ItemConstraintArmor;
+import cn.nulladev.exac.item.ItemResoArmor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -58,6 +59,13 @@ public class EXACRegistry {
 	public void registerRecipes() {
 		RecipeRegistry recipes = new RecipeRegistry();
 		recipes.addRecipeFromResourceLocation(new ResourceLocation("exac:recipes/default.recipe"));
+		/* 
+		ImagFusorRecipes ifr = ImagFusorRecipes.INSTANCE;
+        ifr.addRecipe(new ItemStack(ACItems.crystal_low), 3000, new ItemStack(ACItems.crystal_normal));
+
+        MetalFormerRecipes mfr = MetalFormerRecipes.INSTANCE;
+        mfr.add(new ItemStack(ACItems.imag_silicon_ingot), new ItemStack(ACItems.wafer, 2), Mode.INCISE);
+		 */
 	}
 	
 	@SubscribeEvent
@@ -66,10 +74,18 @@ public class EXACRegistry {
      （实体），<IRecipe>（合成表），你可以在ForgeRegistries类中看到这些泛型参数，也可以不使用泛型参数，直接用
       RegisterEvent监听所有事件*/
 	public void addItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(EXACItems.constraint_helmet.setRegistryName(ExtraAcademy.MODID, "constraint_helmet"));
-		event.getRegistry().register(EXACItems.constraint_chestplate.setRegistryName(ExtraAcademy.MODID, "constraint_chestplate"));
-		event.getRegistry().register(EXACItems.constraint_leggings.setRegistryName(ExtraAcademy.MODID, "constraint_leggings"));
-		event.getRegistry().register(EXACItems.constraint_boots.setRegistryName(ExtraAcademy.MODID, "constraint_boots"));
+		event.getRegistry().register(EXACItems.optical_chip.setRegistryName(ExtraAcademy.MODID, "optical_chip"));
+		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
+
+		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
+		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
+		event.getRegistry().register(EXACItems.reso_leggings.setRegistryName(ExtraAcademy.MODID, "reso_leggings"));
+		event.getRegistry().register(EXACItems.reso_boots.setRegistryName(ExtraAcademy.MODID, "reso_boots"));
+		
+		event.getRegistry().register(EXACItems.imag_helmet.setRegistryName(ExtraAcademy.MODID, "imag_helmet"));
+		event.getRegistry().register(EXACItems.imag_chestplate.setRegistryName(ExtraAcademy.MODID, "imag_chestplate"));
+		event.getRegistry().register(EXACItems.imag_leggings.setRegistryName(ExtraAcademy.MODID, "imag_leggings"));
+		event.getRegistry().register(EXACItems.imag_boots.setRegistryName(ExtraAcademy.MODID, "imag_boots"));
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             registerItemRenderers();
         }
@@ -77,10 +93,25 @@ public class EXACRegistry {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerItemRenderers() {
-		ModelLoader.setCustomModelResourceLocation(EXACItems.constraint_helmet, 0, new ModelResourceLocation("exac:constraint_helmet", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(EXACItems.constraint_chestplate, 0, new ModelResourceLocation("exac:constraint_chestplate", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(EXACItems.constraint_leggings, 0, new ModelResourceLocation("exac:constraint_leggings", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(EXACItems.constraint_boots, 0, new ModelResourceLocation("exac:constraint_boots", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.ray_twister, 0, new ModelResourceLocation("exac:ray_twister", "inventory"));
+
+		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_leggings, 0, new ModelResourceLocation("exac:reso_leggings", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_boots, 0, new ModelResourceLocation("exac:reso_boots", "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_helmet, 0, new ModelResourceLocation("exac:imag_helmet", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_chestplate, 0, new ModelResourceLocation("exac:imag_chestplate", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_leggings, 0, new ModelResourceLocation("exac:imag_leggings", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_boots, 0, new ModelResourceLocation("exac:imag_boots", "inventory"));
+		
+        ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 0, new ModelResourceLocation("exac:factor_aerohand", "inventory"));
+		//AC hack
+        ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 1, new ModelResourceLocation("academy:factor_electromaster", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 2, new ModelResourceLocation("academy:factor_meltdowner", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 3, new ModelResourceLocation("academy:factor_teleporter", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 4, new ModelResourceLocation("academy:factor_vecmanip", "inventory"));
 	}
 
 }

@@ -55,18 +55,18 @@ public class CatAeroHand extends Category {
 		VanillaCategories.addGenericSkills(this);
 		
 		air_gun.setPosition(20, 25);
-		ascending_air.setPosition(35, 60);
+		ascending_air.setPosition(30, 65);
 		
-		air_blade.setPosition(70, 20);
-		airflow.setPosition(75, 70);
-		air_cooling.setPosition(85, 45);
+		air_blade.setPosition(65, 20);
+		airflow.setPosition(75, 80);
+		air_cooling.setPosition(80, 50);
 		
 		air_wall.setPosition(110, 35);
-		air_jet.setPosition(115, 75);
+		air_jet.setPosition(120, 75);
 			
-		bomber_lance.setPosition(140, 10);
-		offense_armour.setPosition(160, 50);
-		flying.setPosition(155, 80);
+		bomber_lance.setPosition(145, 10);
+		offense_armour.setPosition(160, 45);
+		flying.setPosition(170, 80);
 		
 		//turbulent_storm.setPosition(200, 35);
 		

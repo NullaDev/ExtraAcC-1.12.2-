@@ -65,8 +65,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 				EntityLivingBase entity = (EntityLivingBase)target;
 				if (entity == this.getOwner())
 					continue;
-				float d = (float) Math.sqrt(Math.pow(entity.posX - posX, 2) + Math.pow(entity.posY - posY, 2) + Math.pow(entity.posZ - posZ, 2));
-	            if (d <= 1.5F) {
+				if (entity.getEntityBoundingBox().grow(1.5F).contains(new Vec3d(this.posX, this.posY + this.getOwner().height / 2, this.posZ))) {
 	            	if (context.get().ctx.consume(0, 100 * target.height)) {
 	            		float exp = context.get().ctx.getSkillExp();
 	            		float dmg = MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);

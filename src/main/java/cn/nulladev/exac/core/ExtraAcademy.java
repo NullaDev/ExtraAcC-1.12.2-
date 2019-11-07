@@ -13,10 +13,10 @@ public class ExtraAcademy {
 
 	public static final String MODID = "exac";
 	public static final String MODNAME = "ExtraAcademy";
-	public static final String VERSION = "beta-1.6";
+	public static final String VERSION = "beta-1.7";
 	
 	static {
-		AcademyConfigHacker.try_to_register_firstly();
+		AcademyConfigHacker.modifyConfig();
 	}
 
 	@Instance(MODID)
@@ -28,13 +28,13 @@ public class ExtraAcademy {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		EXACRegistry.INSTANCE.registerAbility();
 		EXACRegistry.INSTANCE.registerEvents();
 		proxy.preInit(event);
 	}
 
 	@EventHandler
 	public void Init(FMLInitializationEvent event) {
+		EXACRegistry.INSTANCE.registerAbility();
 		EXACRegistry.INSTANCE.registerEntities(instance);
 		proxy.init(event);
 	}

@@ -15,7 +15,7 @@ public class AcademyConfigHacker {
 	
 static final String HEAD = "# ExtraAcademy HEAD";
 	
-	public static void try_to_register_firstly() {
+	public static void modifyConfig() {
 		
 		ResourceLocation defaultRes = new ResourceLocation("exac:config/default.conf");
 
@@ -30,9 +30,9 @@ static final String HEAD = "# ExtraAcademy HEAD";
     				return;
     			} else {
     		        if (!customFile.delete()) {
-    		        	String str = "警告：你的游戏不能正常运行。\n"
-    		        			+ "这是因为无良AcademyCraft开发者使用硬编码生成技能的配置文件，因此，ExtraAcC中的新技能无法被注册。\n"
-    		        			+ "要解决此问题，请删除academy-craft-data.conf配置文件并重新启动游戏。\n"
+    		        	String str = "警告：你的游戏将不能正常运行。\n"
+    		        			+ "这是因为无良AcademyCraft开发者使用硬编码注册技能配置，因此，EXAC中的新技能无法被注册。\n"
+    		        			+ "要解决此问题，请删除config文件夹中的academy-craft-data.conf配置文件并重新启动游戏。\n"
     		        			+ "如果该解决方法不能奏效，请联系bug-report@nulladev.cn。";
     		        	JOptionPane.showMessageDialog(null, str, "错误!", JOptionPane.ERROR_MESSAGE);
     		        }
