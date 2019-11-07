@@ -57,7 +57,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 		this.setPosition(this.getOwner().posX, this.getOwner().posY, this.getOwner().posZ);
 		
 		List list = this.world.getEntitiesWithinAABB(Entity.class,
-				new AxisAlignedBB(posX - 2, posY - 2, posZ - 2, posX + 2, posY + 2, posZ + 2));
+				new AxisAlignedBB(posX - 2.5, posY - 2.5, posZ - 2.5, posX + 2.5, posY + 2.5, posZ + 2.5));
 		Iterator iterator = list.iterator();
 		while (iterator.hasNext()) {
 			Entity target = (Entity) iterator.next();
@@ -83,6 +83,10 @@ public class EntityOffenseArmour extends EntityHasOwner {
 					if (target1.getOwner() == this.getOwner()) {
 						return;
 					}
+				}
+				double v = Math.sqrt(Math.pow(target.motionX, 2) + Math.pow(target.motionY, 2) + Math.pow(target.motionZ, 2));
+				if (v < 0.1) {
+					return;
 				}
 				if (context.get().ctx.consume(0, 10)) {
 					target.setVelocity(0, 0, 0);

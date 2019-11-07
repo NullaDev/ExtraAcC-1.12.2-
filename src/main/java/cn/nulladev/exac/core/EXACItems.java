@@ -1,6 +1,7 @@
 package cn.nulladev.exac.core;
 
 import cn.nulladev.exac.item.EXACItemNormal;
+import cn.nulladev.exac.item.ItemEnergyUnitGroup;
 import cn.nulladev.exac.item.ItemImagArmor;
 import cn.nulladev.exac.item.ItemResoArmor;
 import cn.nulladev.exac.item.ItemRayTwister;
@@ -11,6 +12,7 @@ public class EXACItems {
 	
 	public static final Item optical_chip = new EXACItemNormal("opticalChip");
 	public static final Item ray_twister = new ItemRayTwister();
+	public static final Item energy_unit_group = new ItemEnergyUnitGroup();
 	
 	public static final Item reso_helmet = new ItemResoArmor(EntityEquipmentSlot.HEAD);
 	public static final Item reso_chestplate = new ItemResoArmor(EntityEquipmentSlot.CHEST);

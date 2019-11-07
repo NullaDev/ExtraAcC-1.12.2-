@@ -27,6 +27,7 @@ item.imagitem.disabled=当前状态:关闭中
 
 item.opticalChip.name=光学芯片
 item.rayTwister.name=光线扭曲器
+item.energyUnitGroup.name=能量单元组
 
 item.helmetReso.name=谐振束能头盔
 item.chestplateReso.name=谐振束能胸甲

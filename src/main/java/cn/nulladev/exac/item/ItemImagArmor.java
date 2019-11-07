@@ -34,8 +34,6 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 	private static final int[] ArmorVars = {0, 0, 0, 0};
 	public static final ArmorMaterial IMAG = EnumHelper.addArmorMaterial("imag", "imag", 1024, ArmorVars, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 
-	int pos;
-
 	/** position代表护甲位置，0为头盔，1为胸甲，2为护腿，3为靴子。 */
 	public ItemImagArmor(EntityEquipmentSlot position) {
 		super(IMAG, 0, position);
@@ -164,11 +162,11 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
 		if (itemManager.getEnergy(stack) > getEnergyPerDamage()) {
-			if (pos == 2)
+			if (this.armorType == EntityEquipmentSlot.LEGS)
 				return ExtraAcademy.MODID + ":textures/models/armor/energy_layer_2.png";	
 			return ExtraAcademy.MODID + ":textures/models/armor/energy_layer_1.png";	
 		} else {
-			if (pos == 2)
+			if (this.armorType == EntityEquipmentSlot.LEGS)
 				return ExtraAcademy.MODID + ":textures/models/armor/noenergy_layer_2.png";	
 			return ExtraAcademy.MODID + ":textures/models/armor/noenergy_layer_1.png";	
 		}

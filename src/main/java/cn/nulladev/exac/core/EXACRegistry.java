@@ -13,12 +13,16 @@ import cn.nulladev.exac.entity.EntityAirWall;
 import cn.nulladev.exac.entity.EntityBomberLance;
 import cn.nulladev.exac.entity.EntityCooler;
 import cn.nulladev.exac.entity.EntityOffenseArmour;
+import cn.nulladev.exac.item.ItemRayTwister;
 import cn.nulladev.exac.item.ItemResoArmor;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -76,6 +80,7 @@ public class EXACRegistry {
 	public void addItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(EXACItems.optical_chip.setRegistryName(ExtraAcademy.MODID, "optical_chip"));
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
+		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
 		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
@@ -94,7 +99,7 @@ public class EXACRegistry {
 	@SideOnly(Side.CLIENT)
 	public void registerItemRenderers() {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(EXACItems.ray_twister, 0, new ModelResourceLocation("exac:ray_twister", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.energy_unit_group, 0, new ModelResourceLocation("exac:energy_unit_group", "inventory"));
 
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
@@ -105,6 +110,17 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_chestplate, 0, new ModelResourceLocation("exac:imag_chestplate", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_leggings, 0, new ModelResourceLocation("exac:imag_leggings", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_boots, 0, new ModelResourceLocation("exac:imag_boots", "inventory"));
+		
+		ModelLoader.setCustomMeshDefinition(EXACItems.ray_twister, new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				String name = ItemRayTwister.isActive(stack)? "ray_twister_active" : "ray_twister";
+				return new ModelResourceLocation("exac:" + name, "inventory");
+			}
+	    });
+		ModelBakery.registerItemVariants(EXACItems.ray_twister, 
+				new ModelResourceLocation("exac:ray_twister", "inventory"),
+				new ModelResourceLocation("exac:ray_twister_active", "inventory"));
 		
         ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 0, new ModelResourceLocation("exac:factor_aerohand", "inventory"));
 		//AC hack

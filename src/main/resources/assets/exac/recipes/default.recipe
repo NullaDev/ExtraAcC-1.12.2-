@@ -12,6 +12,12 @@ shaped(exac:ray_twister){
     [academy:calc_chip,      exac:optical_chip]
 }
 
+shaped(exac:energy_unit_group){
+    [nil,                 academy:data_chip,             nil]
+    [academy:energy_unit, academy:reinforced_iron_plate, academy:energy_unit]
+    [academy:energy_unit, academy:energy_unit,           academy:energy_unit]
+}
+
 shaped(exac:reso_helmet){
 	[academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
 	[academy:constraint_plate, nil,                  academy:constraint_plate]
@@ -32,4 +38,28 @@ shaped(exac:reso_leggings){
 shaped(exac:reso_boots){
     [academy:constraint_plate, nil,                  academy:constraint_plate]
     [academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
+}
+
+shaped(exac:imag_helmet){
+    [academy:reso_crystal,   exac:reso_helmet,  academy:reso_crystal]
+    [academy:reso_crystal,   academy:calc_chip, academy:reso_crystal]
+    [exac:energy_unit_group, exac:optical_chip, exac:energy_unit_group]
+}
+
+shaped(exac:imag_chestplate){
+    [academy:reso_crystal,   exac:reso_chestplate,  academy:reso_crystal]
+    [academy:reso_crystal,   academy:calc_chip, academy:reso_crystal]
+    [exac:energy_unit_group, exac:optical_chip, exac:energy_unit_group]
+}
+
+shaped(exac:imag_leggings){
+    [academy:reso_crystal,   exac:reso_leggings,  academy:reso_crystal]
+    [academy:reso_crystal,   academy:calc_chip, academy:reso_crystal]
+    [exac:energy_unit_group, exac:optical_chip, exac:energy_unit_group]
+}
+
+shaped(exac:imag_boots){
+    [academy:reso_crystal,   exac:reso_boots,  academy:reso_crystal]
+    [academy:reso_crystal,   academy:calc_chip, academy:reso_crystal]
+    [exac:energy_unit_group, exac:optical_chip, exac:energy_unit_group]
 }
