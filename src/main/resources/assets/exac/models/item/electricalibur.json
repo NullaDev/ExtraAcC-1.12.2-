@@ -1,0 +1,28 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "exac:items/electricalibur"
+    },
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 0, -90, 45 ],
+            "translation": [ 0, 10, 2 ],
+            "scale": [ 1.25, 1.25, 1.25 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 0, 90, -45 ],
+            "translation": [ 0, 10, 2 ],
+            "scale": [ 1.25, 1.25, 1.25 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, -90, 25 ],
+            "translation": [ 1, 3, 1 ],
+            "scale": [ 1.25, 1.25, 1.25 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 90, -25 ],
+            "translation": [ 1, 3, 1 ],
+            "scale": [ 1.25, 1.25, 1.25 ]
+        }
+    }
+}

@@ -17,9 +17,9 @@ import net.minecraft.world.World;
 
 public class EntityBomberLance extends EntityFlying {
 	
-	public static final int AGE = 10;
-	public static final float BASIC_VELOCITY = 2.0F;
-	public static final float MAX_VELOCITY = 3.0F;
+	public static final int AGE = 20;
+	public static final float BASIC_VELOCITY = 1.0F;
+	public static final float MAX_VELOCITY = 1.5F;
 	public static final float BASIC_DAMAGE = 32;
 	public static final float MAX_DAMAGE = 48;
 	
@@ -90,7 +90,7 @@ public class EntityBomberLance extends EntityFlying {
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
 			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), BomberLance.INSTANCE).setProjectile(), getDamage(exp));
-			double v = MathUtils.lerpf(8, 12F, exp) / pos.entityHit.height; 
+			double v = MathUtils.lerpf(10F, 15F, exp) / pos.entityHit.height; 
 			pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
 			pos.entityHit.setAir(300);
 		}

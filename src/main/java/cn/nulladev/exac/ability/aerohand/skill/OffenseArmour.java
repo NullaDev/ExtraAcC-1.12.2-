@@ -18,6 +18,8 @@ import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.ability.aerohand.skill.Flying.ContextFlying;
 import cn.nulladev.exac.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
 import cn.nulladev.exac.entity.EntityOffenseArmour;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -52,6 +54,8 @@ public class OffenseArmour extends Skill {
 	}
 	
 	public static class ContextOffenseArmour extends Context {
+		
+		public static final AttributeModifier AM = new AttributeModifier("Offense Armour", 0.9F, 0);
 				
 		public ContextOffenseArmour(EntityPlayer _player) {
 			super(_player, OffenseArmour.INSTANCE);
@@ -77,6 +81,7 @@ public class OffenseArmour extends Skill {
 			if(ctx.consume(0.5F, 1F)) {
 				int level = ctx.getSkillExp() >= 0.5F? 3:4;
 				player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 39, level));
+				player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(AM);
 				ctx.addSkillExp(0.0001f);
 			}
 			else
@@ -85,6 +90,7 @@ public class OffenseArmour extends Skill {
 		
 		@Listener(channel=MSG_TERMINATED, side=Side.SERVER)
 		private void s_terminate() {
+			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).removeModifier(AM);
 			int cd = (int) MathUtils.lerpf(200, 100, ctx.getSkillExp());
 			ctx.setCooldown(cd);
 			MinecraftForge.EVENT_BUS.unregister(this);

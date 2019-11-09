@@ -95,12 +95,12 @@ public class ItemRayTwister extends ItemEnergyBase {
 	@Override
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
-		super.addInformation(stack, world, tooltip, flag);
 		if (isActive(stack)) {
 			tooltip.add(I18n.translateToLocal("item.imagitem.enabled"));
 		} else {
 			tooltip.add(I18n.translateToLocal("item.imagitem.disabled"));
 		}
+		super.addInformation(stack, world, tooltip, flag);
     }
 
 }

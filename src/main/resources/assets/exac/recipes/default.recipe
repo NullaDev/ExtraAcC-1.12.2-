@@ -18,6 +18,13 @@ shaped(exac:energy_unit_group){
     [academy:energy_unit, academy:energy_unit,           academy:energy_unit]
 }
 
+shaped(exac:electricalibur){
+    [academy:data_chip,      academy:magnetic_coil, academy:calc_chip]
+    [plateIron,              golden_sword,          plateIron]
+    [exac:energy_unit_group, academy:reso_crystal,  exac:energy_unit_group]
+
+}
+
 shaped(exac:reso_helmet){
 	[academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
 	[academy:constraint_plate, nil,                  academy:constraint_plate]

@@ -81,6 +81,7 @@ public class EXACRegistry {
 		event.getRegistry().register(EXACItems.optical_chip.setRegistryName(ExtraAcademy.MODID, "optical_chip"));
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
 		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));
+		event.getRegistry().register(EXACItems.electricalibur.setRegistryName(ExtraAcademy.MODID, "electricalibur"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
 		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
@@ -100,6 +101,7 @@ public class EXACRegistry {
 	public void registerItemRenderers() {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.energy_unit_group, 0, new ModelResourceLocation("exac:energy_unit_group", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.electricalibur, 0, new ModelResourceLocation("exac:electricalibur", "inventory"));
 
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
