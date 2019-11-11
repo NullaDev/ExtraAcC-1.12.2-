@@ -30,6 +30,7 @@ item.rayTwister.name=光线扭曲器
 item.energyUnitGroup.name=能量单元组
 item.electricalibur.name=电能圣剑
 item.electricalibur.desc=使用现代科技仿制的传说中的圣剑Excalibur。
+item.CPPotion.name=CP恢复剂
 
 item.helmetReso.name=谐振束能头盔
 item.chestplateReso.name=谐振束能胸甲

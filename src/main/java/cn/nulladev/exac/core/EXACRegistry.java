@@ -3,6 +3,7 @@ package cn.nulladev.exac.core;
 import cn.academy.ACItems;
 import cn.academy.ability.CategoryManager;
 import cn.academy.ability.RegCategory;
+import cn.academy.crafting.ImagFusorRecipes;
 import cn.lambdalib2.crafting.RecipeRegistry;
 import cn.nulladev.exac.ability.aerohand.CatAeroHand;
 import cn.nulladev.exac.ability.aerohand.skill.Airflow;
@@ -20,8 +21,10 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -63,17 +66,17 @@ public class EXACRegistry {
 	public void registerRecipes() {
 		RecipeRegistry recipes = new RecipeRegistry();
 		recipes.addRecipeFromResourceLocation(new ResourceLocation("exac:recipes/default.recipe"));
-		/* 
+		 
 		ImagFusorRecipes ifr = ImagFusorRecipes.INSTANCE;
-        ifr.addRecipe(new ItemStack(ACItems.crystal_low), 3000, new ItemStack(ACItems.crystal_normal));
-
+        ifr.addRecipe(new ItemStack(Items.GLASS_BOTTLE), 1000, new ItemStack(EXACItems.cp_potion));
+        /*
         MetalFormerRecipes mfr = MetalFormerRecipes.INSTANCE;
         mfr.add(new ItemStack(ACItems.imag_silicon_ingot), new ItemStack(ACItems.wafer, 2), Mode.INCISE);
 		 */
 	}
 	
 	@SubscribeEvent
-	/**Register<T>具有10种泛型类型参数：<Item>,<Block>，<Potion>（药水），<Biome>（生物群系），<SoundEvent>
+	/*Register<T>具有10种泛型类型参数：<Item>,<Block>，<Potion>（药水），<Biome>（生物群系），<SoundEvent>
     （声音事件），<PotionType>（药水类型），<Enchantment>（附魔），<VillagerProfession>（村民职业），<EntityEntry>
      （实体），<IRecipe>（合成表），你可以在ForgeRegistries类中看到这些泛型参数，也可以不使用泛型参数，直接用
       RegisterEvent监听所有事件*/
@@ -82,6 +85,7 @@ public class EXACRegistry {
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
 		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));
 		event.getRegistry().register(EXACItems.electricalibur.setRegistryName(ExtraAcademy.MODID, "electricalibur"));
+		event.getRegistry().register(EXACItems.cp_potion.setRegistryName(ExtraAcademy.MODID, "cp_potion"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
 		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
@@ -102,7 +106,8 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.energy_unit_group, 0, new ModelResourceLocation("exac:energy_unit_group", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.electricalibur, 0, new ModelResourceLocation("exac:electricalibur", "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));
+		
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_leggings, 0, new ModelResourceLocation("exac:reso_leggings", "inventory"));
