@@ -75,7 +75,7 @@ public class Flying extends Skill {
 		
 		@Listener(channel=MSG_TICK, side=Side.SERVER)
 		private void s_tick() {
-			float cp = MathUtils.lerpf(20, 10, ctx.getSkillExp());
+			float cp = MathUtils.lerpf(16, 8, ctx.getSkillExp());
 			if(ctx.consume(0.5F, cp)) {
 				if (ctx.getSkillExp() >= 0.5F)
 					player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("speed"), 39));

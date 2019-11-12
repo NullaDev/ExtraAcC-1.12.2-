@@ -4,6 +4,7 @@ import cn.academy.ACItems;
 import cn.academy.ability.CategoryManager;
 import cn.academy.ability.RegCategory;
 import cn.academy.crafting.ImagFusorRecipes;
+import cn.academy.energy.api.IFItemManager;
 import cn.lambdalib2.crafting.RecipeRegistry;
 import cn.nulladev.exac.ability.aerohand.CatAeroHand;
 import cn.nulladev.exac.ability.aerohand.skill.Airflow;
@@ -14,6 +15,7 @@ import cn.nulladev.exac.entity.EntityAirWall;
 import cn.nulladev.exac.entity.EntityBomberLance;
 import cn.nulladev.exac.entity.EntityCooler;
 import cn.nulladev.exac.entity.EntityOffenseArmour;
+import cn.nulladev.exac.entity.EntityVacuum;
 import cn.nulladev.exac.item.ItemRayTwister;
 import cn.nulladev.exac.item.ItemResoArmor;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -55,6 +57,7 @@ public class EXACRegistry {
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:cooler"), EntityCooler.class, "cooler", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:offense_armour"), EntityOffenseArmour.class, "offense_armour", modID++, ModObject, 128, 1, true);
+    	EntityRegistry.registerModEntity(new ResourceLocation("exac:vacuum"), EntityVacuum.class, "vacuum", modID++, ModObject, 128, 1, true);	
 	}
 	
 	public void registerEvents() {
@@ -85,6 +88,7 @@ public class EXACRegistry {
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
 		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));
 		event.getRegistry().register(EXACItems.electricalibur.setRegistryName(ExtraAcademy.MODID, "electricalibur"));
+		event.getRegistry().register(EXACItems.avalon.setRegistryName(ExtraAcademy.MODID, "avalon"));
 		event.getRegistry().register(EXACItems.cp_potion.setRegistryName(ExtraAcademy.MODID, "cp_potion"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
@@ -104,8 +108,8 @@ public class EXACRegistry {
 	@SideOnly(Side.CLIENT)
 	public void registerItemRenderers() {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(EXACItems.energy_unit_group, 0, new ModelResourceLocation("exac:energy_unit_group", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.electricalibur, 0, new ModelResourceLocation("exac:electricalibur", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.avalon, 0, new ModelResourceLocation("exac:avalon", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
@@ -118,6 +122,23 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_leggings, 0, new ModelResourceLocation("exac:imag_leggings", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_boots, 0, new ModelResourceLocation("exac:imag_boots", "inventory"));
 		
+		ModelLoader.setCustomMeshDefinition(EXACItems.energy_unit_group, new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				int value = (int)(IFItemManager.instance.getEnergy(stack) + 5000) / 10000;
+				String name = "energy_unit_group_" + value;
+				return new ModelResourceLocation("exac:" + name, "inventory");
+			}
+	    });
+		ModelBakery.registerItemVariants(EXACItems.ray_twister, 
+				new ModelResourceLocation("exac:energy_unit_group_0", "inventory"),
+				new ModelResourceLocation("exac:energy_unit_group_1", "inventory"),
+				new ModelResourceLocation("exac:energy_unit_group_2", "inventory"),
+				new ModelResourceLocation("exac:energy_unit_group_3", "inventory"),
+				new ModelResourceLocation("exac:energy_unit_group_4", "inventory"),
+				new ModelResourceLocation("exac:energy_unit_group_5", "inventory")
+				);
+		
 		ModelLoader.setCustomMeshDefinition(EXACItems.ray_twister, new ItemMeshDefinition() {
 			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack) {
@@ -127,7 +148,8 @@ public class EXACRegistry {
 	    });
 		ModelBakery.registerItemVariants(EXACItems.ray_twister, 
 				new ModelResourceLocation("exac:ray_twister", "inventory"),
-				new ModelResourceLocation("exac:ray_twister_active", "inventory"));
+				new ModelResourceLocation("exac:ray_twister_active", "inventory")
+				);
 		
         ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 0, new ModelResourceLocation("exac:factor_aerohand", "inventory"));
 		//AC hack

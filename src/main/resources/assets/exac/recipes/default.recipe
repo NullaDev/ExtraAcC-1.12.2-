@@ -25,6 +25,12 @@ shaped(exac:electricalibur){
 
 }
 
+shaped(exac:avalon){
+    [gold_block,             gold_block,             gold_block]
+    [gold_block,             academy:reso_crystal,   gold_block]
+    [exac:energy_unit_group, academy:info_component, exac:energy_unit_group]
+}
+
 shaped(exac:reso_helmet){
 	[academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
 	[academy:constraint_plate, nil,                  academy:constraint_plate]

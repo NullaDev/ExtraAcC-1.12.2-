@@ -23,6 +23,7 @@ public class EntityHasOwner extends Entity implements IEntityOwnable {
 	public EntityHasOwner(World world) {
         super(world);
         this.ticksExisted = 0;
+        this.isImmuneToFire = true;
     }
 
 	@Override

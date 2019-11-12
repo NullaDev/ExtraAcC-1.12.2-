@@ -20,8 +20,8 @@ public class EntityBomberLance extends EntityFlying {
 	public static final int AGE = 20;
 	public static final float BASIC_VELOCITY = 1.0F;
 	public static final float MAX_VELOCITY = 1.5F;
-	public static final float BASIC_DAMAGE = 32;
-	public static final float MAX_DAMAGE = 48;
+	public static final float BASIC_DAMAGE = 48;
+	public static final float MAX_DAMAGE = 72;
 	
 	public static final float INITIAL_SIZE = 0.4F;
 	

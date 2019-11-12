@@ -1,0 +1,48 @@
+ac.ability.aerohand.name=Aero Hand
+
+ac.ability.aerohand.air_cannon.name=Air Cannon
+ac.ability.aerohand.ascending_air.name=Ascending Air
+ac.ability.aerohand.air_blade.name=Air Blade
+ac.ability.aerohand.airflow.name=Airflow
+ac.ability.aerohand.air_cooling.name=Air Cooling
+ac.ability.aerohand.air_wall.name=Air wall
+ac.ability.aerohand.air_jet.name=Air Jet
+ac.ability.aerohand.offense_armour.name=Offense Armor
+ac.ability.aerohand.bomber_lance.name=Bomber Lance
+ac.ability.aerohand.flying.name=Flying
+ac.ability.aerohand.absolute_vacuum.name=Absolute Vacuum
+
+ac.ability.aerohand.air_cannon.desc=to be translated
+ac.ability.aerohand.ascending_air.desc=to be translated
+ac.ability.aerohand.air_blade.desc=to be translated
+ac.ability.aerohand.airflow.desc=to be translated
+ac.ability.aerohand.air_cooling.desc=to be translated
+ac.ability.aerohand.air_wall.desc=to be translated
+ac.ability.aerohand.air_jet.desc=to be translated
+ac.ability.aerohand.offense_armour.desc=to be translated
+ac.ability.aerohand.bomber_lance.desc=to be translated
+ac.ability.aerohand.flying.desc=to be translated
+ac.ability.aerohand.absolute_vacuum.desc=to be translated
+
+item.imagitem.enabled=ENABLED
+item.imagitem.disabled=DISABLED
+
+item.opticalChip.name=Optical Chip
+item.rayTwister.name=Ray Twister
+item.energyUnitGroup.name=Energy Unit Group
+item.electricalibur.name=Electricalibur
+item.electricalibur.desc=to be translated
+item.avalon.name=Avalon
+item.avalon.desc=to be translated
+item.CPPotion.name=CP Potion
+item.CPPotion.desc=to be translated
+
+item.helmetReso.name=Reso Helmet
+item.chestplateReso.name=Reso Chestplate
+item.leggingsReso.name=Reso Leggings
+item.bootsReso.name=Reso Boots
+
+item.helmetImag.name=Imag Energy Helmet
+item.chestplateImag.name=Imag Energy Chestplate
+item.leggingsImag.name=Imag Energy Leggings
+item.bootsImag.name=Imag Energy Boots

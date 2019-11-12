@@ -35,7 +35,7 @@ public class RenderCooler extends Render<EntityCooler> {
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GlStateManager.disableDepth();
+		//GlStateManager.disableDepth();
 		
 		GlStateManager.color(0.7F, 1F, 1F, 0.5F);
 		
@@ -43,14 +43,15 @@ public class RenderCooler extends Render<EntityCooler> {
 		BufferBuilder b = t.getBuffer();
 		
 		b.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION);
-		b.pos(0, entity.h, 0);
+		float h = 2 - 0.1F * entity.ticksExisted;
+		b.pos(0, h, 0);
 		for (int i = 0; i <= 30; i++) {
 			double theta = 2 * Math.PI * i / 30;
-			b.pos(Math.sin(theta), entity.h, Math.cos(theta)).endVertex();
+			b.pos(Math.sin(theta), h, Math.cos(theta)).endVertex();
 		}
 		t.draw();
 		
-		GlStateManager.enableDepth();
+		//GlStateManager.enableDepth();
 	    GlStateManager.disableBlend();
 	    GlStateManager.enableCull();
 	    GlStateManager.enableLighting();

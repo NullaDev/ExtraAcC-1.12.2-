@@ -66,7 +66,7 @@ public class ItemElectricalibur extends ItemEnergyBase {
         return EnumAction.BOW;
     }
 	
-	private ItemStack findCoin(EntityPlayer player) {
+	private static ItemStack findCoin(EntityPlayer player) {
         if (player.getHeldItem(EnumHand.OFF_HAND).getItem() == ACItems.coin) {
             return player.getHeldItem(EnumHand.OFF_HAND);
         } else if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ACItems.coin) {
@@ -85,7 +85,7 @@ public class ItemElectricalibur extends ItemEnergyBase {
 	@Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
-		boolean flag = !this.findCoin(player).isEmpty();
+		boolean flag = !findCoin(player).isEmpty();
 		if (!player.capabilities.isCreativeMode && !flag) {
             return new ActionResult(EnumActionResult.FAIL, itemstack);
         } else if(itemManager.getEnergy(itemstack) < 10000) {

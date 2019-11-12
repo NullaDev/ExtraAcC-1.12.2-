@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -57,7 +58,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 		this.setPosition(this.getOwner().posX, this.getOwner().posY, this.getOwner().posZ);
 		
 		List list = this.world.getEntitiesWithinAABB(Entity.class,
-				new AxisAlignedBB(posX - 2.5, posY - 2.5, posZ - 2.5, posX + 2.5, posY + 2.5, posZ + 2.5));
+				new AxisAlignedBB(posX - 2, posY - 2, posZ - 2, posX + 2, posY + 2, posZ + 2));
 		Iterator iterator = list.iterator();
 		while (iterator.hasNext()) {
 			Entity target = (Entity) iterator.next();
@@ -81,15 +82,14 @@ public class EntityOffenseArmour extends EntityHasOwner {
 				if (target instanceof IEntityOwnable) {
 					IEntityOwnable target1 = (IEntityOwnable)target;
 					if (target1.getOwner() == this.getOwner()) {
-						return;
+						continue;
 					}
 				}
-				double v = Math.sqrt(Math.pow(target.motionX, 2) + Math.pow(target.motionY, 2) + Math.pow(target.motionZ, 2));
-				if (v < 0.1) {
-					return;
-				}
+				/*if (isProjectileInGround(target)) {
+					continue;
+				}*/
 				if (context.get().ctx.consume(0, 10)) {
-					target.setVelocity(0, 0, 0);
+					target.setDead();
 					context.get().ctx.addSkillExp(0.001f);
 				} else {
             		context.get().terminate();
@@ -97,5 +97,29 @@ public class EntityOffenseArmour extends EntityHasOwner {
 			}
 		}
 	}
+	
+	/*private static boolean isProjectileInGround(Entity target) {	
+		try {
+			Class c = target.getClass();
+			while (!c.equals(Object.class)) {
+				Field[] fields = c.getDeclaredFields();
+				for(Field field : fields){
+			        if(Modifier.isStatic(field.getModifiers()) || Modifier.isTransient(field.getModifiers())){
+			            continue;
+			        }
+			        if (field.getName().equals("inGround") && field.getType() == boolean.class) {
+			        	field.setAccessible(true);
+						if (field.getBoolean(target)) {
+							return true;
+						} else {
+							return false;
+						}
+			        }
+			    }
+				c = c.getSuperclass();
+			}
+		} catch(Exception e) {}
+		return false;
+	}*/
 
 }

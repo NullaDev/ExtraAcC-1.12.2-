@@ -3,6 +3,7 @@ package cn.nulladev.exac.ability.aerohand;
 import cn.academy.ability.Category;
 import cn.academy.ability.Skill;
 import cn.academy.ability.vanilla.VanillaCategories;
+import cn.nulladev.exac.ability.aerohand.skill.AbsoluteVacuum;
 import cn.nulladev.exac.ability.aerohand.skill.AirBlade;
 import cn.nulladev.exac.ability.aerohand.skill.AirCannon;
 import cn.nulladev.exac.ability.aerohand.skill.AirCooling;
@@ -30,7 +31,7 @@ public class CatAeroHand extends Category {
 	public static Skill offense_armour = OffenseArmour.INSTANCE;
 	public static Skill flying = Flying.INSTANCE;
 	
-	//public static Skill turbulent_storm = SkillTurbulentStorm.INSTANCE;
+	public static Skill absolute_vacuum = AbsoluteVacuum.INSTANCE;
 
 	public CatAeroHand() {
 		super("aerohand");
@@ -50,7 +51,7 @@ public class CatAeroHand extends Category {
 		addSkill(offense_armour);
 		addSkill(flying);
 		
-		//addSkill(turbulent_storm);
+		addSkill(absolute_vacuum);
 		
 		VanillaCategories.addGenericSkills(this);
 		
@@ -68,18 +69,18 @@ public class CatAeroHand extends Category {
 		offense_armour.setPosition(160, 45);
 		flying.setPosition(170, 80);
 		
-		//turbulent_storm.setPosition(200, 35);
+		absolute_vacuum.setPosition(200, 25);
 		
 		air_blade.setParent(air_gun, 0.5F);
 		air_wall.setParent(air_blade, 0.5F);
 		bomber_lance.setParent(air_blade, 0.5F);
 		offense_armour.setParent(air_wall, 1.0F);
+		absolute_vacuum.setParent(bomber_lance, 0.5F);
 		
 		air_cooling.setParent(ascending_air);
 		airflow.setParent(ascending_air, 0.5F);
 		air_jet.setParent(airflow, 0.1F);
 		flying.setParent(air_jet, 0.5F);
-
 	}
 
 }

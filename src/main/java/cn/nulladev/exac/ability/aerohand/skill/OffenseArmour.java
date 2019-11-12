@@ -74,6 +74,7 @@ public class OffenseArmour extends Skill {
 			EntityOffenseArmour armor = new EntityOffenseArmour(player.world, player);
 			player.world.spawnEntity(armor);
 			MinecraftForge.EVENT_BUS.register(this);
+			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(AM);
 		}
 		
 		@Listener(channel=MSG_TICK, side=Side.SERVER)
@@ -81,7 +82,6 @@ public class OffenseArmour extends Skill {
 			if(ctx.consume(0.5F, 1F)) {
 				int level = ctx.getSkillExp() >= 0.5F? 3:4;
 				player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 39, level));
-				player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(AM);
 				ctx.addSkillExp(0.0001f);
 			}
 			else
