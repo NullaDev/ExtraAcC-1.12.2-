@@ -111,7 +111,7 @@ public class OffenseArmour extends Skill {
 				if (!event.getSource().isUnblockable()) {
 					float dmg = event.getAmount();
 					if (ctx.consume(0, dmg * 20)) {
-						float p = MathUtils.lerpf(0.9F, 0.98F, ctx.getSkillExp());
+						float p = MathUtils.lerpf(0.1F, 0.05F, ctx.getSkillExp());
 						event.setAmount(dmg * p);
 						ctx.addSkillExp(dmg * 0.0005f);
 					} else {

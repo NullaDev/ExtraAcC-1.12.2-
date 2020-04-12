@@ -42,7 +42,7 @@ public class ItemRayTwister extends ItemEnergyBase {
 		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
 	    if (isActive(nbt)) {
 	    	setActive(nbt, false);
-	    } else if (itemManager.pull(stack, 200, true) >= 200) {
+	    } else if (player.capabilities.isCreativeMode || itemManager.pull(stack, 200, true) >= 200) {
 	    	setActive(nbt, true);
 	    }
 	    
@@ -61,7 +61,12 @@ public class ItemRayTwister extends ItemEnergyBase {
 				setActive(stack, false);
 				return;
 			}
-			if (itemManager.pull(stack, 5, true) < 5) {
+			if (entity instanceof EntityPlayer) {
+				if(!((EntityPlayer)entity).capabilities.isCreativeMode && itemManager.pull(stack, 5, true) < 5) {
+					setActive(stack, false);
+			    	return;
+				}
+			} else if (itemManager.pull(stack, 5, true) < 5) {
 		    	setActive(stack, false);
 		    	return;
 		    }

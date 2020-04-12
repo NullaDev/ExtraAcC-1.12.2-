@@ -88,16 +88,21 @@ public class ItemElectricalibur extends ItemEnergyBase {
 		boolean flag = !findCoin(player).isEmpty();
 		if (!player.capabilities.isCreativeMode && !flag) {
             return new ActionResult(EnumActionResult.FAIL, itemstack);
-        } else if(itemManager.getEnergy(itemstack) < 10000) {
+        } else if(!player.capabilities.isCreativeMode && itemManager.getEnergy(itemstack) < 10000) {
         	return new ActionResult(EnumActionResult.FAIL, itemstack);
         } else {
         	if (world.isRemote) {
-    			DummyRenderData.get(player).addRenderHook(new RailgunHandEffect());
+        		handEffect(player);
     		}
         	player.setActiveHand(hand);
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
         }	
     }
+	
+	@SideOnly(Side.CLIENT)
+	protected void handEffect(EntityPlayer player) {
+		DummyRenderData.get(player).addRenderHook(new RailgunHandEffect());
+	}
 	
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entityLiving, int timeLeft) {
@@ -109,7 +114,7 @@ public class ItemElectricalibur extends ItemEnergyBase {
             if (!player.capabilities.isCreativeMode && itemstack.isEmpty()) {
             	return;
             }
-            if(itemManager.pull(stack, 10000, true) < 10000) {
+            if(!player.capabilities.isCreativeMode && itemManager.pull(stack, 10000, true) < 10000) {
             	return;
             }
             if (!player.capabilities.isCreativeMode) {
@@ -121,21 +126,25 @@ public class ItemElectricalibur extends ItemEnergyBase {
             
             RayTraceResult raytraceresult = world.rayTraceBlocks(player.getPositionVector(), VecUtils.lookingPos(player, 15));
             RayTraceResult raytraceresult1 = Raytrace.traceLiving(player, 15, EntitySelectors.living());
+            if (raytraceresult1.entityHit != null)
+    			raytraceresult1.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(player), 30);
             
             if (world.isRemote) {
-        		EntityRailgunFX eff = new EntityRailgunFX(player, 15);
-                if (raytraceresult != null) {
-                	Vec3d pos = raytraceresult.hitVec;
-            		double d = Math.sqrt(Math.pow(player.posX - pos.x, 2) + Math.pow(player.posY - pos.y, 2) + Math.pow(player.posZ - pos.z, 2));
-            		eff.length = d;
-                }
-        		world.spawnEntity(eff);
-        	} else {
-        		if (raytraceresult1.entityHit != null)
-        			raytraceresult1.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(player), 30);
+            	createRailgunFX(raytraceresult, player);
         	}
         }
     }
+	
+	@SideOnly(Side.CLIENT)
+	protected void createRailgunFX(RayTraceResult raytraceresult, EntityPlayer player) {
+		EntityRailgunFX eff = new EntityRailgunFX(player, 15);
+        if (raytraceresult != null) {
+        	Vec3d pos = raytraceresult.hitVec;
+    		double d = Math.sqrt(Math.pow(player.posX - pos.x, 2) + Math.pow(player.posY - pos.y, 2) + Math.pow(player.posZ - pos.z, 2));
+    		eff.length = d;
+        }
+        player.world.spawnEntity(eff);
+	}
 	
 	@Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
