@@ -90,8 +90,9 @@ public class EntityBomberLance extends EntityFlying {
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
 			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), BomberLance.INSTANCE).setProjectile(), getDamage(exp));
-			double v = MathUtils.lerpf(10F, 15F, exp) / pos.entityHit.height; 
-			pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
+			double v = MathUtils.lerpf(10F, 15F, exp) / pos.entityHit.height;
+			if (direc != null)
+				pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
 			pos.entityHit.setAir(300);
 		}
 		this.setDead();
