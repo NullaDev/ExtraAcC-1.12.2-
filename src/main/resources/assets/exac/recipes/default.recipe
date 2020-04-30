@@ -1,4 +1,4 @@
-; ExtraAcademy recipe script file, why don't I use the ready-made register?
+; ExtraAcademy recipe script file, but why don't I use the vanilla register system?
 
 shaped(exac:optical_chip){
 	[nil,                        academy:imag_silicon_ingot, nil]
@@ -6,10 +6,14 @@ shaped(exac:optical_chip){
 	[nil,                        academy:imag_silicon_ingot, nil]
 }
 
-shaped(exac:ray_twister){
-    [nil,                    academy:resonance_component]
-    [academy:info_component, academy:energy_convert_component]
-    [academy:calc_chip,      exac:optical_chip]
+shaped(exac:lasor_component){
+    [exac:optical_chip, academy:resonance_component, emerald]
+}
+
+shaped(exac:ray_twister){    
+    [nil,       academy:resonance_component,      nil]
+    [nil,       exac:optical_chip,                nil]
+    [plateIron, academy:energy_convert_component, plateIron]
 }
 
 shaped(exac:energy_unit_group){
@@ -19,16 +23,20 @@ shaped(exac:energy_unit_group){
 }
 
 shaped(exac:electricalibur){
-    [academy:data_chip,      academy:magnetic_coil, academy:calc_chip]
-    [plateIron,              golden_sword,          plateIron]
-    [exac:energy_unit_group, academy:reso_crystal,  exac:energy_unit_group]
-
+    [academy:reso_crystal,     academy:magnetic_coil,       academy:reso_crystal]
+    [academy:constraint_plate, golden_sword,                academy:constraint_plate]
+    [exac:energy_unit_group,   academy:resonance_component, exac:energy_unit_group]
 }
 
 shaped(exac:avalon){
-    [gold_block,             gold_block,             gold_block]
-    [gold_block,             academy:reso_crystal,   gold_block]
-    [exac:energy_unit_group, academy:info_component, exac:energy_unit_group]
+    [gold_block,             gold_block,                  gold_block]
+    [gold_block,             academy:resonance_component, gold_block]
+    [exac:energy_unit_group, academy:info_component,      exac:energy_unit_group]
+}
+
+shaped(exac:lasor_gun){
+    [exac:lasor_component,   academy:calc_chip,      plateIron]
+    [exac:energy_unit_group, exac:energy_unit_group, plateIron]
 }
 
 shaped(exac:reso_helmet){

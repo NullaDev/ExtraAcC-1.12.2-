@@ -25,12 +25,15 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -43,6 +46,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EXACRegistry {
 	
 	public static final EXACRegistry INSTANCE = new EXACRegistry();
+	
+	public static EnumRarity RarityGolden = EnumHelper.addRarity("GOLDEN", TextFormatting.GOLD, "GOLDEN");
 	
 	public void registerAbility() {
 	    CatAeroHand aerohand = new CatAeroHand();
@@ -64,6 +69,7 @@ public class EXACRegistry {
 		MinecraftForge.EVENT_BUS.register(EXACRegistry.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(AscendingAir.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(Airflow.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(EXACItems.lasor_gun);
 	}
 	
 	public void registerRecipes() {
@@ -85,11 +91,13 @@ public class EXACRegistry {
       RegisterEvent监听所有事件*/
 	public void addItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(EXACItems.optical_chip.setRegistryName(ExtraAcademy.MODID, "optical_chip"));
+		event.getRegistry().register(EXACItems.lasor_component.setRegistryName(ExtraAcademy.MODID, "lasor_component"));
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
 		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));
 		event.getRegistry().register(EXACItems.electricalibur.setRegistryName(ExtraAcademy.MODID, "electricalibur"));
 		event.getRegistry().register(EXACItems.avalon.setRegistryName(ExtraAcademy.MODID, "avalon"));
 		event.getRegistry().register(EXACItems.cp_potion.setRegistryName(ExtraAcademy.MODID, "cp_potion"));
+		event.getRegistry().register(EXACItems.lasor_gun.setRegistryName(ExtraAcademy.MODID, "lasor_gun"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
 		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
@@ -108,9 +116,11 @@ public class EXACRegistry {
 	@SideOnly(Side.CLIENT)
 	public void registerItemRenderers() {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.lasor_component, 0, new ModelResourceLocation("exac:lasor_component", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.electricalibur, 0, new ModelResourceLocation("exac:electricalibur", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.avalon, 0, new ModelResourceLocation("exac:avalon", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.lasor_gun, 0, new ModelResourceLocation("exac:lasor_gun", "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
@@ -142,7 +152,7 @@ public class EXACRegistry {
 		ModelLoader.setCustomMeshDefinition(EXACItems.ray_twister, new ItemMeshDefinition() {
 			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				String name = ItemRayTwister.isActive(stack)? "ray_twister_active" : "ray_twister";
+				String name = EXACUtils.isActive(stack)? "ray_twister_active" : "ray_twister";
 				return new ModelResourceLocation("exac:" + name, "inventory");
 			}
 	    });

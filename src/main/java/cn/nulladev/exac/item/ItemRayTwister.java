@@ -39,11 +39,10 @@ public class ItemRayTwister extends ItemEnergyBase {
 		if (world.isRemote)
 			return new ActionResult(EnumActionResult.PASS, stack);
 
-		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
-	    if (isActive(nbt)) {
-	    	setActive(nbt, false);
+	    if (EXACUtils.isActive(stack)) {
+	    	EXACUtils.setActive(stack, false);
 	    } else if (player.capabilities.isCreativeMode || itemManager.pull(stack, 200, true) >= 200) {
-	    	setActive(nbt, true);
+	    	EXACUtils.setActive(stack, true);
 	    }
 	    
     	return new ActionResult(EnumActionResult.SUCCESS, stack);   
@@ -56,18 +55,18 @@ public class ItemRayTwister extends ItemEnergyBase {
 			return;
 		if (!(entity instanceof EntityLivingBase))
 			return;
-		if (isActive(stack)) {
+		if (EXACUtils.isActive(stack)) {
 			if (itemSlot >= 9) {
-				setActive(stack, false);
+				EXACUtils.setActive(stack, false);
 				return;
 			}
 			if (entity instanceof EntityPlayer) {
 				if(!((EntityPlayer)entity).capabilities.isCreativeMode && itemManager.pull(stack, 5, true) < 5) {
-					setActive(stack, false);
+					EXACUtils.setActive(stack, false);
 			    	return;
 				}
 			} else if (itemManager.pull(stack, 5, true) < 5) {
-		    	setActive(stack, false);
+				EXACUtils.setActive(stack, false);
 		    	return;
 		    }
 			EntityLivingBase entityliving = (EntityLivingBase) entity;
@@ -75,32 +74,10 @@ public class ItemRayTwister extends ItemEnergyBase {
 		}
     }
 	
-	public static boolean isActive(ItemStack stack) {
-		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);	
-		return isActive(nbt);
-	}
-
-	public static boolean isActive(NBTTagCompound nbt) {
-		if (!nbt.hasKey("active")) {
-			nbt.setBoolean("active", false);
-			return false;
-		}
-		return nbt.getBoolean("active");
-	}
-	
-	public static void setActive(ItemStack stack, boolean active) {
-		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);	
-		setActive(nbt, active);
-	}
-
-	public static void setActive(NBTTagCompound nbt, boolean active) {
-		nbt.setBoolean("active", active);
-	}
-	
 	@Override
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
-		if (isActive(stack)) {
+		if (EXACUtils.isActive(stack)) {
 			tooltip.add(I18n.translateToLocal("item.imagitem.enabled"));
 		} else {
 			tooltip.add(I18n.translateToLocal("item.imagitem.disabled"));

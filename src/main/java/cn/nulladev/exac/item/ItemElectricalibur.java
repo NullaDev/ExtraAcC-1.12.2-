@@ -19,6 +19,7 @@ import cn.lambdalib2.util.MathUtils;
 import cn.lambdalib2.util.Raytrace;
 import cn.lambdalib2.util.VecUtils;
 import cn.nulladev.exac.ability.aerohand.skill.AirCannon;
+import cn.nulladev.exac.core.EXACRegistry;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,7 +41,6 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.common.util.EnumHelper;
 
 public class ItemElectricalibur extends ItemEnergyBase {
 	
@@ -164,7 +164,7 @@ public class ItemElectricalibur extends ItemEnergyBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
-	    return EnumHelper.addRarity("GOLDEN", TextFormatting.GOLD, "GOLDEN");
+	    return EXACRegistry.RarityGolden;
 	}
 	
 	@Override

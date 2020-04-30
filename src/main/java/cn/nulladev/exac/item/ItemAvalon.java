@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import cn.academy.AcademyCraft;
 import cn.academy.item.ItemEnergyBase;
+import cn.nulladev.exac.core.EXACRegistry;
 import cn.nulladev.exac.core.EXACUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -18,7 +19,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -81,7 +81,7 @@ public class ItemAvalon extends ItemEnergyBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
-	    return EnumHelper.addRarity("GOLDEN", TextFormatting.GOLD, "GOLDEN");
+		return EXACRegistry.RarityGolden;
 	}
 	
 	@Override
