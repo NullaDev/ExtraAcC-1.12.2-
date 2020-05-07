@@ -39,6 +39,18 @@ shaped(exac:lasor_gun){
     [exac:energy_unit_group, exac:energy_unit_group, plateIron]
 }
 
+shaped(exac:air_jet){
+    [nil,       plateIron,                        nil]
+    [plateIron, academy:energy_convert_component, plateIron]
+    [piston,    academy:matter_unit,              piston]
+}
+
+shaped(exac:teleporter){
+    [nil,       academy:data_chip,                nil]
+    [plateIron, academy:energy_convert_component, plateIron]
+    [ender_eye, academy:resonance_component,      ender_eye]
+}
+
 shaped(exac:reso_helmet){
 	[academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
 	[academy:constraint_plate, nil,                  academy:constraint_plate]

@@ -100,20 +100,13 @@ public class ItemLasorGun extends ItemEnergyBase {
 		if (!Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
 			setHarvestBlockPos(stack, new BlockPos(-1, -1, -1));
 			setHarvestLeft(stack, Float.MAX_VALUE);
-			if (RayFinder.getRay(player) != null) {
-				RayFinder.getRay(player).setDead();
-				RayFinder.removeRay(player);
-			}
+			RayFinder.killRay(player);
 			return;
 		}
 		if (!player.capabilities.isCreativeMode && itemManager.pull(stack, 20, true) < 20) {
 			return;
 		}
-		if (RayFinder.getRay(player) == null || RayFinder.getRay(player).isDead) {
-			Entity entityRay = new EntityMineRayBasic(player);
-			player.world.spawnEntity(entityRay);
-			RayFinder.pushRay(player, entityRay);
-		}
+		RayFinder.pushRay(player);
 		RayTraceResult result = Raytrace.traceLiving(player, 8, EntitySelectors.nothing());
 		if (result != null) {
 			BlockPos pos = result.getBlockPos();
@@ -189,8 +182,21 @@ class RayFinder {
 			map.remove(entity);
 	}
 	
-	public static void pushRay(EntityPlayer entity, Entity ray) {
-		removeRay(entity);
-		map.put(entity, ray);
+	@SideOnly(Side.CLIENT)
+	public static void pushRay(EntityPlayer player) {
+		if (RayFinder.getRay(player) == null || RayFinder.getRay(player).isDead) {
+			removeRay(player);
+			Entity entityRay = new EntityMineRayBasic(player);
+			player.world.spawnEntity(entityRay);
+			map.put(player, entityRay);
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static void killRay(EntityPlayer player) {
+		if (RayFinder.getRay(player) != null) {
+			RayFinder.getRay(player).setDead();
+			RayFinder.removeRay(player);
+		}
 	}
 }

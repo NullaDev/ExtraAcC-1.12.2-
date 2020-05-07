@@ -39,6 +39,13 @@ item.CPPotion.name=CP恢复剂
 item.CPPotion.desc=饮用以恢复2000CP，但最多恢复到最大CP值的一半。
 item.lasorGun.name=镭射枪
 item.lasorGun.desc=迷之采集道具，因为mc狗屎源码只能用奇怪的方式实现，可能有bug。
+item.airJet.name=空气喷射器
+item.airJet.desc=右键可以把自己朝目视方向喷出一小段距离，内置冷却10s。
+item.airJet.desc2=当前剩余冷却tick数:
+item.teleporter.name=手持传送器
+item.teleporter.desc=右键可以消耗一个末影珍珠把自己传送回绑定地点。
+item.teleporter.desc2=当前绑定地点:
+item.teleporter.desc3=当前未绑定地点
 
 item.helmetReso.name=谐振束能头盔
 item.chestplateReso.name=谐振束能胸甲

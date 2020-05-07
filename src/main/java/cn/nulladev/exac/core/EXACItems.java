@@ -14,6 +14,8 @@ public class EXACItems {
 	public static final Item avalon = new ItemAvalon();
 	public static final Item cp_potion = new ItemCPPotion();
 	public static final Item lasor_gun = new ItemLasorGun();
+	public static final Item air_jet = new ItemAirJet();
+	public static final Item teleporter = new ItemTeleporter();
 	
 	public static final Item reso_helmet = new ItemResoArmor(EntityEquipmentSlot.HEAD);
 	public static final Item reso_chestplate = new ItemResoArmor(EntityEquipmentSlot.CHEST);

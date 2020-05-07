@@ -98,6 +98,8 @@ public class EXACRegistry {
 		event.getRegistry().register(EXACItems.avalon.setRegistryName(ExtraAcademy.MODID, "avalon"));
 		event.getRegistry().register(EXACItems.cp_potion.setRegistryName(ExtraAcademy.MODID, "cp_potion"));
 		event.getRegistry().register(EXACItems.lasor_gun.setRegistryName(ExtraAcademy.MODID, "lasor_gun"));
+		event.getRegistry().register(EXACItems.air_jet.setRegistryName(ExtraAcademy.MODID, "air_jet"));
+		event.getRegistry().register(EXACItems.teleporter.setRegistryName(ExtraAcademy.MODID, "teleporter"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
 		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
@@ -121,6 +123,8 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.avalon, 0, new ModelResourceLocation("exac:avalon", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.lasor_gun, 0, new ModelResourceLocation("exac:lasor_gun", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.air_jet, 0, new ModelResourceLocation("exac:air_jet", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.teleporter, 0, new ModelResourceLocation("exac:teleporter", "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
