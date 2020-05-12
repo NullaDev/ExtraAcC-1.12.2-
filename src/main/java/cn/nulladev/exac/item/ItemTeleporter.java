@@ -80,7 +80,7 @@ public class ItemTeleporter extends ItemEnergyBase {
         }
     }
 	
-	protected static boolean hasTeleportPos(ItemStack stack) {
+	public static boolean hasTeleportPos(ItemStack stack) {
 		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
 		if (!nbt.hasKey("telePosX") || !nbt.hasKey("telePosY") || !nbt.hasKey("telePosZ")) {
 			return false;
@@ -91,14 +91,14 @@ public class ItemTeleporter extends ItemEnergyBase {
 		return true;
 	}
 	
-	protected static void setTeleportPos(ItemStack stack, double x, double y, double z) {
+	public static void setTeleportPos(ItemStack stack, double x, double y, double z) {
 		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
 		nbt.setDouble("telePosX", x);
 		nbt.setDouble("telePosY", y);
 		nbt.setDouble("telePosZ", z);
 	}
 	
-	protected static Vec3d getTeleportPos(ItemStack stack) {
+	public static Vec3d getTeleportPos(ItemStack stack) {
 		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
 		return new Vec3d(nbt.getDouble("telePosX"), nbt.getDouble("telePosY"), nbt.getDouble("telePosZ"));
 	}

@@ -91,6 +91,7 @@ public class ItemLasorGun extends ItemEnergyBase {
 	}
 	
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void harvest(PlayerTickEvent event) {
 		EntityPlayer player = event.player;
 		ItemStack stack = player.getHeldItemMainhand();

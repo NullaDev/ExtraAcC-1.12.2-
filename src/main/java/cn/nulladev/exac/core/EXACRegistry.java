@@ -18,6 +18,7 @@ import cn.nulladev.exac.entity.EntityOffenseArmour;
 import cn.nulladev.exac.entity.EntityVacuum;
 import cn.nulladev.exac.item.ItemRayTwister;
 import cn.nulladev.exac.item.ItemResoArmor;
+import cn.nulladev.exac.item.ItemTeleporter;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -124,7 +125,6 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.lasor_gun, 0, new ModelResourceLocation("exac:lasor_gun", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.air_jet, 0, new ModelResourceLocation("exac:air_jet", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(EXACItems.teleporter, 0, new ModelResourceLocation("exac:teleporter", "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
@@ -151,7 +151,19 @@ public class EXACRegistry {
 				new ModelResourceLocation("exac:energy_unit_group_3", "inventory"),
 				new ModelResourceLocation("exac:energy_unit_group_4", "inventory"),
 				new ModelResourceLocation("exac:energy_unit_group_5", "inventory")
-				);
+		);
+		
+		ModelLoader.setCustomMeshDefinition(EXACItems.teleporter, new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				String name = ItemTeleporter.hasTeleportPos(stack)? "teleporter_pos" : "teleporter";
+				return new ModelResourceLocation("exac:" + name, "inventory");
+			}
+	    });
+		ModelBakery.registerItemVariants(EXACItems.ray_twister, 
+				new ModelResourceLocation("exac:teleporter", "inventory"),
+				new ModelResourceLocation("exac:teleporter_pos", "inventory")
+		);
 		
 		ModelLoader.setCustomMeshDefinition(EXACItems.ray_twister, new ItemMeshDefinition() {
 			@Override
@@ -163,7 +175,7 @@ public class EXACRegistry {
 		ModelBakery.registerItemVariants(EXACItems.ray_twister, 
 				new ModelResourceLocation("exac:ray_twister", "inventory"),
 				new ModelResourceLocation("exac:ray_twister_active", "inventory")
-				);
+		);
 		
         ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 0, new ModelResourceLocation("exac:factor_aerohand", "inventory"));
 		//AC hack
