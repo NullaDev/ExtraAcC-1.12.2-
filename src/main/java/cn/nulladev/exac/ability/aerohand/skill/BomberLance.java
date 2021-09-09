@@ -5,7 +5,6 @@ import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.Context;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
-import cn.nulladev.exac.ability.aerohand.skill.AirBlade.ContextAirBlade;
 import cn.nulladev.exac.entity.EntityBomberLance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -23,14 +22,14 @@ public class BomberLance extends Skill {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void activate(ClientRuntime rt, int keyID) {
-		activateSingleKey2(rt, keyID, (EntityPlayer p) -> new ContextBomberLance(p));
+		activateSingleKey2(rt, keyID, ContextBomberLance::new);
 	}
 	
 	public static class ContextBomberLance extends Context {
 		
 		static final String MSG_PERFORM = "perform";
 		
-		private float cp;
+		private final float cp;
 
 		public ContextBomberLance(EntityPlayer _player) {
 			super(_player, BomberLance.INSTANCE);

@@ -1,16 +1,16 @@
 [
 {
-  "modid": "extraacc",
-  "name": "ExtraAcC",
-  "description": "Sub mod for AcademyCraft",
+  "modid": "exac",
+  "name": "ExtraAcademy",
+  "description": "Sub-mod for AcademyCraft. More items, and more skill categories.",
   "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
+  "url": "http://www.nulladev.cn/products/exac.html",
   "updateUrl": "",
   "authorList": ["Chitose"],
-  "credits": "Nulladev",
-  "logoFile": "",
+  "credits": "Laugh to death. No one plays this at all.",
+  "logoFile": "nulla.jpg",
   "screenshots": [],
+  "parent": "academy",
   "dependencies": []
 }
 ]

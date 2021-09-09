@@ -1,6 +1,5 @@
 package cn.nulladev.exac.entity;
 
-import cn.lambdalib2.util.MathUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 

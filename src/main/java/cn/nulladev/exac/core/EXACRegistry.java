@@ -2,33 +2,22 @@ package cn.nulladev.exac.core;
 
 import cn.academy.ACItems;
 import cn.academy.ability.CategoryManager;
-import cn.academy.ability.RegCategory;
 import cn.academy.crafting.ImagFusorRecipes;
 import cn.academy.energy.api.IFItemManager;
 import cn.lambdalib2.crafting.RecipeRegistry;
 import cn.nulladev.exac.ability.aerohand.CatAeroHand;
 import cn.nulladev.exac.ability.aerohand.skill.Airflow;
 import cn.nulladev.exac.ability.aerohand.skill.AscendingAir;
-import cn.nulladev.exac.entity.EntityAirBlade;
-import cn.nulladev.exac.entity.EntityAirCannon;
-import cn.nulladev.exac.entity.EntityAirWall;
-import cn.nulladev.exac.entity.EntityBomberLance;
-import cn.nulladev.exac.entity.EntityCooler;
-import cn.nulladev.exac.entity.EntityOffenseArmour;
-import cn.nulladev.exac.entity.EntityVacuum;
-import cn.nulladev.exac.item.ItemRayTwister;
-import cn.nulladev.exac.item.ItemResoArmor;
+import cn.nulladev.exac.ability.psychokinesist.CatTelekinesis;
+import cn.nulladev.exac.ability.psychokinesist.skill.SideArm;
+import cn.nulladev.exac.entity.*;
 import cn.nulladev.exac.item.ItemTeleporter;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -36,8 +25,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -52,24 +39,28 @@ public class EXACRegistry {
 	
 	public void registerAbility() {
 	    CatAeroHand aerohand = new CatAeroHand();
+		CatTelekinesis telekinesis = new CatTelekinesis();
 	    CategoryManager.INSTANCE.register(aerohand);
+		CategoryManager.INSTANCE.register(telekinesis);
 	}
 	
 	public void registerEntities(Object ModObject) {
 		int modID = 1;
-    	EntityRegistry.registerModEntity(new ResourceLocation("exac:air_cannon"), EntityAirCannon.class, "air_cannon", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:air_blade"), EntityAirBlade.class, "air_blade", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:air_wall"), EntityAirWall.class, "air_wall", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:cooler"), EntityCooler.class, "cooler", modID++, ModObject, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation("exac:helicopter"), EntityHelicopter.class, "helicopter", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:offense_armour"), EntityOffenseArmour.class, "offense_armour", modID++, ModObject, 128, 1, true);
-    	EntityRegistry.registerModEntity(new ResourceLocation("exac:vacuum"), EntityVacuum.class, "vacuum", modID++, ModObject, 128, 1, true);	
+    	EntityRegistry.registerModEntity(new ResourceLocation("exac:vacuum"), EntityVacuum.class, "vacuum", modID++, ModObject, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation("exac:volcanic_ball"), EntityVolcanicBall.class, "volcanic_ball", modID++, ModObject, 128, 1, true);
 	}
 	
 	public void registerEvents() {
 		MinecraftForge.EVENT_BUS.register(EXACRegistry.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(AscendingAir.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(Airflow.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(SideArm.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(EXACItems.lasor_gun);
 	}
 	
@@ -178,11 +169,11 @@ public class EXACRegistry {
 		);
 		
         ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 0, new ModelResourceLocation("exac:factor_aerohand", "inventory"));
-		//AC hack
         ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 1, new ModelResourceLocation("academy:factor_electromaster", "inventory"));
         ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 2, new ModelResourceLocation("academy:factor_meltdowner", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 3, new ModelResourceLocation("academy:factor_teleporter", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 4, new ModelResourceLocation("academy:factor_vecmanip", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 3, new ModelResourceLocation("exac:factor_telekinesis", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 4, new ModelResourceLocation("academy:factor_teleporter", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ACItems.induction_factor, 5, new ModelResourceLocation("academy:factor_vecmanip", "inventory"));
 	}
 
 }

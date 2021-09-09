@@ -13,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.world.World;
 
 public class EntityHasOwner extends Entity implements IEntityOwnable {
@@ -39,7 +38,7 @@ public class EntityHasOwner extends Entity implements IEntityOwnable {
             s = nbt.getString("OwnerUUID");
         }
 
-        if (s != "") {
+        if (!s.equals("")) {
         	this.setOwnerId(UUID.fromString(s));
         }
 	}

@@ -26,17 +26,19 @@ public class Airflow extends Skill {
 		EntityPlayer player = (EntityPlayer) event.getEntity();
 		
 		if (event.getSource().getDamageType().equals("inWall") || event.getSource().getDamageType().equals("drown")) {
+			if (AbilityData.get(player) == null)
+				return;
 			if (AbilityData.get(player).isSkillLearned(Airflow.INSTANCE)) {
 				float exp = AbilityData.get(player).getSkillExp(AscendingAir.INSTANCE);
+				float protection_rate = MathUtils.lerpf(0.75F, 0.95F, exp);
 				float dmg = event.getAmount();
-				float cp = MathUtils.lerpf(40, 20, exp);
+				float cp_per_dmg = MathUtils.lerpf(40, 20, exp);
 				if (!CPData.get(player).isOverloaded() &&
 						!CPData.get(player).isOverloadRecovering() && 
-						CPData.get(player).perform(0, cp * dmg)) {
-					float dmg1 = dmg * MathUtils.lerpf(0.5F, 0.1F, exp);
-					event.setAmount(dmg1);
-					AbilityData.get(player).addSkillExp(Airflow.INSTANCE, dmg * 0.0002F);
-				}		
+						CPData.get(player).perform(0, cp_per_dmg * dmg)) {
+					event.setAmount(dmg * (1 - protection_rate));
+					AbilityData.get(player).addSkillExp(Airflow.INSTANCE, dmg * 0.001F);
+				}
 			}
 		}
     }

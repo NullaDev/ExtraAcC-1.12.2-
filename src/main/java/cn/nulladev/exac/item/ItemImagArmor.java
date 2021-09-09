@@ -22,7 +22,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

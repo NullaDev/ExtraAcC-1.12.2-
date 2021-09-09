@@ -1,1 +1,0 @@
-gradlew.bat build -info

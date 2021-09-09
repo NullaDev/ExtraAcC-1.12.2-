@@ -1,6 +1,7 @@
 ac.ability.aerohand.name=空力使
+ac.ability.telekinesis.name=念动力
 
-ac.ability.aerohand.air_cannon.name=空气弹
+ac.ability.aerohand.volcanic_ball.name=喷出球体
 ac.ability.aerohand.ascending_air.name=上升气流
 ac.ability.aerohand.air_blade.name=气刃
 ac.ability.aerohand.airflow.name=气流控制
@@ -10,19 +11,23 @@ ac.ability.aerohand.air_jet.name=喷气
 ac.ability.aerohand.offense_armour.name=氮气装甲
 ac.ability.aerohand.bomber_lance.name=氮气爆枪
 ac.ability.aerohand.flying.name=飞行
-ac.ability.aerohand.absolute_vacuum.name=绝对真空
+ac.ability.aerohand.aero_separator.name=空气分离
 
-ac.ability.aerohand.air_cannon.desc=将一团空气从各方向均匀压缩成球并发射，击退命中的敌人。距离越远伤害越低。
+ac.ability.telekinesis.side_arm.name=气力绝缘
+
+ac.ability.aerohand.volcanic_ball.desc=将一团空气从各方向均匀压缩成球并发射，击退命中的敌人。距离越远伤害越低。
 ac.ability.aerohand.ascending_air.desc=被动技能，通过控制气流上升，使自身受到的坠落伤害不超过一定值。
 ac.ability.aerohand.air_blade.desc=将空气沿一个方向压缩，形成一道不太稳定的风刃并发射，造成破甲伤害。距离越远伤害越低。
 ac.ability.aerohand.airflow.desc=被动技能，减少自身受到的窒息伤害。熟练时可以无限水下呼吸。
 ac.ability.aerohand.air_cooling.desc=使用强力风冷散热，降低自身过载。
 ac.ability.aerohand.air_wall.desc=制造出压缩气体墙，击退周围的所有目标并摧毁投射物。
-ac.ability.aerohand.air_jet.desc=通过向后喷气，使自身快速前冲。氮气装甲中无法发动。
+ac.ability.aerohand.air_jet.desc=通过向后喷气，使自身向前飞跃一小段距离。该技能冷却较短，但在氮气装甲中无法发动。
 ac.ability.aerohand.offense_armour.desc=使用无死角的压缩氮气罩防护自身。减速，减少受到的伤害，击退近距离的生物并摧毁投射物。此技能和原作中略有不同。
 ac.ability.aerohand.bomber_lance.desc=喷出高压的氮气长枪，冲击并大幅击退目标。
 ac.ability.aerohand.flying.desc=开启后可以飞行。和氮气装甲不能共存。
-ac.ability.aerohand.absolute_vacuum.desc=短暂蓄力后，瞬间制造出小范围的真空区域，对区域内所有敌人造成真实伤害。
+ac.ability.aerohand.aero_separator.desc=短暂蓄力后，瞬间制造出小范围的真空区域，对区域内所有生物（包括自己）造成窒息伤害。
+
+ac.ability.psychokinesist.side_arm.desc=被动技能，通过制造出一块阻碍电子传播的区域，少量降低受到的技能伤害。对电击使和原子崩坏尤其有效。
 
 item.imagitem.enabled=当前状态:开启中
 item.imagitem.disabled=当前状态:关闭中

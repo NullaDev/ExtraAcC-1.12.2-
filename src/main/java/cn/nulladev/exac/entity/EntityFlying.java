@@ -1,9 +1,7 @@
 package cn.nulladev.exac.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
@@ -54,7 +52,7 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt(vx * vx + vz * vz);
             this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(vx, vz) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(vy, (double)f) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(vy, f) * 180.0D / Math.PI);
         }
     }
     
@@ -91,11 +89,11 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
             f2 = 0.8F;
         }
 
-        this.motionX *= (double)f2;
-        this.motionY *= (double)f2;
-        this.motionZ *= (double)f2;
+        this.motionX *= f2;
+        this.motionY *= f2;
+        this.motionZ *= f2;
         
-        this.motionY -= (double)this.gravity;
+        this.motionY -= this.gravity;
         this.setPosition(this.posX, this.posY, this.posZ);
     }
     
@@ -120,9 +118,8 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
         }
         
         Entity flag = null;
-        List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ));
-        for (int j = 0; j < list.size(); ++j) {
-            Entity entity = (Entity)list.get(j);
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ));
+        for (Entity entity : list) {
             if (entity.canBeCollidedWith() && (entity != this.getOwner())) {
                 flag = entity;
             }
@@ -144,10 +141,6 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
     protected void calcRotation() {
     	double xz = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-
-        for (this.rotationPitch = (float)(Math.atan2(this.motionY, xz) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-            ;
-        }
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
             this.prevRotationPitch += 360.0F;

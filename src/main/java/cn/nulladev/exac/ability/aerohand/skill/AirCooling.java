@@ -21,19 +21,19 @@ public class AirCooling extends Skill {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void activate(ClientRuntime rt, int keyID) {
-		activateSingleKey2(rt, keyID, (EntityPlayer p) -> new ContextAirCooling(p));
+		activateSingleKey2(rt, keyID, ContextAirCooling::new);
 	}
 	
 	public static class ContextAirCooling extends Context {
 		
 		static final String MSG_PERFORM = "perform";
 			
-			private float cp;
+			private final float cp;
 
 			public ContextAirCooling(EntityPlayer _player) {
 				super(_player, AirCooling.INSTANCE);
 				
-				cp = MathUtils.lerpf(100, 2000, ctx.getSkillExp());
+				cp = MathUtils.lerpf(400, 1600, ctx.getSkillExp());
 			}
 			
 			private boolean consume() {
@@ -50,17 +50,16 @@ public class AirCooling extends Skill {
 				if(consume()) {
 					EntityCooler cooler = new EntityCooler(player.world, player);
 					player.world.spawnEntity(cooler);
-					float new_overload;
+					float capacity = MathUtils.lerpf(200, 800, ctx.getSkillExp());
 					if (player.world.provider.isNether()) {
-						new_overload = Math.min(ctx.cpData.getOverload(), ctx.cpData.getMaxOverload() / 2);
+						capacity /= 4;
 					} else {
-						float f = MathUtils.lerpf(160, 800, ctx.getSkillExp());
-						new_overload = Math.max(ctx.cpData.getOverload() - f, 0);
 						player.extinguish();
 					}
+					float new_overload = Math.max(ctx.cpData.getOverload() - capacity, 0);
 					ctx.cpData.setOverload(new_overload);
 					ctx.addSkillExp(getExpIncr());
-					ctx.setCooldown((int)MathUtils.lerpf(400, 100, ctx.getSkillExp()));
+					ctx.setCooldown((int)MathUtils.lerpf(300, 60, ctx.getSkillExp()));
 				}
 			    terminate();
 			}

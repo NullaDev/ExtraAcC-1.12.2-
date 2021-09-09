@@ -4,14 +4,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import cn.academy.ACItems;
 import cn.academy.AcademyCraft;
 import cn.academy.item.ItemEnergyBase;
 import cn.nulladev.exac.core.EXACUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -40,11 +38,10 @@ public class ItemTeleporter extends ItemEnergyBase {
 		if (player.isSneaking()) {
 			if (hasTeleportPos(stack)) {
 				setTeleportPos(stack, -1, -1, -1);
-				return new ActionResult(EnumActionResult.SUCCESS, stack);
 			} else {
 				setTeleportPos(stack, player.posX, player.posY, player.posZ);
-				return new ActionResult(EnumActionResult.SUCCESS, stack);
 			}
+			return new ActionResult(EnumActionResult.SUCCESS, stack);
 		} else {
 			if (!hasTeleportPos(stack)) {
 				return new ActionResult(EnumActionResult.FAIL, stack);
@@ -85,7 +82,7 @@ public class ItemTeleporter extends ItemEnergyBase {
 		if (!nbt.hasKey("telePosX") || !nbt.hasKey("telePosY") || !nbt.hasKey("telePosZ")) {
 			return false;
 		}
-		if (nbt.getDouble("telePosX") == -1 || nbt.getDouble("telePosY") == -1 || nbt.getDouble("telePosZ") == -1) {
+		if (nbt.getDouble("telePosX") == -1 && nbt.getDouble("telePosY") == -1 && nbt.getDouble("telePosZ") == -1) {
 			return false;
 		}
 		return true;

@@ -22,19 +22,19 @@ public class AirBlade extends Skill {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void activate(ClientRuntime rt, int keyID) {
-		activateSingleKey2(rt, keyID, (EntityPlayer p) -> new ContextAirBlade(p));
+		activateSingleKey2(rt, keyID, ContextAirBlade::new);
 	}
 	
 	public static class ContextAirBlade extends Context {
 		
 		static final String MSG_PERFORM = "perform";
 		
-		private float cp;
+		private final float cp;
 
 		public ContextAirBlade(EntityPlayer _player) {
 			super(_player, AirBlade.INSTANCE);
 			
-			cp = MathUtils.lerpf(100, 200, ctx.getSkillExp());
+			cp = MathUtils.lerpf(100, 150, ctx.getSkillExp());
 		}
 		
 		private boolean consume() {
@@ -56,7 +56,7 @@ public class AirBlade extends Skill {
 				world.spawnEntity(entity);
 				
 				ctx.addSkillExp(getExpIncr());
-				ctx.setCooldown((int)MathUtils.lerpf(60, 40, ctx.getSkillExp()));
+				ctx.setCooldown((int)MathUtils.lerpf(40, 30, ctx.getSkillExp()));
 			}
 		    terminate();
 		}

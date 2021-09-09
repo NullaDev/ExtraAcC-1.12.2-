@@ -14,9 +14,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,7 +48,7 @@ public class ItemAvalon extends ItemEnergyBase {
 			setActive(stack, false);
 		}
 		
-		if (isActive(stack) && itemManager.pull(stack, 5000, true) >= 2000) {
+		if (isActive(stack) && itemManager.pull(stack, 2000, true) >= 2000) {
 			entityliving.heal(1);
 		}
     }

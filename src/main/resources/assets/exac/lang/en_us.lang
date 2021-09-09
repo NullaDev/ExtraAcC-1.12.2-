@@ -1,6 +1,6 @@
 ac.ability.aerohand.name=Aero Hand
 
-ac.ability.aerohand.air_cannon.name=Air Cannon
+ac.ability.aerohand.volcanic_ball.name=Volcanic Ball
 ac.ability.aerohand.ascending_air.name=Ascending Air
 ac.ability.aerohand.air_blade.name=Air Blade
 ac.ability.aerohand.airflow.name=Airflow
@@ -10,19 +10,19 @@ ac.ability.aerohand.air_jet.name=Air Jet
 ac.ability.aerohand.offense_armour.name=Offense Armor
 ac.ability.aerohand.bomber_lance.name=Bomber Lance
 ac.ability.aerohand.flying.name=Flying
-ac.ability.aerohand.absolute_vacuum.name=Absolute Vacuum
+ac.ability.aerohand.aero_separator.name=Aero Separator
 
-ac.ability.aerohand.air_cannon.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
+ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
 ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a certain value.
 ac.ability.aerohand.air_blade.desc=Compress some air in one direction to make an unstable air blade, causes passing armor damage.
 ac.ability.aerohand.airflow.desc=Passive skill, reduce drown damage. Breathe underwater when skilled.
 ac.ability.aerohand.air_cooling.desc=Reduce your overload by using air cooling.
 ac.ability.aerohand.air_wall.desc=Create a compressed air wall that knocks back all targets and destroys projectiles.
-ac.ability.aerohand.air_jet.desc=Lunge forward through backward jet. You can't use this during using offense armour.
+ac.ability.aerohand.air_jet.desc=Lunge forward through backward jet. This skill has a relatively short cooldown, but you can't use this during using offense armour.
 ac.ability.aerohand.offense_armour.desc=Use all-round compressed air to protect yourself. Reduce damage received, knock back entities and destroy projectiles.
 ac.ability.aerohand.bomber_lance.desc=Eject high-pressure air lance to knock back the target.
 ac.ability.aerohand.flying.desc=You can fly when enabled. You can't use this during using offense armour.
-ac.ability.aerohand.absolute_vacuum.desc=Create a small area of vacuum and deal real damage to all enemies inside.
+ac.ability.aerohand.aero_separator.desc=Create a small area of vacuum and deal real damage to all entities inside (including yourself!).
 
 item.imagitem.enabled=ENABLED
 item.imagitem.disabled=DISABLED

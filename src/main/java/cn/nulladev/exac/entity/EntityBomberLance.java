@@ -1,7 +1,5 @@
 package cn.nulladev.exac.entity;
 
-import com.google.common.base.Optional;
-
 import cn.academy.ability.SkillDamageSource;
 import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.ability.aerohand.skill.BomberLance;
@@ -9,8 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -68,15 +64,15 @@ public class EntityBomberLance extends EntityFlying {
     @Override
 	protected void entityInit() {
 		super.entityInit();
-        this.dataManager.register(StartPosX, Float.valueOf(0.0F));
-        this.dataManager.register(StartPosY, Float.valueOf(0.0F));
-        this.dataManager.register(StartPosZ, Float.valueOf(0.0F));
+        this.dataManager.register(StartPosX, 0.0F);
+        this.dataManager.register(StartPosY, 0.0F);
+        this.dataManager.register(StartPosZ, 0.0F);
 	}
     
     public void setStartPos(double x, double y, double z) {
-		this.dataManager.set(StartPosX, Float.valueOf((float)x));
-		this.dataManager.set(StartPosY, Float.valueOf((float)y));
-		this.dataManager.set(StartPosZ, Float.valueOf((float)z));
+		this.dataManager.set(StartPosX, (float) x);
+		this.dataManager.set(StartPosY, (float) y);
+		this.dataManager.set(StartPosZ, (float) z);
 	}
 	
 	public Vec3d getStartPos() {

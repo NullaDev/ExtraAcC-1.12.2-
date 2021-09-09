@@ -10,17 +10,14 @@ import cn.academy.ability.context.ContextManager;
 import cn.academy.ability.context.RegClientContext;
 import cn.academy.ability.context.ClientRuntime.ActivateHandlers;
 import cn.academy.ability.context.ClientRuntime.IActivateHandler;
-import cn.academy.ability.context.Context.Status;
 import cn.academy.ability.ctrl.KeyDelegates;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
+import cn.nulladev.exac.entity.EntityHelicopter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.Function1;
@@ -68,16 +65,18 @@ public class Flying extends Skill {
 			if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
 				context.get().terminate();
 			}
-			//特效暂时没有
-			//EntityOffenseArmour armor = new EntityOffenseArmour(player.world, player);
-			//player.world.spawnEntity(armor);
+			//特效有了
+			EntityHelicopter jet = new EntityHelicopter(player.world, player);
+			player.world.spawnEntity(jet);
 		}
 		
 		@Listener(channel=MSG_TICK, side=Side.SERVER)
 		private void s_tick() {
 			float cp = MathUtils.lerpf(16, 8, ctx.getSkillExp());
 			if(ctx.consume(0.5F, cp)) {
-				if (ctx.getSkillExp() >= 0.5F)
+				if (ctx.getSkillExp() >= 1.0F)
+					player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("speed"), 39, 1));
+				else if (ctx.getSkillExp() >= 0.5F)
 					player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("speed"), 39));
 				ctx.addSkillExp(0.0001f);
 			}

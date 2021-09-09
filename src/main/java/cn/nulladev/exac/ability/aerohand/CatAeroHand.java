@@ -3,9 +3,9 @@ package cn.nulladev.exac.ability.aerohand;
 import cn.academy.ability.Category;
 import cn.academy.ability.Skill;
 import cn.academy.ability.vanilla.VanillaCategories;
-import cn.nulladev.exac.ability.aerohand.skill.AbsoluteVacuum;
+import cn.nulladev.exac.ability.aerohand.skill.AeroSeparator;
 import cn.nulladev.exac.ability.aerohand.skill.AirBlade;
-import cn.nulladev.exac.ability.aerohand.skill.AirCannon;
+import cn.nulladev.exac.ability.aerohand.skill.VolcanicBall;
 import cn.nulladev.exac.ability.aerohand.skill.AirCooling;
 import cn.nulladev.exac.ability.aerohand.skill.AirJet;
 import cn.nulladev.exac.ability.aerohand.skill.AirWall;
@@ -17,7 +17,7 @@ import cn.nulladev.exac.ability.aerohand.skill.OffenseArmour;
 
 public class CatAeroHand extends Category {
 	
-	public static Skill air_gun = AirCannon.INSTANCE;
+	public static Skill volcanic_ball = VolcanicBall.INSTANCE;
 	public static Skill ascending_air = AscendingAir.INSTANCE;
 	
 	public static Skill air_blade = AirBlade.INSTANCE;
@@ -31,13 +31,13 @@ public class CatAeroHand extends Category {
 	public static Skill offense_armour = OffenseArmour.INSTANCE;
 	public static Skill flying = Flying.INSTANCE;
 	
-	public static Skill absolute_vacuum = AbsoluteVacuum.INSTANCE;
+	public static Skill absolute_vacuum = AeroSeparator.INSTANCE;
 
 	public CatAeroHand() {
 		super("aerohand");
 		this.setColorStyle(191, 255, 255, 127);
 		
-		addSkill(air_gun);
+		addSkill(volcanic_ball);
 		addSkill(ascending_air);
 		
 		addSkill(air_blade);
@@ -55,7 +55,7 @@ public class CatAeroHand extends Category {
 		
 		VanillaCategories.addGenericSkills(this);
 		
-		air_gun.setPosition(20, 25);
+		volcanic_ball.setPosition(20, 25);
 		ascending_air.setPosition(30, 65);
 		
 		air_blade.setPosition(65, 20);
@@ -71,7 +71,7 @@ public class CatAeroHand extends Category {
 		
 		absolute_vacuum.setPosition(200, 25);
 		
-		air_blade.setParent(air_gun, 0.5F);
+		air_blade.setParent(volcanic_ball, 0.5F);
 		air_wall.setParent(air_blade, 0.5F);
 		bomber_lance.setParent(air_blade, 0.5F);
 		offense_armour.setParent(air_wall, 1.0F);

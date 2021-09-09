@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import cn.academy.AcademyCraft;
-import cn.academy.energy.api.item.ImagEnergyItem;
 import cn.academy.item.ItemEnergyBase;
 import cn.nulladev.exac.core.EXACUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -13,7 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;

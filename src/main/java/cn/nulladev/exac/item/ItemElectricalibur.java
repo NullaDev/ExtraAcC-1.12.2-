@@ -9,19 +9,15 @@ import com.google.common.collect.Multimap;
 
 import cn.academy.ACItems;
 import cn.academy.AcademyCraft;
-import cn.academy.ability.SkillDamageSource;
 import cn.academy.client.render.misc.RailgunHandEffect;
 import cn.academy.entity.EntityRailgunFX;
 import cn.academy.item.ItemEnergyBase;
 import cn.lambdalib2.renderhook.DummyRenderData;
 import cn.lambdalib2.util.EntitySelectors;
-import cn.lambdalib2.util.MathUtils;
 import cn.lambdalib2.util.Raytrace;
 import cn.lambdalib2.util.VecUtils;
-import cn.nulladev.exac.ability.aerohand.skill.AirCannon;
 import cn.nulladev.exac.core.EXACRegistry;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -36,7 +32,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -110,7 +105,7 @@ public class ItemElectricalibur extends ItemEnergyBase {
 			return;
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)entityLiving;
-            ItemStack itemstack = this.findCoin(player);
+            ItemStack itemstack = findCoin(player);
             if (!player.capabilities.isCreativeMode && itemstack.isEmpty()) {
             	return;
             }

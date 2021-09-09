@@ -22,14 +22,14 @@ public class AirWall extends Skill {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void activate(ClientRuntime rt, int keyID) {
-		activateSingleKey2(rt, keyID, (EntityPlayer p) -> new ContextAirWall(p));
+		activateSingleKey2(rt, keyID, ContextAirWall::new);
 	}
 	
 	public static class ContextAirWall extends Context {
 		
 		static final String MSG_PERFORM = "perform";
 		
-		private float cp;
+		private final float cp;
 
 		public ContextAirWall(EntityPlayer _player) {
 			super(_player, AirWall.INSTANCE);

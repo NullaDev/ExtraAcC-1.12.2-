@@ -6,7 +6,6 @@ import cn.academy.ability.Skill;
 import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.Context;
 import cn.academy.ability.context.ContextManager;
-import cn.academy.ability.context.Context.Status;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
@@ -26,7 +25,7 @@ public class AirJet extends Skill {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void activate(ClientRuntime rt, int keyID) {
-		activateSingleKey2(rt, keyID, (EntityPlayer p) -> new ContextAirJet(p));
+		activateSingleKey2(rt, keyID, ContextAirJet::new);
 	}
 	
 	public static class ContextAirJet extends Context {
@@ -34,18 +33,18 @@ public class AirJet extends Skill {
 		static final String MSG_PERFORM = "perform";
 		static final String MSG_PERFORM2 = "perform2";
 			
-			private float cp;
-			private float spd;
+			private final float cp;
+			private final float spd;
 
 			public ContextAirJet(EntityPlayer _player) {
 				super(_player, AirJet.INSTANCE);
 				
-				cp = MathUtils.lerpf(400, 600, ctx.getSkillExp());
+				cp = MathUtils.lerpf(200, 400, ctx.getSkillExp());
 				spd = MathUtils.lerpf(2, 4, ctx.getSkillExp());
 			}
 			
 			private boolean consume() {
-				float overload = MathUtils.lerpf(60, 40, ctx.getSkillExp());
+				float overload = MathUtils.lerpf(80, 40, ctx.getSkillExp());
 				return ctx.consume(overload, cp);
 			}
 			

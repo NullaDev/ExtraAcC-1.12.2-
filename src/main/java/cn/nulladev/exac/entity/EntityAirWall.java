@@ -13,12 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAirWall extends EntityHasOwner {
 	
@@ -56,8 +53,8 @@ public class EntityAirWall extends EntityHasOwner {
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		this.dataManager.register(CurrentRadius, Float.valueOf(0.0F));
-		this.dataManager.register(MaxRadius, Float.valueOf(0.0F));
+		this.dataManager.register(CurrentRadius, 0.0F);
+		this.dataManager.register(MaxRadius, 0.0F);
 	}
 	
 	@Override
@@ -92,7 +89,7 @@ public class EntityAirWall extends EntityHasOwner {
 					target.setDead();
 					//target.setVelocity(0, target.motionY, 0);
 				}
-				
+
 	        }
 		}
 		this.setCurrentRadius(curRadius + 0.2f);
@@ -100,7 +97,7 @@ public class EntityAirWall extends EntityHasOwner {
 
 	
 	public void setCurrentRadius(float radius) {
-		this.dataManager.set(CurrentRadius, Float.valueOf((float)radius));
+		this.dataManager.set(CurrentRadius, radius);
 	}
 	
 	public float getCurrentRadius() {
@@ -108,7 +105,7 @@ public class EntityAirWall extends EntityHasOwner {
 	}
 	
 	public void setMaxRadius(float maxRadius) {
-		this.dataManager.set(MaxRadius, Float.valueOf((float)maxRadius));
+		this.dataManager.set(MaxRadius, maxRadius);
 	}
 	
 	public float getMaxRadius() {

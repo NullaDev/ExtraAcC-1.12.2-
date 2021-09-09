@@ -15,7 +15,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -49,7 +48,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 		if (this.getOwner() == null) {
 			this.setDead();
 			return;
-		}		
+		}
 		Optional<ContextOffenseArmour> context = ContextManager.instance.find(ContextOffenseArmour.class);
 		if(!context.isPresent() || context.get().getStatus() != Status.ALIVE) {
 			this.setDead();

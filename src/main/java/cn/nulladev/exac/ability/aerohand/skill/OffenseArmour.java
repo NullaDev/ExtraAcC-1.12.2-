@@ -7,23 +7,19 @@ import cn.academy.ability.context.ClientContext;
 import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.ClientRuntime.ActivateHandlers;
 import cn.academy.ability.context.ClientRuntime.IActivateHandler;
-import cn.academy.ability.context.Context.Status;
 import cn.academy.ability.context.Context;
 import cn.academy.ability.context.ContextManager;
 import cn.academy.ability.context.RegClientContext;
 import cn.academy.ability.ctrl.KeyDelegates;
-import cn.academy.datapart.AbilityData;
 import cn.lambdalib2.s11n.network.NetworkMessage.Listener;
 import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.ability.aerohand.skill.Flying.ContextFlying;
-import cn.nulladev.exac.ability.aerohand.skill.OffenseArmour.ContextOffenseArmour;
 import cn.nulladev.exac.entity.EntityOffenseArmour;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.client.event.GuiScreenEvent.PotionShiftEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -45,9 +41,9 @@ public class OffenseArmour extends Skill {
 	@SideOnly(Side.CLIENT)
 	public void activate(ClientRuntime rt, int keyID) {
 		Function1<EntityPlayer, Context> f = new AbstractFunction1<EntityPlayer, Context>() {
-		    public Context apply(EntityPlayer p) {
-		        return new ContextOffenseArmour(p);
-		    }
+			public Context apply(EntityPlayer p) {
+				return new ContextOffenseArmour(p);
+			}
 		};
 		ClassTag<Context> tag = scala.reflect.ClassTag$.MODULE$.apply(ContextOffenseArmour.class);
 		rt.addKey(keyID, KeyDelegates.contextActivate(this, f, tag));
