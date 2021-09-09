@@ -35,8 +35,8 @@ public class EntityVolcanicBall extends EntityFlying {
         this.exp = _exp;
         this.direc = _dir;
         this.setVelocity(_dir, getVelocity(_exp));
-        this.shouldDestroyBlocks = true;
-    }
+		this.harvestStrength = 0.2F;
+	}
     
     @Override
     public boolean shouldRenderInPass(int pass) {

@@ -45,7 +45,7 @@ public class EntityBomberLance extends EntityFlying {
         this.setStartPos(thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ);
         this.setVelocity(_dir, getVelocity(_exp));
         this.ignoreFrustumCheck = true;
-        this.shouldDestroyBlocks = true;
+		this.harvestStrength = 0.4F;
     }
     
     @Override

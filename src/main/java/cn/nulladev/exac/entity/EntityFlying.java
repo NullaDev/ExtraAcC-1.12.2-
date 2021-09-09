@@ -20,7 +20,7 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
 	
     protected float gravity = 0.03F;
     protected float velocityDecreaseRate = 0.99F;
-    protected boolean shouldDestroyBlocks = false;
+    protected float harvestStrength = -2F;
     public final int age;
 
     public EntityFlying(World world, float width, float height) {
@@ -108,8 +108,10 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
         
         if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
         	IBlockState hitBlock = this.world.getBlockState(raytraceresult.getBlockPos());
-        	if (this.shouldDestroyBlocks && hitBlock.getBlockHardness(this.world, raytraceresult.getBlockPos()) <= 0.2) {
-        		this.world.setBlockToAir(raytraceresult.getBlockPos());
+        	float hardness = hitBlock.getBlockHardness(this.world, raytraceresult.getBlockPos());
+        	System.out.println(hardness);
+        	if (hardness <= this.harvestStrength && this.getOwner().canHarvestBlock(hitBlock)) {
+        		this.world.destroyBlock(raytraceresult.getBlockPos(), true);
         		raytraceresult = null;
         	} else if (hitBlock.getBlock() == Blocks.PORTAL) {
         		this.setPortal(raytraceresult.getBlockPos());

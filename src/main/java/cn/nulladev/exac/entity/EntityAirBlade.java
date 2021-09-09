@@ -40,7 +40,7 @@ public class EntityAirBlade extends EntityFlying {
         this.exp = _exp;
         this.direc = _dir;
         this.setVelocity(_dir, VELOCITY);
-        this.shouldDestroyBlocks = true;
+        this.harvestStrength = 0.2F;
     }
      
     @Override
