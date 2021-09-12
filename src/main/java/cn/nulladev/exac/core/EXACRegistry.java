@@ -2,7 +2,9 @@ package cn.nulladev.exac.core;
 
 import cn.academy.ACItems;
 import cn.academy.ability.CategoryManager;
+import cn.academy.block.tileentity.TileMetalFormer;
 import cn.academy.crafting.ImagFusorRecipes;
+import cn.academy.crafting.MetalFormerRecipes;
 import cn.academy.energy.api.IFItemManager;
 import cn.lambdalib2.crafting.RecipeRegistry;
 import cn.nulladev.exac.ability.aerohand.CatAeroHand;
@@ -15,6 +17,7 @@ import cn.nulladev.exac.item.ItemTeleporter;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -49,6 +52,7 @@ public class EXACRegistry {
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:air_blade"), EntityAirBlade.class, "air_blade", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:air_wall"), EntityAirWall.class, "air_wall", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation("exac:cobblestone"), EntityCobblestone.class, "cobblestone", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:cooler"), EntityCooler.class, "cooler", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:helicopter"), EntityHelicopter.class, "helicopter", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:offense_armour"), EntityOffenseArmour.class, "offense_armour", modID++, ModObject, 128, 1, true);
@@ -68,12 +72,13 @@ public class EXACRegistry {
 		RecipeRegistry recipes = new RecipeRegistry();
 		recipes.addRecipeFromResourceLocation(new ResourceLocation("exac:recipes/default.recipe"));
 		 
-		ImagFusorRecipes ifr = ImagFusorRecipes.INSTANCE;
-        ifr.addRecipe(new ItemStack(Items.GLASS_BOTTLE), 1000, new ItemStack(EXACItems.cp_potion));
-        /*
-        MetalFormerRecipes mfr = MetalFormerRecipes.INSTANCE;
-        mfr.add(new ItemStack(ACItems.imag_silicon_ingot), new ItemStack(ACItems.wafer, 2), Mode.INCISE);
-		 */
+		ImagFusorRecipes.INSTANCE.addRecipe(new ItemStack(Items.GLASS_BOTTLE), 1000, new ItemStack(EXACItems.cp_potion));
+		ImagFusorRecipes.INSTANCE.addRecipe(new ItemStack(Items.IRON_INGOT), 1000, new ItemStack(ACItems.constraint_ingot));
+		ImagFusorRecipes.INSTANCE.addRecipe(new ItemStack(Items.DIAMOND), 1000, new ItemStack(ACItems.reso_crystal));
+		ImagFusorRecipes.INSTANCE.addRecipe(new ItemStack(Blocks.SAND), 1000, new ItemStack(ACItems.imag_silicon_ingot));
+		ImagFusorRecipes.INSTANCE.addRecipe(new ItemStack(Items.REDSTONE, 2), 1000, new ItemStack(ACItems.crystal_low));
+
+		MetalFormerRecipes.INSTANCE.add(new ItemStack(Blocks.COBBLESTONE), new ItemStack(EXACItems.etched_cobblestone), TileMetalFormer.Mode.ETCH);
 	}
 	
 	@SubscribeEvent
@@ -83,6 +88,8 @@ public class EXACRegistry {
       RegisterEvent监听所有事件*/
 	public void addItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(EXACItems.optical_chip.setRegistryName(ExtraAcademy.MODID, "optical_chip"));
+		event.getRegistry().register(EXACItems.etched_cobblestone.setRegistryName(ExtraAcademy.MODID, "etched_cobblestone"));
+
 		event.getRegistry().register(EXACItems.lasor_component.setRegistryName(ExtraAcademy.MODID, "lasor_component"));
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
 		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));

@@ -10,10 +10,10 @@ import net.minecraft.world.World;
 
 public class EntityAirBlade extends EntityFlying {
 	
-	public static final int BASIC_AGE = 20;
-	public static final int MAX_AGE = 30;
+	public static final int BASIC_AGE = 40;
+	public static final int MAX_AGE = 60;
 	
-	public static final float VELOCITY = 1F;
+	public static final float VELOCITY = 0.8F;
 	
 	public static final float BASIC_DAMAGE = 12;
 	public static final float MAX_DAMAGE = 18;
@@ -52,25 +52,24 @@ public class EntityAirBlade extends EntityFlying {
     	return (int) MathUtils.lerpf(BASIC_AGE, MAX_AGE, exp);
     }
     
-    private float getBasicDamage(float exp) {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
+    private float getBasicDamage() {
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
     }
-    
-    private float getDamage(float exp) {
-    	return getBasicDamage(exp) * MathUtils.lerpf(1, DAMAGE_DECREASE_RATE, (float)this.ticksExisted / this.age);
+
+    private float getDamage() {
+    	return getBasicDamage() * MathUtils.lerpf(1, DAMAGE_DECREASE_RATE, (float)this.ticksExisted / this.age);
     }
 
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirBlade.INSTANCE).setProjectile().setDamageBypassesArmor(), getDamage(exp));
+			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirBlade.INSTANCE).setProjectile().setDamageBypassesArmor(), this.getDamage());
 		}
 		this.setDead();
 	}
 	
 	@Override
     public void onUpdate() {
-		super.onUpdate();
 		Vec3d xzVec = new Vec3d(this.motionX, 0, this.motionZ).normalize();
 		this.posX -= offsetX;
 		this.posZ -= offsetZ;
@@ -78,6 +77,7 @@ public class EntityAirBlade extends EntityFlying {
 		offsetZ = 2F * - xzVec.x * Math.sin(this.ticksExisted * Math.PI / 10);
 		this.posX += offsetX;
 		this.posZ += offsetZ;
+		super.onUpdate();
 	}
 
 }

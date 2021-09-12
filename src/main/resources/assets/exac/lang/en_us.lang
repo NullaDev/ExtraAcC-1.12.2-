@@ -12,8 +12,11 @@ ac.ability.aerohand.bomber_lance.name=Bomber Lance
 ac.ability.aerohand.flying.name=Flying
 ac.ability.aerohand.aero_separator.name=Aero Separator
 
+ac.ability.telekinesis.psycho_throwing.name=Psycho Throwing
+ac.ability.telekinesis.side_arm.name=Side Arm
+
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
-ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a certain value.
+ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a maximum value.
 ac.ability.aerohand.air_blade.desc=Compress some air in one direction to make an unstable air blade, causes passing armor damage.
 ac.ability.aerohand.airflow.desc=Passive skill, reduce drown damage. Breathe underwater when skilled.
 ac.ability.aerohand.air_cooling.desc=Reduce your overload by using air cooling.
@@ -21,13 +24,17 @@ ac.ability.aerohand.air_wall.desc=Create a compressed air wall that knocks back 
 ac.ability.aerohand.air_jet.desc=Lunge forward through backward jet. This skill has a relatively short cooldown, but you can't use this during using offense armour.
 ac.ability.aerohand.offense_armour.desc=Use all-round compressed air to protect yourself. Reduce damage received, knock back entities and destroy projectiles.
 ac.ability.aerohand.bomber_lance.desc=Eject high-pressure air lance to knock back the target.
-ac.ability.aerohand.flying.desc=You can fly when enabled. You can't use this during using offense armour.
+ac.ability.aerohand.flying.desc=You can fly when enabled, but you can't use this during using offense armour.
 ac.ability.aerohand.aero_separator.desc=Create a small area of vacuum and deal real damage to all entities inside (including yourself!).
+
+ac.ability.telekinesis.psycho_throwing.desc=Throw a piece of cobblestone through your psychokinesis. The performance will improve if the cobblestone is treated and easy to operate.
+ac.ability.telekinesis.side_arm.desc=Passive skill, reduce skill damage taken by creating an area that blocks electrons passing. Especially effective against electromaster and meltdowner.
 
 item.imagitem.enabled=ENABLED
 item.imagitem.disabled=DISABLED
 
 item.opticalChip.name=Optical Chip
+item.etchedCobblestone.name=Etched Cobblestone
 item.rayTwister.name=Ray Twister
 item.energyUnitGroup.name=Energy Unit Group
 item.electricalibur.name=Electricalibur

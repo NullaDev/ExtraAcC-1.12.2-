@@ -78,6 +78,7 @@ public class OffenseArmour extends Skill {
 			if(ctx.consume(0.5F, 1F)) {
 				int level = ctx.getSkillExp() >= 0.5F? 3:4;
 				player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 39, level));
+				player.setAir(300);
 				ctx.addSkillExp(0.0001f);
 			}
 			else
@@ -87,7 +88,7 @@ public class OffenseArmour extends Skill {
 		@Listener(channel=MSG_TERMINATED, side=Side.SERVER)
 		private void s_terminate() {
 			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).removeModifier(AM);
-			int cd = (int) MathUtils.lerpf(200, 100, ctx.getSkillExp());
+			int cd = (int) MathUtils.lerpf(120, 80, ctx.getSkillExp());
 			ctx.setCooldown(cd);
 			MinecraftForge.EVENT_BUS.unregister(this);
 		}
@@ -103,7 +104,7 @@ public class OffenseArmour extends Skill {
 			}
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			Optional<ContextOffenseArmour> context = ContextManager.instance.find(ContextOffenseArmour.class);
-			if(context.isPresent()) {
+			if(context.isPresent() && context.get().player == player) {
 				if (!event.getSource().isUnblockable()) {
 					float dmg = event.getAmount();
 					if (ctx.consume(0, dmg * 20)) {

@@ -8,6 +8,7 @@ public class EXACItems {
 	
 	public static final Item optical_chip = new EXACItemNormal("opticalChip");
 	public static final Item lasor_component = new EXACItemNormal("lasorComponent");
+	public static final Item etched_cobblestone = new EXACItemNormal("etchedCobblestone");
 	public static final Item ray_twister = new ItemRayTwister();
 	public static final Item energy_unit_group = new ItemEnergyUnitGroup();
 	public static final Item electricalibur = new ItemElectricalibur();

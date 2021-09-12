@@ -13,8 +13,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityFlying extends EntityHasOwner implements IProjectile {
 	
@@ -45,10 +43,7 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
 
     @Override
     public void setVelocity(double vx, double vy, double vz) {
-        this.motionX = vx;
-        this.motionY = vy;
-        this.motionZ = vz;
-
+        super.setVelocity(vx, vy, vz);
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt(vx * vx + vz * vz);
             this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(vx, vz) * 180.0D / Math.PI);
@@ -109,7 +104,6 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
         if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
         	IBlockState hitBlock = this.world.getBlockState(raytraceresult.getBlockPos());
         	float hardness = hitBlock.getBlockHardness(this.world, raytraceresult.getBlockPos());
-        	System.out.println(hardness);
         	if (hardness <= this.harvestStrength && this.getOwner().canHarvestBlock(hitBlock)) {
         		this.world.destroyBlock(raytraceresult.getBlockPos(), true);
         		raytraceresult = null;
@@ -141,8 +135,9 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
     }
     
     protected void calcRotation() {
-    	double xz = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        float vxz = MathHelper.sqrt(this.motionX * this.motionX + motionZ * motionZ);
         this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+        this.rotationPitch = (float)(Math.atan2(this.motionY, vxz) * 180.0D / Math.PI);
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
             this.prevRotationPitch += 360.0F;
@@ -184,9 +179,4 @@ public abstract class EntityFlying extends EntityHasOwner implements IProjectile
     }
 
     protected abstract void onImpact(RayTraceResult p_70184_1_);
-
-    @SideOnly(Side.CLIENT)
-    public float getShadowSize() {
-        return 0.0F;
-    }
 }

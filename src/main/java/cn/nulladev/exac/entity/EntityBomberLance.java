@@ -31,7 +31,7 @@ public class EntityBomberLance extends EntityFlying {
 	public EntityBomberLance(World world) {
         super(world, INITIAL_SIZE, INITIAL_SIZE);
         this.setNoGravity();
-        this.setDecrease(1.00F);
+		this.setNoDecrease();
         this.setStartPos(this.posX, this.posY, this.posZ);
         this.ignoreFrustumCheck = true;
     }
@@ -39,11 +39,11 @@ public class EntityBomberLance extends EntityFlying {
     public EntityBomberLance(World world, EntityPlayer thrower, float _exp, Vec3d _dir) {
         super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, INITIAL_SIZE, INITIAL_SIZE, AGE);
         this.setNoGravity();
-        this.setDecrease(1.00F);
+        this.setNoDecrease();
         this.exp = _exp;
         this.direc = _dir;
         this.setStartPos(thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ);
-        this.setVelocity(_dir, getVelocity(_exp));
+        this.setVelocity(_dir, getVelocity());
         this.ignoreFrustumCheck = true;
 		this.harvestStrength = 0.4F;
     }
@@ -53,12 +53,12 @@ public class EntityBomberLance extends EntityFlying {
         return pass == 1;
     }
     
-    private static float getVelocity(float exp) {
-    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, exp);
+    private float getVelocity() {
+    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this.exp);
     }
     
-    private float getDamage(float exp) {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
+    private float getDamage() {
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
     }
     
     @Override
@@ -85,7 +85,7 @@ public class EntityBomberLance extends EntityFlying {
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), BomberLance.INSTANCE).setProjectile(), getDamage(exp));
+			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), BomberLance.INSTANCE).setProjectile(), this.getDamage());
 			double v = MathUtils.lerpf(10F, 15F, exp) / pos.entityHit.height;
 			if (direc != null)
 				pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);

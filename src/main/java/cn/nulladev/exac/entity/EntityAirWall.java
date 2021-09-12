@@ -46,8 +46,8 @@ public class EntityAirWall extends EntityHasOwner {
         return pass == 1;
     }
 	
-	private float getDamage(float exp) {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
+	private float getDamage() {
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
     }
 	
 	@Override
@@ -81,7 +81,7 @@ public class EntityAirWall extends EntityHasOwner {
 						continue;
 					float d = (float) Math.sqrt(Math.pow(entity.posX - posX, 2) + Math.pow(entity.posZ - posZ, 2));
 		            if (d >= curRadius - 0.4 && d <= curRadius + 0.4) {
-		            	entity.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirWall.INSTANCE), getDamage(exp));
+		            	entity.attackEntityFrom(new SkillDamageSource(this.getOwner(), AirWall.INSTANCE), this.getDamage());
 		            	Vec3d direc = new Vec3d(entity.posX - this.posX, 0, entity.posZ - this.posZ).normalize();
 		            	entity.addVelocity(direc.x, 0, direc.z);
 		            }

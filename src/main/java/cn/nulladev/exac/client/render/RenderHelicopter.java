@@ -13,12 +13,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
-import java.util.Random;
-
 @RegEntityRender(EntityHelicopter.class)
 public class RenderHelicopter extends Render<EntityHelicopter> {
 
-    private final Random ran = new Random();
     private float alpha = 0F;
 
     public RenderHelicopter(RenderManager renderManager) {

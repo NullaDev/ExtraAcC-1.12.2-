@@ -34,7 +34,7 @@ public class EntityVolcanicBall extends EntityFlying {
         this.setDecrease(0.98F);
         this.exp = _exp;
         this.direc = _dir;
-        this.setVelocity(_dir, getVelocity(_exp));
+        this.setVelocity(_dir, getVelocity());
 		this.harvestStrength = 0.2F;
 	}
     
@@ -43,22 +43,22 @@ public class EntityVolcanicBall extends EntityFlying {
         return pass == 1;
     }
     
-    private static float getVelocity(float exp) {
-    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, exp);
+    private float getVelocity() {
+    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this.exp);
     }
     
-    private float getBasicDamage(float exp) {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
+    private float getBasicDamage() {
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
     }
     
-    private float getDamage(float exp) {
-    	return getBasicDamage(exp) * MathUtils.lerpf(1, DAMAGE_DECREASE_RATE, (float)this.ticksExisted / this.age);
+    private float getDamage() {
+    	return getBasicDamage() * MathUtils.lerpf(1, DAMAGE_DECREASE_RATE, (float)this.ticksExisted / this.age);
     }
 
 	@Override
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
-			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), VolcanicBall.INSTANCE).setProjectile(), getDamage(exp));
+			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), VolcanicBall.INSTANCE).setProjectile(), this.getDamage());
 			double v = MathUtils.lerpf(3, 6, exp) / pos.entityHit.height;
 			if (direc != null)
 				pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
