@@ -13,6 +13,7 @@ ac.ability.aerohand.flying.name=Flying
 ac.ability.aerohand.aero_separator.name=Aero Separator
 
 ac.ability.telekinesis.psycho_throwing.name=Psycho Throwing
+ac.ability.telekinesis.psycho_transmission.name=Psycho Transmission
 ac.ability.telekinesis.insulation.name=Insulation
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
@@ -28,6 +29,7 @@ ac.ability.aerohand.flying.desc=You can fly when enabled. Cannot coexist with Of
 ac.ability.aerohand.aero_separator.desc=Create a small area of vacuum and deal real damage to all entities inside (including yourself!).
 
 ac.ability.telekinesis.psycho_throwing.desc=Throw a piece of cobblestone through your psychokinesis. The performance will improve if the cobblestone is treated and easy to operate.
+ac.ability.telekinesis.psycho_transmission.desc=Pick up the falling item within sight into your bag.
 ac.ability.telekinesis.insulation.desc=Passive skill, reduce skill damage taken by creating an area that blocks electrons passing. Especially effective against electromaster and meltdowner.
 
 item.imagitem.enabled=ENABLED

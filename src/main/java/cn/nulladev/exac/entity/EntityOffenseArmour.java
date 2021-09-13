@@ -50,7 +50,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 			return;
 		}
 		Optional<ContextOffenseArmour> context = ContextManager.instance.find(ContextOffenseArmour.class);
-		if(!context.isPresent() || context.get().getStatus() != Status.ALIVE) {
+		if(!context.isPresent() || (context.get().getStatus() != Status.ALIVE && context.get().player == this.getOwner())) {
 			this.setDead();
 			return;
 		}

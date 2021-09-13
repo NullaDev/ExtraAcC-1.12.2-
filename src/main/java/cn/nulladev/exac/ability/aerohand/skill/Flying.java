@@ -92,7 +92,6 @@ public class Flying extends Skill {
 			ctx.setCooldown(40);
 		}
 		
-		
 	}
 		
 	@SideOnly(Side.CLIENT)
