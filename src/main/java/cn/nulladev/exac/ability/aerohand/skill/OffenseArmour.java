@@ -64,7 +64,7 @@ public class OffenseArmour extends Skill {
 			ctx.consume(overload, cp);
 			//关闭飞行
 			Optional<ContextFlying> context = ContextManager.instance.find(ContextFlying.class);
-			if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
+			if(context.isPresent() && context.get().player == this.player && context.get().getStatus() == Status.ALIVE) {
 				context.get().terminate();
 			}
 			EntityOffenseArmour armor = new EntityOffenseArmour(player.world, player);
@@ -88,8 +88,7 @@ public class OffenseArmour extends Skill {
 		@Listener(channel=MSG_TERMINATED, side=Side.SERVER)
 		private void s_terminate() {
 			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).removeModifier(AM);
-			int cd = (int) MathUtils.lerpf(120, 80, ctx.getSkillExp());
-			ctx.setCooldown(cd);
+			ctx.setCooldown(40);
 			MinecraftForge.EVENT_BUS.unregister(this);
 		}
 		

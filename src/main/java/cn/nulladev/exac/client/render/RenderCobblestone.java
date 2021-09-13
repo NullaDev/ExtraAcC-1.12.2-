@@ -17,8 +17,6 @@ import org.lwjgl.opengl.GL11;
 @RegEntityRender(EntityCobblestone.class)
 public class RenderCobblestone extends Render<EntityCobblestone> {
 
-    private float alpha = 0F;
-
     public RenderCobblestone(RenderManager renderManager) {
         super(renderManager);
     }
@@ -29,14 +27,15 @@ public class RenderCobblestone extends Render<EntityCobblestone> {
         if (entity == null)
             return;
 
-        alpha += 3;
-
         this.bindEntityTexture(entity);
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
 
-        GlStateManager.rotate(alpha, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(entity.prevRotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(entity.prevRotationPitch, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(entity.ticksExisted * 3, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(entity.ticksExisted * 3, 0.0F, 1.0F, 0.0F);
 
         GlStateManager.disableLighting();
         GlStateManager.disableCull();

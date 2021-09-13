@@ -5,8 +5,13 @@ import cn.academy.ability.context.ClientRuntime;
 import cn.academy.ability.context.Context;
 import cn.lambdalib2.s11n.network.NetworkMessage;
 import cn.lambdalib2.util.MathUtils;
+import cn.nulladev.exac.core.EXACItems;
 import cn.nulladev.exac.entity.EntityCobblestone;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,6 +22,22 @@ public class PsychoThrowing extends Skill {
 
     private PsychoThrowing() {
         super("psycho_throwing", 1);
+    }
+
+    private static ItemStack findStone(EntityPlayer player) {
+        if (player.getHeldItem(EnumHand.OFF_HAND).getItem() == Item.getItemFromBlock(Blocks.COBBLESTONE) || player.getHeldItem(EnumHand.OFF_HAND).getItem() == EXACItems.etched_cobblestone) {
+            return player.getHeldItem(EnumHand.OFF_HAND);
+        } else if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Item.getItemFromBlock(Blocks.COBBLESTONE) || player.getHeldItem(EnumHand.MAIN_HAND).getItem() == EXACItems.etched_cobblestone) {
+            return player.getHeldItem(EnumHand.MAIN_HAND);
+        } else {
+            for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+                ItemStack itemstack = player.inventory.getStackInSlot(i);
+                if (itemstack.getItem() == Item.getItemFromBlock(Blocks.COBBLESTONE) || itemstack.getItem() == EXACItems.etched_cobblestone) {
+                    return itemstack;
+                }
+            }
+            return ItemStack.EMPTY;
+        }
     }
 
     @Override
@@ -32,12 +53,13 @@ public class PsychoThrowing extends Skill {
 
         public ContextPsychoThrowing(EntityPlayer _player) {
             super(_player, PsychoThrowing.INSTANCE);
-            cp = MathUtils.lerpf(300, 600, ctx.getSkillExp());
+            cp = MathUtils.lerpf(200, 400, ctx.getSkillExp());
         }
 
-        private boolean consume() {
+        private boolean consume(boolean etched) {
             float overload = 20F;
-            return ctx.consume(overload, cp);
+            float bonus = etched? 1F:1.5F;
+            return ctx.consume(overload, cp * bonus);
         }
 
         @NetworkMessage.Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)
@@ -47,9 +69,25 @@ public class PsychoThrowing extends Skill {
 
         @NetworkMessage.Listener(channel=MSG_PERFORM, side=Side.SERVER)
         public void s_perform()  {
-            if(consume()) {
+            ItemStack stackStone = PsychoThrowing.findStone(this.player);
+            boolean etched = false;
+            if (player.capabilities.isCreativeMode) {
+                etched = true;
+                stackStone = ItemStack.EMPTY;
+            } else if (stackStone.isEmpty()) {
+                return;
+            }
+            if (stackStone.getItem() == Item.getItemFromBlock(Blocks.COBBLESTONE)) {
+                etched = false;
+            } else if (stackStone.getItem() == EXACItems.etched_cobblestone) {
+                etched = true;
+            }
+            if(consume(etched)) {
+                if (!stackStone.isEmpty()) {
+                    stackStone.shrink(1);
+                }
                 World world = player.world;
-                EntityCobblestone stone = new EntityCobblestone(world, player, ctx.getSkillExp(), player.getLookVec(), false);
+                EntityCobblestone stone = new EntityCobblestone(world, player, ctx.getSkillExp(), player.getLookVec(), etched);
                 world.spawnEntity(stone);
                 ctx.addSkillExp(getExpIncr());
                 ctx.setCooldown((int)MathUtils.lerpf(40, 20, ctx.getSkillExp()));

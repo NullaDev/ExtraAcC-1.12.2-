@@ -62,7 +62,7 @@ public class Flying extends Skill {
 			player.sendPlayerAbilities();
 			//关闭龟壳盾
 			Optional<ContextOffenseArmour> context = ContextManager.instance.find(ContextOffenseArmour.class);
-			if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
+			if(context.isPresent() && context.get().player == this.player && context.get().getStatus() == Status.ALIVE) {
 				context.get().terminate();
 			}
 			//特效有了
@@ -89,7 +89,7 @@ public class Flying extends Skill {
 			player.capabilities.allowFlying = prevAllowFlying;
 			player.capabilities.isFlying = prevAllowFlying;
 			player.sendPlayerAbilities();
-			ctx.setCooldown(20);
+			ctx.setCooldown(40);
 		}
 		
 		

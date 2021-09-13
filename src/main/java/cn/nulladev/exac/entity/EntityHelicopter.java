@@ -29,7 +29,7 @@ public class EntityHelicopter extends EntityHasOwner {
             return;
         }
         Optional<Flying.ContextFlying> context = ContextManager.instance.find(Flying.ContextFlying.class);
-        if(!context.isPresent() || context.get().getStatus() != Context.Status.ALIVE) {
+        if(!context.isPresent() || (context.get().getStatus() != Context.Status.ALIVE && context.get().player == this.getOwner())) {
             this.setDead();
             return;
         }

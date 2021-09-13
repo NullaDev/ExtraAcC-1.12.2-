@@ -106,17 +106,12 @@ public class ItemElectricalibur extends ItemEnergyBase {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)entityLiving;
             ItemStack itemstack = findCoin(player);
-            if (!player.capabilities.isCreativeMode && itemstack.isEmpty()) {
-            	return;
-            }
-            if(!player.capabilities.isCreativeMode && itemManager.pull(stack, 10000, true) < 10000) {
-            	return;
-            }
             if (!player.capabilities.isCreativeMode) {
+            	if (itemManager.pull(stack, 10000, true) < 10000)
+					return;
+            	if (itemstack.isEmpty())
+					return;
                 itemstack.shrink(1);
-                if (itemstack.isEmpty()) {
-                    player.inventory.deleteStack(itemstack);
-                }
             }
             
             RayTraceResult raytraceresult = world.rayTraceBlocks(player.getPositionVector(), VecUtils.lookingPos(player, 15));

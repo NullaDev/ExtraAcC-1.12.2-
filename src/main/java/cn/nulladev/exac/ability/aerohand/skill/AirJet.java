@@ -56,7 +56,7 @@ public class AirJet extends Skill {
 			@Listener(channel=MSG_PERFORM, side=Side.SERVER)
 			public void s_perform() {
 				Optional<ContextOffenseArmour> context = ContextManager.instance.find(ContextOffenseArmour.class);
-				if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
+				if(context.isPresent() && context.get().player == this.player && context.get().getStatus() == Status.ALIVE) {
 					return;
 				}
 				if(consume()) {

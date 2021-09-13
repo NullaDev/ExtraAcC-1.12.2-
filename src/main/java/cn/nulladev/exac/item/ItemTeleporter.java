@@ -32,7 +32,7 @@ public class ItemTeleporter extends ItemEnergyBase {
 	@Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);	
-		if(world.provider.isNether()) {
+		if(!world.provider.isSurfaceWorld()) {
 			return new ActionResult(EnumActionResult.FAIL, stack);
 		}
 		if (player.isSneaking()) {

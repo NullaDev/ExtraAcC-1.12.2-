@@ -10,12 +10,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class SideArm extends Skill {
+public class Insulation extends Skill {
 
-    public static final SideArm INSTANCE = new SideArm();
+    public static final Insulation INSTANCE = new Insulation();
 
-    public SideArm() {
-        super("side_arm", 1);
+    public Insulation() {
+        super("insulation", 1);
         this.canControl = false;
     }
 
@@ -28,8 +28,8 @@ public class SideArm extends Skill {
         if (event.getSource().getDamageType().equals("ac_skill")) {
             if (AbilityData.get(player) == null)
                 return;
-            if (AbilityData.get(player).isSkillLearned(SideArm.INSTANCE)) {
-                float exp = AbilityData.get(player).getSkillExp(SideArm.INSTANCE);
+            if (AbilityData.get(player).isSkillLearned(Insulation.INSTANCE)) {
+                float exp = AbilityData.get(player).getSkillExp(Insulation.INSTANCE);
                 float protection_rate = MathUtils.lerpf(0.1F, 0.2F, exp);
                 try {
                     SkillDamageSource ds = (SkillDamageSource) event.getSource();
@@ -46,14 +46,14 @@ public class SideArm extends Skill {
                         !CPData.get(player).isOverloadRecovering() &&
                         CPData.get(player).perform(0, cp_per_dmg * dmg)) {
                     event.setAmount(dmg * (1 - protection_rate));
-                    AbilityData.get(player).addSkillExp(SideArm.INSTANCE, dmg * 0.002F);
+                    AbilityData.get(player).addSkillExp(Insulation.INSTANCE, dmg * 0.002F);
                 }
             }
         } else if (event.getSource().getDamageType().equals("lightningBolt")) {
             if (AbilityData.get(player) == null)
                 return;
-            if (AbilityData.get(player).isSkillLearned(SideArm.INSTANCE)) {
-                float exp = AbilityData.get(player).getSkillExp(SideArm.INSTANCE);
+            if (AbilityData.get(player).isSkillLearned(Insulation.INSTANCE)) {
+                float exp = AbilityData.get(player).getSkillExp(Insulation.INSTANCE);
                 float protection_rate = MathUtils.lerpf(0.2F, 0.4F, exp);
                 float dmg = event.getAmount();
                 float cp_per_dmg = 100F;
@@ -61,7 +61,7 @@ public class SideArm extends Skill {
                         !CPData.get(player).isOverloadRecovering() &&
                         CPData.get(player).perform(0, cp_per_dmg * dmg)) {
                     event.setAmount(dmg * (1 - protection_rate));
-                    AbilityData.get(player).addSkillExp(SideArm.INSTANCE, dmg * 0.002F);
+                    AbilityData.get(player).addSkillExp(Insulation.INSTANCE, dmg * 0.002F);
                 }
             }
         }

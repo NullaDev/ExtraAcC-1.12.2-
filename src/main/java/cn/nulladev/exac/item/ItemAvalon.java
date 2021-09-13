@@ -36,6 +36,7 @@ public class ItemAvalon extends ItemEnergyBase {
 		if (world.getTotalWorldTime() % 10 != 0)
 			return;
 		if (itemManager.getEnergy(stack) <= 2000) {
+			setActive(stack, false);
 			return;
 		}
 		if (!(entity instanceof EntityLivingBase))
@@ -47,7 +48,7 @@ public class ItemAvalon extends ItemEnergyBase {
 		} else if(entityliving.getHealth() >= entityliving.getMaxHealth()) {
 			setActive(stack, false);
 		}
-		
+
 		if (isActive(stack) && itemManager.pull(stack, 2000, true) >= 2000) {
 			entityliving.heal(1);
 		}

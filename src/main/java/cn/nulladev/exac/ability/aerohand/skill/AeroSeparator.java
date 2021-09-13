@@ -57,12 +57,12 @@ public class AeroSeparator extends Skill {
 				World world = player.world;
 				//关闭飞行
 				Optional<ContextFlying> context = ContextManager.instance.find(ContextFlying.class);
-				if(context.isPresent() && context.get().getStatus() == Status.ALIVE) {
+				if(context.isPresent() && context.get().player == this.player && context.get().getStatus() == Status.ALIVE) {
 					context.get().terminate();
 				}
 				//关闭龟壳盾
 				Optional<ContextOffenseArmour> context2 = ContextManager.instance.find(ContextOffenseArmour.class);
-				if(context2.isPresent() && context2.get().getStatus() == Status.ALIVE) {
+				if(context2.isPresent() && context2.get().player == this.player && context2.get().getStatus() == Status.ALIVE) {
 					context2.get().terminate();
 				}
 				EntityVacuum vacuum = new EntityVacuum(world, player, ctx.getSkillExp());

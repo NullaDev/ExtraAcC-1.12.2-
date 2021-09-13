@@ -11,7 +11,7 @@ import cn.nulladev.exac.ability.aerohand.CatAeroHand;
 import cn.nulladev.exac.ability.aerohand.skill.Airflow;
 import cn.nulladev.exac.ability.aerohand.skill.AscendingAir;
 import cn.nulladev.exac.ability.psychokinesist.CatTelekinesis;
-import cn.nulladev.exac.ability.psychokinesist.skill.SideArm;
+import cn.nulladev.exac.ability.psychokinesist.skill.Insulation;
 import cn.nulladev.exac.entity.*;
 import cn.nulladev.exac.item.ItemTeleporter;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -64,7 +64,7 @@ public class EXACRegistry {
 		MinecraftForge.EVENT_BUS.register(EXACRegistry.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(AscendingAir.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(Airflow.INSTANCE);
-		MinecraftForge.EVENT_BUS.register(SideArm.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(Insulation.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(EXACItems.lasor_gun);
 	}
 	
@@ -88,9 +88,9 @@ public class EXACRegistry {
       RegisterEvent监听所有事件*/
 	public void addItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(EXACItems.optical_chip.setRegistryName(ExtraAcademy.MODID, "optical_chip"));
+		event.getRegistry().register(EXACItems.lasor_component.setRegistryName(ExtraAcademy.MODID, "lasor_component"));
 		event.getRegistry().register(EXACItems.etched_cobblestone.setRegistryName(ExtraAcademy.MODID, "etched_cobblestone"));
 
-		event.getRegistry().register(EXACItems.lasor_component.setRegistryName(ExtraAcademy.MODID, "lasor_component"));
 		event.getRegistry().register(EXACItems.ray_twister.setRegistryName(ExtraAcademy.MODID, "ray_twister"));
 		event.getRegistry().register(EXACItems.energy_unit_group.setRegistryName(ExtraAcademy.MODID, "energy_unit_group"));
 		event.getRegistry().register(EXACItems.electricalibur.setRegistryName(ExtraAcademy.MODID, "electricalibur"));
@@ -118,6 +118,8 @@ public class EXACRegistry {
 	public void registerItemRenderers() {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.optical_chip, 0, new ModelResourceLocation("exac:optical_chip", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.lasor_component, 0, new ModelResourceLocation("exac:lasor_component", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.etched_cobblestone, 0, new ModelResourceLocation("exac:etched_cobblestone", "inventory"));
+
 		ModelLoader.setCustomModelResourceLocation(EXACItems.electricalibur, 0, new ModelResourceLocation("exac:electricalibur", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.avalon, 0, new ModelResourceLocation("exac:avalon", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));

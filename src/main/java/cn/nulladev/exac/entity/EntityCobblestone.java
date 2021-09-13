@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 public class EntityCobblestone extends EntityFlying {
 
     public static final int ACC_TIME = 20;
-    public static final float BASIC_VELOCITY = 1F;
-    public static final float MAX_VELOCITY = 2F;
+    public static final float BASIC_VELOCITY = 0.1F;
+    public static final float MAX_VELOCITY = 0.15F;
     public static final float BASIC_DAMAGE = 12;
     public static final float MAX_DAMAGE = 18;
 
@@ -77,7 +77,7 @@ public class EntityCobblestone extends EntityFlying {
 
     @Override
     public void onUpdate() {
-        if (this.age <= ACC_TIME)
+        if (this.ticksExisted <= ACC_TIME && this.direc != null)
             this.addVelocity(this.direc, this.getAcc());
         super.onUpdate();
     }

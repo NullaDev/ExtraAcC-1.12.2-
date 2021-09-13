@@ -16,8 +16,6 @@ import org.lwjgl.opengl.GL11;
 @RegEntityRender(EntityHelicopter.class)
 public class RenderHelicopter extends Render<EntityHelicopter> {
 
-    private float alpha = 0F;
-
     public RenderHelicopter(RenderManager renderManager) {
         super(renderManager);
     }
@@ -26,8 +24,6 @@ public class RenderHelicopter extends Render<EntityHelicopter> {
     public void doRender(EntityHelicopter entity, double x, double y, double z, float p_76986_8_, float p_76986_9_) {
         if (entity == null)
             return;
-
-        alpha += 360 / 60;
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
@@ -57,7 +53,7 @@ public class RenderHelicopter extends Render<EntityHelicopter> {
         b.pos( 0.05F, 2.1F,  0.05F).endVertex();
         t.draw();
 
-        GlStateManager.rotate(alpha, 0F, 1F, 0F);
+        GlStateManager.rotate(entity.ticksExisted * 15, 0F, 1F, 0F);
         for (int i = 0; i < 3; i++) {
             b.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
             b.pos(-0.05F, 2.1F, 0F).endVertex();
@@ -67,7 +63,7 @@ public class RenderHelicopter extends Render<EntityHelicopter> {
             GlStateManager.rotate(120F, 0F, 1F, 0F);
             t.draw();
         }
-        GlStateManager.rotate(-2*alpha, 0F, 1F, 0F);
+        GlStateManager.rotate(-30 * entity.ticksExisted, 0F, 1F, 0F);
         for (int i = 0; i < 3; i++) {
             b.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
             b.pos(-0.05F, 2F, 0F).endVertex();
@@ -86,7 +82,6 @@ public class RenderHelicopter extends Render<EntityHelicopter> {
 
         GlStateManager.popMatrix();
     }
-
 
     @Override
     protected ResourceLocation getEntityTexture(EntityHelicopter p_110775_1_) {
