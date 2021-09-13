@@ -1,4 +1,4 @@
-package cn.nulladev.exac.ability.psychokinesist.skill;
+package cn.nulladev.exac.ability.telekinesis.skill;
 
 import cn.academy.ability.Skill;
 import cn.academy.ability.context.*;

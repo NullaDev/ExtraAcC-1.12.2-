@@ -1,11 +1,11 @@
-package cn.nulladev.exac.ability.psychokinesist;
+package cn.nulladev.exac.ability.telekinesis;
 
 import cn.academy.ability.Category;
 import cn.academy.ability.Skill;
 import cn.academy.ability.vanilla.VanillaCategories;
-import cn.nulladev.exac.ability.psychokinesist.skill.PsychoThrowing;
-import cn.nulladev.exac.ability.psychokinesist.skill.Insulation;
-import cn.nulladev.exac.ability.psychokinesist.skill.PsychoTransmission;
+import cn.nulladev.exac.ability.telekinesis.skill.PsychoThrowing;
+import cn.nulladev.exac.ability.telekinesis.skill.Insulation;
+import cn.nulladev.exac.ability.telekinesis.skill.PsychoTransmission;
 
 public class CatTelekinesis extends Category {
 

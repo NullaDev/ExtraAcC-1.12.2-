@@ -2,7 +2,7 @@ package cn.nulladev.exac.entity;
 
 import cn.academy.ability.SkillDamageSource;
 import cn.lambdalib2.util.MathUtils;
-import cn.nulladev.exac.ability.psychokinesist.skill.PsychoThrowing;
+import cn.nulladev.exac.ability.telekinesis.skill.PsychoThrowing;
 import cn.nulladev.exac.core.EXACItems;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
