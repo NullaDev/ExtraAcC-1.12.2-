@@ -70,5 +70,4 @@ public class AirCooling extends Skill {
 
 		}
 
-
 }

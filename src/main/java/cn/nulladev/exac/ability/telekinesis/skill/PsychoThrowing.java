@@ -53,7 +53,7 @@ public class PsychoThrowing extends Skill {
 
         public ContextPsychoThrowing(EntityPlayer _player) {
             super(_player, PsychoThrowing.INSTANCE);
-            cp = MathUtils.lerpf(200, 400, ctx.getSkillExp());
+            cp = MathUtils.lerpf(400, 800, ctx.getSkillExp());
         }
 
         private boolean consume(boolean etched) {

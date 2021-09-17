@@ -54,7 +54,7 @@ public class PsychoTransmission extends Skill {
 
         @NetworkMessage.Listener(channel=MSG_TICK, side=Side.SERVER)
         private void s_tick() {
-            float cp_per_dist = MathUtils.lerpf(1F, 0.5F, ctx.getSkillExp());
+            float cp_per_dist = MathUtils.lerpf(4F, 2F, ctx.getSkillExp());
             if(ctx.consume(0F, 0.5F)) {
                 float range = MathUtils.lerpf(8, 12, ctx.getSkillExp());
                 Vec3d start = player.getPositionEyes(1);
@@ -64,10 +64,13 @@ public class PsychoTransmission extends Skill {
                 if (list.size() > 0) {
                     EntityItem entityitem = list.get(0);
                     float dist = (float)(Math.pow(start.x-entityitem.posX,2) + Math.pow(start.y-entityitem.posY,2) + Math.pow(start.z-entityitem.posZ,2));
-                    if (ctx.consume(5F, cp_per_dist * dist)) {
-                        player.inventory.addItemStackToInventory(entityitem.getItem());
-                        entityitem.setDead();
-                        ctx.addSkillExp(dist/50000F);
+                    if (ctx.consume(2.5F, cp_per_dist * dist)) {
+                        if(player.inventory.addItemStackToInventory(entityitem.getItem())) {
+                            entityitem.setDead();
+                            ctx.addSkillExp(dist/50000F);
+                        }  else {
+                            entityitem.setPosition(player.posX, player.posY, player.posZ);
+                        }
                     }
                 }
             }
