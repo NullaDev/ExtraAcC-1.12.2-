@@ -15,6 +15,7 @@ ac.ability.aerohand.aero_separator.name=空气分离
 
 ac.ability.telekinesis.psycho_throwing.name=念力投掷
 ac.ability.telekinesis.psycho_transmission.name=隔空取物
+ac.ability.telekinesis.psycho_needling.name=念力刺击
 ac.ability.telekinesis.insulation.name=气力绝缘
 ac.ability.telekinesis.overload_thinking.name=思维过载
 
@@ -32,6 +33,7 @@ ac.ability.aerohand.aero_separator.desc=短暂蓄力后，瞬间制造出小范�
 
 ac.ability.telekinesis.psycho_throwing.desc=用念力扔出一块圆石。如果圆石已被预处理成适合操纵的形态，则能够提升性能。
 ac.ability.telekinesis.psycho_transmission.desc=把视线所及的掉落物捡到包里。
+ac.ability.telekinesis.psycho_needling.desc=你现在可以精确操纵飞行物体的姿态了！用念力扔出一根针，造成破甲伤害。
 ac.ability.telekinesis.insulation.desc=被动技能，通过制造出一块阻碍电子传播的区域，少量降低受到的技能伤害。对电击使和原子崩坏尤其有效。
 ac.ability.telekinesis.overload_thinking.desc=进行超速思考，消耗大量过载以回复计算力。
 

@@ -14,12 +14,13 @@ ac.ability.aerohand.aero_separator.name=Aero Separator
 
 ac.ability.telekinesis.psycho_throwing.name=Psycho Throwing
 ac.ability.telekinesis.psycho_transmission.name=Psycho Transmission
+ac.ability.telekinesis.psycho_needling.name=Psycho Needling
 ac.ability.telekinesis.insulation.name=Insulation
 ac.ability.telekinesis.overload_thinking.name=Overload Thinking
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
 ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a maximum value.
-ac.ability.aerohand.air_blade.desc=Compress some air in one direction to make an unstable air blade, causes passing armor damage.
+ac.ability.aerohand.air_blade.desc=Compress some air in one direction to make an unstable air blade, causing passing armor damage.
 ac.ability.aerohand.airflow.desc=Passive skill, reduce drown damage. Breathe underwater when skilled.
 ac.ability.aerohand.air_cooling.desc=Reduce your overload by using air cooling.
 ac.ability.aerohand.air_wall.desc=Create a compressed air wall that knocks back all targets and destroys projectiles.
@@ -29,8 +30,9 @@ ac.ability.aerohand.bomber_lance.desc=Eject high-pressure air lance to deal huge
 ac.ability.aerohand.flying.desc=You can fly when enabled. Cannot coexist with Offense Armour.
 ac.ability.aerohand.aero_separator.desc=Create a small area of vacuum and deal real damage to all entities inside (including yourself!).
 
-ac.ability.telekinesis.psycho_throwing.desc=Throw a piece of cobblestone through your psychokinesis. The performance will improve if the cobblestone is treated and easy to operate.
+ac.ability.telekinesis.psycho_throwing.desc=Throw out a piece of cobblestone through your psychokinesis. The performance will improve if the cobblestone is treated and easy to operate.
 ac.ability.telekinesis.psycho_transmission.desc=Pick up the falling item within sight into your bag.
+ac.ability.telekinesis.psycho_needling.desc=You can now accurately control the attitude of flying projectiles!Throw out a needle through your psychokinesis, causing passing armor damage.
 ac.ability.telekinesis.insulation.desc=Passive skill, reduce skill damage taken by creating an area that blocks electrons passing. Especially effective against electromaster and meltdowner.
 ac.ability.telekinesis.overload_thinking.desc=Think over speed and consume a lot of overload to recover computing power.
 
