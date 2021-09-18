@@ -50,7 +50,7 @@ public class CruiseBomb extends Skill {
         private void s_tick() {
             float cp = MathUtils.lerpf(2, 1, ctx.getSkillExp());
             if (ctx.consume(0.05F, cp)) {
-                ctx.addSkillExp(0.0001f);
+                ctx.addSkillExp(0.00002f);
             } else
                 terminate();
         }

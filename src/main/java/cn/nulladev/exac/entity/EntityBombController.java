@@ -8,6 +8,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -33,6 +36,22 @@ public class EntityBombController extends EntityHasOwner {
         this.height = 0;
         this.setOwner(owner);
         this.setPosition(owner.posX, owner.posY, owner.posZ);
+    }
+
+    private static ItemStack findBucket(EntityPlayer player) {
+        if (player.getHeldItem(EnumHand.OFF_HAND).getItem() == Items.WATER_BUCKET) {
+            return player.getHeldItem(EnumHand.OFF_HAND);
+        } else if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.WATER_BUCKET) {
+            return player.getHeldItem(EnumHand.MAIN_HAND);
+        } else {
+            for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+                ItemStack itemstack = player.inventory.getStackInSlot(i);
+                if (itemstack.getItem() == Items.WATER_BUCKET) {
+                    return itemstack;
+                }
+            }
+            return ItemStack.EMPTY;
+        }
     }
 
     @Override
@@ -65,15 +84,17 @@ public class EntityBombController extends EntityHasOwner {
             summon_cd--;
         } else {
             if (listBomb.size() < max_size) {
-                EntityBomb bomb = new EntityBomb(this.world, this.getOwner(), exp);
-                if (context.get().ctx.consume(0, 50)) {
-                    context.get().ctx.addSkillExp(0.001f);
-                    this.world.spawnEntity(bomb);
-                    listBomb.add(bomb);
-                    summon_cd = 10;
-                } else {
-                    context.get().terminate();
-                    return;
+                if (this.getOwner().capabilities.isCreativeMode || EntityBombController.findBucket(this.getOwner()) != ItemStack.EMPTY) {
+                    EntityBomb bomb = new EntityBomb(this.world, this.getOwner(), exp);
+                    if (context.get().ctx.consume(0, 50)) {
+                        context.get().ctx.addSkillExp(0.0001f);
+                        this.world.spawnEntity(bomb);
+                        listBomb.add(bomb);
+                        summon_cd = 10;
+                    } else {
+                        context.get().terminate();
+                        return;
+                    }
                 }
             }
         }
@@ -89,7 +110,7 @@ public class EntityBombController extends EntityHasOwner {
                     continue;
                 if (!targeted(entity) && this.getBomb() != null) {
                     if (context.get().ctx.consume(0, 50)) {
-                        context.get().ctx.addSkillExp(0.002f);
+                        context.get().ctx.addSkillExp(0.0002f);
                         this.getBomb().lock(entity);
                     } else {
                         context.get().terminate();
@@ -105,7 +126,7 @@ public class EntityBombController extends EntityHasOwner {
                 }
                 if (!targeted(target) && this.getBomb() != null) {
                     if (context.get().ctx.consume(0, 50)) {
-                        context.get().ctx.addSkillExp(0.002f);
+                        context.get().ctx.addSkillExp(0.0002f);
                         this.getBomb().lock(target);
                     } else {
                         context.get().terminate();
