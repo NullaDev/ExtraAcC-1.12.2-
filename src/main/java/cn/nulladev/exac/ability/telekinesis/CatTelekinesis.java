@@ -13,6 +13,7 @@ public class CatTelekinesis extends Category {
     public static Skill psycho_needling = PsychoNeedling.INSTANCE;
     public static Skill insulation = Insulation.INSTANCE;
 
+    public static Skill cruise_bomb = CruiseBomb.INSTANCE;
     public static Skill overload_thinking = OverloadThinking.INSTANCE;
 
     public CatTelekinesis() {
@@ -25,6 +26,7 @@ public class CatTelekinesis extends Category {
         addSkill(psycho_needling);
         addSkill(insulation);
 
+        addSkill(cruise_bomb);
         addSkill(overload_thinking);
 
         VanillaCategories.addGenericSkills(this);
@@ -35,7 +37,14 @@ public class CatTelekinesis extends Category {
         psycho_needling.setPosition(70, 20);
         insulation.setPosition(80, 50);
 
+        cruise_bomb.setPosition(110, 25);
         overload_thinking.setPosition(120, 75);
+
+        psycho_needling.setParent(psycho_throwing, 0.5F);
+        insulation.setParent(psycho_transmission);
+
+        cruise_bomb.setParent(psycho_needling, 0.5F);
+        overload_thinking.setParent(insulation);
     }
 
 }

@@ -53,11 +53,9 @@ public class EntityVacuum extends EntityHasOwner {
 			return;
 		}
 		
-		List list = this.world.getEntitiesWithinAABB(Entity.class,
+		List<Entity> list = this.world.getEntitiesWithinAABB(Entity.class,
 				new AxisAlignedBB(posX - 3, posY - 3, posZ - 3, posX + 3, posY + 3, posZ + 3));
-		Iterator iterator = list.iterator();
-		while (iterator.hasNext()) {
-			Entity target = (Entity) iterator.next();
+		for (Entity target : list) {
 			if (target instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase)target;
 				if (entity.getEntityBoundingBox().grow(3F).contains(new Vec3d(this.posX, this.posY + this.getOwner().height / 2, this.posZ))) {

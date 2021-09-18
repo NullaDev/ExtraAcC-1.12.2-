@@ -70,11 +70,9 @@ public class EntityAirWall extends EntityHasOwner {
 		// 检测波面附近的实体
 		if (!this.world.isRemote && this.ticksExisted % 2 == 0) {
 			float r = getCurrentRadius();
-			List list = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(
+			List<Entity> list = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(
 					posX - r, posY - 0.5, posZ - r, posX + r, posY + 2.5, posZ + r));
-			Iterator iterator = list.iterator();
-			while (iterator.hasNext()) {
-				Entity target = (Entity) iterator.next();
+			for (Entity target : list) {
 				if (target instanceof EntityLivingBase) {
 					EntityLivingBase entity = (EntityLivingBase)target;
 					if (entity == this.getOwner())

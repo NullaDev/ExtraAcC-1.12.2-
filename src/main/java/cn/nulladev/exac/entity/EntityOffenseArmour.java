@@ -56,11 +56,9 @@ public class EntityOffenseArmour extends EntityHasOwner {
 		}
 		this.setPosition(this.getOwner().posX, this.getOwner().posY, this.getOwner().posZ);
 		
-		List list = this.world.getEntitiesWithinAABB(Entity.class,
+		List<Entity> list = this.world.getEntitiesWithinAABB(Entity.class,
 				new AxisAlignedBB(posX - 2, posY - 2, posZ - 2, posX + 2, posY + 2, posZ + 2));
-		Iterator iterator = list.iterator();
-		while (iterator.hasNext()) {
-			Entity target = (Entity) iterator.next();
+		for (Entity target : list) {
 			if (target instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase)target;
 				if (entity == this.getOwner())

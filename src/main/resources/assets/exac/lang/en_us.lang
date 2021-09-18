@@ -16,6 +16,7 @@ ac.ability.telekinesis.psycho_throwing.name=Psycho Throwing
 ac.ability.telekinesis.psycho_transmission.name=Psycho Transmission
 ac.ability.telekinesis.psycho_needling.name=Psycho Needling
 ac.ability.telekinesis.insulation.name=Insulation
+ac.ability.telekinesis.cruise_bomb.name=Cruise Bomb
 ac.ability.telekinesis.overload_thinking.name=Overload Thinking
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
@@ -34,6 +35,7 @@ ac.ability.telekinesis.psycho_throwing.desc=Throw out a piece of cobblestone thr
 ac.ability.telekinesis.psycho_transmission.desc=Pick up the falling item within sight into your bag.
 ac.ability.telekinesis.psycho_needling.desc=You can now accurately control the attitude of flying projectiles!Throw out a needle through your psychokinesis, causing passing armor damage.
 ac.ability.telekinesis.insulation.desc=Passive skill, reduce skill damage taken by creating an area that blocks electrons passing. Especially effective against electromaster and meltdowner.
+ac.ability.telekinesis.cruise_bomb.desc=Control small water balls to cruise and attack creatures and projectiles automatically. Please bring a water bucket when using.
 ac.ability.telekinesis.overload_thinking.desc=Think over speed and consume a lot of overload to recover computing power.
 
 item.imagitem.enabled=ENABLED

@@ -64,5 +64,4 @@ public class VolcanicBall extends Skill {
 			
 	}
 
-
 }
