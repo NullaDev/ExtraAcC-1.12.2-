@@ -48,15 +48,12 @@ public class PsychoNeedling extends Skill {
         static final String MSG_PERFORM = "perform";
 
         private final float cp;
+        private final float overload;
 
         public ContextPsychoNeedling(EntityPlayer _player) {
             super(_player, PsychoNeedling.INSTANCE);
             cp = MathUtils.lerpf(800, 400, ctx.getSkillExp());
-        }
-
-        private boolean consume() {
-            float overload = 10F;
-            return ctx.consume(overload, cp);
+            overload = MathUtils.lerpf(20, 10, ctx.getSkillExp());
         }
 
         @NetworkMessage.Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)
@@ -72,7 +69,7 @@ public class PsychoNeedling extends Skill {
                 if (stackNeedle.isEmpty())
                     return;
             }
-            if(consume()) {
+            if(ctx.consume(overload, cp)) {
                 if (!stackNeedle.isEmpty()) {
                     stackNeedle.shrink(1);
                 }

@@ -34,18 +34,14 @@ public class AeroSeparator extends Skill {
 		static final String MSG_PERFORM = "perform";
 		
 		private final float cp;
+		private final float overload;
 
 		public ContextAeroSeparator(EntityPlayer _player) {
 			super(_player, AeroSeparator.INSTANCE);
-			
 			cp = MathUtils.lerpf(1200, 1800, ctx.getSkillExp());
+			overload = MathUtils.lerpf(480, 360, ctx.getSkillExp());
 		}
-		
-		private boolean consume() {
-			float overload = MathUtils.lerpf(480, 360, ctx.getSkillExp());
-			return ctx.consume(overload, cp);
-		}
-		
+
 		@Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)
 		public void l_keydown()  {
 			sendToServer(MSG_PERFORM);
@@ -53,7 +49,7 @@ public class AeroSeparator extends Skill {
 		
 		@Listener(channel=MSG_PERFORM, side=Side.SERVER)
 		public void s_perform()  {
-			if(consume()) {
+			if(ctx.consume(overload, cp)) {
 				World world = player.world;
 				//关闭飞行
 				Optional<ContextFlying> context = ContextManager.instance.find(ContextFlying.class);

@@ -21,6 +21,11 @@ public class EntityHelicopter extends EntityHasOwner {
     }
 
     @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 1;
+    }
+
+    @Override
     public void onUpdate() {
         super.onUpdate();
         EntityPlayer owner = this.getOwner();

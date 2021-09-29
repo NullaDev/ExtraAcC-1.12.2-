@@ -3,17 +3,7 @@ package cn.nulladev.exac.ability.aerohand;
 import cn.academy.ability.Category;
 import cn.academy.ability.Skill;
 import cn.academy.ability.vanilla.VanillaCategories;
-import cn.nulladev.exac.ability.aerohand.skill.AeroSeparator;
-import cn.nulladev.exac.ability.aerohand.skill.AirBlade;
-import cn.nulladev.exac.ability.aerohand.skill.VolcanicBall;
-import cn.nulladev.exac.ability.aerohand.skill.AirCooling;
-import cn.nulladev.exac.ability.aerohand.skill.AirJet;
-import cn.nulladev.exac.ability.aerohand.skill.AirWall;
-import cn.nulladev.exac.ability.aerohand.skill.Airflow;
-import cn.nulladev.exac.ability.aerohand.skill.AscendingAir;
-import cn.nulladev.exac.ability.aerohand.skill.BomberLance;
-import cn.nulladev.exac.ability.aerohand.skill.Flying;
-import cn.nulladev.exac.ability.aerohand.skill.OffenseArmour;
+import cn.nulladev.exac.ability.aerohand.skill.*;
 
 public class CatAeroHand extends Category {
 	
@@ -32,6 +22,7 @@ public class CatAeroHand extends Category {
 	public static Skill flying = Flying.INSTANCE;
 	
 	public static Skill absolute_vacuum = AeroSeparator.INSTANCE;
+	public static Skill storm_core = StormCore.INSTANCE;
 
 	public CatAeroHand() {
 		super("aerohand");
@@ -52,24 +43,26 @@ public class CatAeroHand extends Category {
 		addSkill(flying);
 		
 		addSkill(absolute_vacuum);
+		addSkill(storm_core);
 		
 		VanillaCategories.addGenericSkills(this);
 		
 		volcanic_ball.setPosition(20, 25);
-		ascending_air.setPosition(30, 65);
+		ascending_air.setPosition(30, 70);
 		
 		air_blade.setPosition(65, 20);
-		airflow.setPosition(75, 80);
-		air_cooling.setPosition(80, 50);
+		airflow.setPosition(75, 85);
+		air_cooling.setPosition(80, 55);
 		
 		air_wall.setPosition(110, 35);
 		air_jet.setPosition(120, 75);
 			
-		bomber_lance.setPosition(145, 10);
+		bomber_lance.setPosition(150, 10);
 		offense_armour.setPosition(160, 45);
-		flying.setPosition(170, 80);
+		flying.setPosition(165, 85);
 		
 		absolute_vacuum.setPosition(200, 25);
+		storm_core.setPosition(205, 65);
 		
 		air_blade.setParent(volcanic_ball, 0.5F);
 		air_wall.setParent(air_blade, 0.5F);
@@ -81,6 +74,7 @@ public class CatAeroHand extends Category {
 		airflow.setParent(ascending_air, 0.5F);
 		air_jet.setParent(airflow, 0.1F);
 		flying.setParent(air_jet, 0.5F);
+		storm_core.setParent(flying, 0.5F);
 	}
 
 }

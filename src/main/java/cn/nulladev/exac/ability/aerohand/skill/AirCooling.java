@@ -32,12 +32,7 @@ public class AirCooling extends Skill {
 
 			public ContextAirCooling(EntityPlayer _player) {
 				super(_player, AirCooling.INSTANCE);
-				
 				cp = MathUtils.lerpf(400, 1600, ctx.getSkillExp());
-			}
-			
-			private boolean consume() {
-				return ctx.consume(0, cp);
 			}
 			
 			@Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)
@@ -47,7 +42,7 @@ public class AirCooling extends Skill {
 			
 			@Listener(channel=MSG_PERFORM, side=Side.SERVER)
 			public void s_perform()  {
-				if(consume()) {
+				if(ctx.consume(0, cp)) {
 					EntityCooler cooler = new EntityCooler(player.world, player);
 					player.world.spawnEntity(cooler);
 					float capacity = MathUtils.lerpf(200, 800, ctx.getSkillExp());

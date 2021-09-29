@@ -11,6 +11,7 @@ ac.ability.aerohand.offense_armour.name=Offense Armor
 ac.ability.aerohand.bomber_lance.name=Bomber Lance
 ac.ability.aerohand.flying.name=Flying
 ac.ability.aerohand.aero_separator.name=Aero Separator
+ac.ability.aerohand.storm_core.name=Storm Core
 
 ac.ability.telekinesis.psycho_throwing.name=Psycho Throwing
 ac.ability.telekinesis.psycho_transmission.name=Psycho Transmission
@@ -30,6 +31,7 @@ ac.ability.aerohand.offense_armour.desc=Use all-round compressed air to protect 
 ac.ability.aerohand.bomber_lance.desc=Eject high-pressure air lance to deal huge damage, and knock back the target.
 ac.ability.aerohand.flying.desc=You can fly when enabled. Cannot coexist with Offense Armour.
 ac.ability.aerohand.aero_separator.desc=Create a small area of vacuum and deal real damage to all entities inside (including yourself!).
+ac.ability.aerohand.storm_core.desc=Create a core that can attract surrounding entities, and then explode.
 
 ac.ability.telekinesis.psycho_throwing.desc=Throw out a piece of cobblestone through your psychokinesis. The performance will improve if the cobblestone is treated and easy to operate.
 ac.ability.telekinesis.psycho_transmission.desc=Pick up the falling item within sight into your bag.

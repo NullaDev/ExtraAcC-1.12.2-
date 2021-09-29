@@ -50,16 +50,17 @@ public class PsychoThrowing extends Skill {
         static final String MSG_PERFORM = "perform";
 
         private final float cp;
+        private final float overload;
 
         public ContextPsychoThrowing(EntityPlayer _player) {
             super(_player, PsychoThrowing.INSTANCE);
             cp = MathUtils.lerpf(400, 800, ctx.getSkillExp());
+            overload = MathUtils.lerpf(30, 20, ctx.getSkillExp());
         }
 
         private boolean consume(boolean etched) {
-            float overload = 20F;
             float bonus = etched? 1F:1.5F;
-            return ctx.consume(overload, cp * bonus);
+            return ctx.consume(overload * bonus, cp * bonus);
         }
 
         @NetworkMessage.Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)

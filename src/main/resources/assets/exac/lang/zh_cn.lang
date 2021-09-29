@@ -12,6 +12,7 @@ ac.ability.aerohand.offense_armour.name=氮气装甲
 ac.ability.aerohand.bomber_lance.name=氮气爆枪
 ac.ability.aerohand.flying.name=飞行
 ac.ability.aerohand.aero_separator.name=空气分离
+ac.ability.aerohand.storm_core.name=风暴之核
 
 ac.ability.telekinesis.psycho_throwing.name=念力投掷
 ac.ability.telekinesis.psycho_transmission.name=隔空取物
@@ -31,6 +32,7 @@ ac.ability.aerohand.offense_armour.desc=使用无死角的压缩氮气罩防护�
 ac.ability.aerohand.bomber_lance.desc=喷出高压的氮气长枪，造成大量伤害并大幅击退目标。
 ac.ability.aerohand.flying.desc=开启后可以飞行。和氮气装甲不能共存。
 ac.ability.aerohand.aero_separator.desc=短暂蓄力后，瞬间制造出小范围的真空区域，对区域内所有生物（包括自己！）造成窒息伤害。
+ac.ability.aerohand.storm_core.desc=在目标位置制造能够吸引周围生物的核心，一段时间后爆炸。
 
 ac.ability.telekinesis.psycho_throwing.desc=用念力扔出一块圆石。如果圆石已被预处理成适合操纵的形态，则能够提升性能。
 ac.ability.telekinesis.psycho_transmission.desc=把视线所及的掉落物捡到包里。

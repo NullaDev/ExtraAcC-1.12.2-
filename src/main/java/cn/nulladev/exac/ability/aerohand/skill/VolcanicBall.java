@@ -30,15 +30,12 @@ public class VolcanicBall extends Skill {
 		static final String MSG_PERFORM = "perform";
 		
 		private final float cp;
+		private final float overload;
 
 		public ContextVolcanicBall(EntityPlayer _player) {
 			super(_player, VolcanicBall.INSTANCE);
 			cp = MathUtils.lerpf(40, 100, ctx.getSkillExp());
-		}
-		
-		private boolean consume() {
-			float overload = MathUtils.lerpf(40, 30, ctx.getSkillExp());
-			return ctx.consume(overload, cp);
+			overload = MathUtils.lerpf(40, 30, ctx.getSkillExp());
 		}
 		
 		@Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)
@@ -48,7 +45,7 @@ public class VolcanicBall extends Skill {
 		
 		@Listener(channel=MSG_PERFORM, side=Side.SERVER)
 		public void s_perform()  {
-			if(consume()) {
+			if(ctx.consume(overload, cp)) {
 				World world = player.world;	
 				EntityVolcanicBall ball = new EntityVolcanicBall(world, player, ctx.getSkillExp(), player.getLookVec());
 				world.spawnEntity(ball);

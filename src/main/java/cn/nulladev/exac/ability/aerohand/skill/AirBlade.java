@@ -30,16 +30,12 @@ public class AirBlade extends Skill {
 		static final String MSG_PERFORM = "perform";
 		
 		private final float cp;
+		private final float overload;
 
 		public ContextAirBlade(EntityPlayer _player) {
 			super(_player, AirBlade.INSTANCE);
-			
 			cp = MathUtils.lerpf(100, 150, ctx.getSkillExp());
-		}
-		
-		private boolean consume() {
-			float overload = MathUtils.lerpf(60, 40, ctx.getSkillExp());
-			return ctx.consume(overload, cp);
+			overload = MathUtils.lerpf(60, 40, ctx.getSkillExp());
 		}
 		
 		@Listener(channel=MSG_KEYDOWN, side=Side.CLIENT)
@@ -49,7 +45,7 @@ public class AirBlade extends Skill {
 		
 		@Listener(channel=MSG_PERFORM, side=Side.SERVER)
 		public void s_perform()  {
-			if(consume()) {
+			if(ctx.consume(overload, cp)) {
 				World world = player.world;
 				
 				EntityAirBlade entity = new EntityAirBlade(world, player, ctx.getSkillExp(), player.getLookVec());
