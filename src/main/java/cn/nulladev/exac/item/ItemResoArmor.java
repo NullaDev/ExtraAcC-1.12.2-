@@ -13,6 +13,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.util.EnumHelper;
 
+import javax.annotation.Nonnull;
+
 public class ItemResoArmor extends ItemArmor implements ISpecialArmor {
 	
 	private static final int[] ArmorVars = {2, 5, 6, 2};
@@ -49,11 +51,16 @@ public class ItemResoArmor extends ItemArmor implements ISpecialArmor {
 	@Override
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
 		if (source.damageType.equals("ac_skill")) {
-			double absorptionRatio = getBaseAbsorptionRatio() * 0.75D;
+			double absorptionRatio = getBaseAbsorptionRatio() * 0.5D;
 			return new ISpecialArmor.ArmorProperties(0, absorptionRatio, 50);
 		} else {
-			return new ISpecialArmor.ArmorProperties(0, 0.0D, 0);
+			return new ISpecialArmor.ArmorProperties(0, 0.0D, Integer.MAX_VALUE);
 		}
+	}
+
+	@Override
+	public boolean handleUnblockableDamage(EntityLivingBase entity, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
+		return true;
 	}
 
 	@Override
@@ -62,9 +69,7 @@ public class ItemResoArmor extends ItemArmor implements ISpecialArmor {
 	}
 
 	@Override
-	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-		
-	}
+	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {}
 	
 	private double getBaseAbsorptionRatio() {
 		switch (this.armorType) {

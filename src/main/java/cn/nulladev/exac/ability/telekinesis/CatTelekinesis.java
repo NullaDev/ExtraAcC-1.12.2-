@@ -15,6 +15,7 @@ public class CatTelekinesis extends Category {
 
     public static Skill cruise_bomb = CruiseBomb.INSTANCE;
     public static Skill overload_thinking = OverloadThinking.INSTANCE;
+    public static Skill perfect_paper = PerfectPaper.INSTANCE;
 
     public CatTelekinesis() {
         super("telekinesis");
@@ -28,6 +29,7 @@ public class CatTelekinesis extends Category {
 
         addSkill(cruise_bomb);
         addSkill(overload_thinking);
+        addSkill(perfect_paper);
 
         VanillaCategories.addGenericSkills(this);
 
@@ -39,12 +41,14 @@ public class CatTelekinesis extends Category {
 
         cruise_bomb.setPosition(110, 25);
         overload_thinking.setPosition(120, 75);
+        perfect_paper.setPosition(115, 95);
 
         psycho_needling.setParent(psycho_throwing, 0.5F);
         insulation.setParent(psycho_transmission);
 
         cruise_bomb.setParent(psycho_needling, 0.5F);
         overload_thinking.setParent(insulation);
+        perfect_paper.setParent(insulation);
     }
 
 }

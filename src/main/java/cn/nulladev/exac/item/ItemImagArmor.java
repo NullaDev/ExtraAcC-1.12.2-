@@ -2,6 +2,7 @@ package cn.nulladev.exac.item;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import cn.academy.AcademyCraft;
@@ -33,6 +34,10 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 	private static final int[] ArmorVars = {0, 0, 0, 0};
 	public static final ArmorMaterial IMAG = EnumHelper.addArmorMaterial("imag", "imag", 1024, ArmorVars, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 
+	public static final double ABSORB_RATE = 0.9D;
+	public static final double ABSORB_RATE_SKILL = 0.95D;
+	public static final double ENERGY_COST = 500D;
+
 	/** position代表护甲位置，0为头盔，1为胸甲，2为护腿，3为靴子。 */
 	public ItemImagArmor(EntityEquipmentSlot position) {
 		super(IMAG, 0, position);
@@ -59,27 +64,42 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 	@Override
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
 		if (source.isUnblockable()) {
-			return new ISpecialArmor.ArmorProperties(0, 0.0D, 0);
+			if (source.damageType.equals("ac_skill")) {
+				double absorptionRatio = getBaseAbsorptionRatio() * 0.5D;
+				return new ISpecialArmor.ArmorProperties(0, absorptionRatio, 50);
+			} else {
+				return new ISpecialArmor.ArmorProperties(0, 0.0D, Integer.MAX_VALUE);
+			}
 		}
-		double absorptionRatio = getBaseAbsorptionRatio() * getDamageAbsorptionRatio();
-		int damageLimit = (int) (25 * itemManager.getEnergy(armor) / getEnergyPerDamage());
-		if (damageLimit >= 1)
-			return new ISpecialArmor.ArmorProperties(0, absorptionRatio, damageLimit);
-		else
-			return new ISpecialArmor.ArmorProperties(0, getBaseAbsorptionRatio() * (1 - Math.max(1.4D, 7D - damage / 2) / 25), 100);
+		double totalRatio = source.damageType.equals("ac_skill")? ABSORB_RATE_SKILL : ABSORB_RATE;
+		double slotRatio = getBaseAbsorptionRatio() * totalRatio;
+		int damageLimit = (int) (itemManager.getEnergy(armor) / slotRatio / ENERGY_COST);
+		if (damageLimit >= 1) {
+			return new ISpecialArmor.ArmorProperties(0, slotRatio, damageLimit);
+		} else {
+			double basicRatio = Math.max(1.4D, 7D - damage / 2) / 25;
+			totalRatio = source.damageType.equals("ac_skill")? 0.5D + 0.5D * basicRatio : basicRatio;
+			slotRatio = getBaseAbsorptionRatio() * totalRatio;
+			return new ISpecialArmor.ArmorProperties(0, slotRatio, Integer.MAX_VALUE);
+		}
+	}
+
+	@Override
+	public boolean handleUnblockableDamage(EntityLivingBase entity, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
+		return true;
 	}
 
 	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
-		if (itemManager.getEnergy(armor) >= getEnergyPerDamage()) {
+		if (itemManager.getEnergy(armor) >= ENERGY_COST) {
 			switch (this.armorType) {
-			case HEAD: 
+			case HEAD:
 				return 3;
 			case CHEST: 
 				return 8;
 			case LEGS: 
 				return 6;
-			case FEET: 
+			case FEET:
 				return 3;
 			default:
 				return 0;
@@ -102,7 +122,7 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-		double cost = damage * getEnergyPerDamage();
+		double cost = damage * ENERGY_COST;
 		itemManager.pull(stack, cost, true);
 	}
 
@@ -144,14 +164,6 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 			return 0.0D;
 		}
 	}
-	
-	public double getDamageAbsorptionRatio() {
-		return 0.95D;
-	}
-	  
-	public int getEnergyPerDamage() {
-		return 1000;
-	}
 	  
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
@@ -160,7 +172,7 @@ public class ItemImagArmor extends ItemArmor implements ImagEnergyItem, ISpecial
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-		if (itemManager.getEnergy(stack) > getEnergyPerDamage()) {
+		if (itemManager.getEnergy(stack) >= ENERGY_COST) {
 			if (this.armorType == EntityEquipmentSlot.LEGS)
 				return ExtraAcademy.MODID + ":textures/models/armor/energy_layer_2.png";	
 			return ExtraAcademy.MODID + ":textures/models/armor/energy_layer_1.png";	

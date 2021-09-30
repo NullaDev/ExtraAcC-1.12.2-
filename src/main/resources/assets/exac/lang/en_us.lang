@@ -19,6 +19,7 @@ ac.ability.telekinesis.psycho_needling.name=Psycho Needling
 ac.ability.telekinesis.insulation.name=Insulation
 ac.ability.telekinesis.cruise_bomb.name=Cruise Bomb
 ac.ability.telekinesis.overload_thinking.name=Overload Thinking
+ac.ability.telekinesis.perfect_paper.name=Perfect Paper
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
 ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a maximum value.
@@ -38,7 +39,8 @@ ac.ability.telekinesis.psycho_transmission.desc=Pick up the falling item within 
 ac.ability.telekinesis.psycho_needling.desc=You can now accurately control the attitude of flying projectiles!Throw out a needle through your psychokinesis, causing passing armor damage.
 ac.ability.telekinesis.insulation.desc=Passive skill, reduce skill damage taken by creating an area that blocks electrons passing. Especially effective against electromaster and meltdowner.
 ac.ability.telekinesis.cruise_bomb.desc=Control small water balls to cruise and attack creatures and projectiles automatically. Please bring a water bucket when using.
-ac.ability.telekinesis.overload_thinking.desc=Think over speed and consume a lot of overload to recover computing power.
+ac.ability.telekinesis.overload_thinking.desc=Force the brain to think over speed, consume a lot of overload to recover computing power.
+ac.ability.telekinesis.perfect_paper.desc=Passive skill, Pour your mind into the paper to make it hard and flexible. You can use some special items after learning.
 
 item.imagitem.enabled=ENABLED
 item.imagitem.disabled=DISABLED
