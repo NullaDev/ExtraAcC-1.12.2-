@@ -21,6 +21,7 @@ ac.ability.telekinesis.cruise_bomb.name=Cruise Bomb
 ac.ability.telekinesis.overload_thinking.name=Overload Thinking
 ac.ability.telekinesis.perfect_paper.name=Perfect Paper
 ac.ability.telekinesis.psycho_slam.name=Psycho Slam
+ac.ability.telekinesis.liquid_shadow.name=Liquid Shadow
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
 ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a maximum value.
@@ -43,6 +44,7 @@ ac.ability.telekinesis.cruise_bomb.desc=Control small water balls to cruise and 
 ac.ability.telekinesis.overload_thinking.desc=Force the brain to think over speed, consume a lot of overload to recover computing power.
 ac.ability.telekinesis.perfect_paper.desc=Passive skill, Pour your mind into the paper to make it hard and flexible. You can use some special items after learning.
 ac.ability.telekinesis.psycho_slam.desc=You can control other creatures now! Hit the enemy diagonally upward through your psychokinesis, and then slam it.
+ac.ability.telekinesis.liquid_shadow.desc=Build a humanoid creation with water, which will follow you until die or skill terminated.
 
 item.imagitem.enabled=ENABLED
 item.imagitem.disabled=DISABLED

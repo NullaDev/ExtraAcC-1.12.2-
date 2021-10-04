@@ -64,6 +64,7 @@ public class EXACRegistry {
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:thinker"), EntityThinker.class, "thinker", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:vacuum"), EntityVacuum.class, "vacuum", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:volcanic_ball"), EntityVolcanicBall.class, "volcanic_ball", modID++, ModObject, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation("exac:waterman"), EntityWaterman.class, "waterman", modID++, ModObject, 128, 1, true);
 	}
 	
 	public void registerEvents() {

@@ -19,6 +19,8 @@ public class CatTelekinesis extends Category {
 
     public static Skill psycho_slam = PsychoSlam.INSTANCE;
 
+    public static Skill liquid_shadow = LiquidShadow.INSTANCE;
+
     public CatTelekinesis() {
         super("telekinesis");
         this.setColorStyle(255, 127, 127, 127);
@@ -35,6 +37,8 @@ public class CatTelekinesis extends Category {
 
         addSkill(psycho_slam);
 
+        addSkill(liquid_shadow);
+
         VanillaCategories.addGenericSkills(this);
 
         psycho_throwing.setPosition(20, 25);
@@ -48,6 +52,8 @@ public class CatTelekinesis extends Category {
         perfect_paper.setPosition(115, 75);
 
         psycho_slam.setPosition(155, 20);
+
+        liquid_shadow.setPosition(200, 25);
 
         psycho_needling.setParent(psycho_throwing, 0.5F);
         insulation.setParent(psycho_transmission);

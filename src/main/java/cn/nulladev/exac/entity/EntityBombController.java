@@ -106,6 +106,8 @@ public class EntityBombController extends EntityHasOwner {
                 EntityLivingBase entity = (EntityLivingBase)target;
                 if (entity == this.getOwner())
                     continue;
+                if (entity instanceof IEntityOwnable && ((IEntityOwnable)entity).getOwner()==this.getOwner())
+                    continue;
                 if (entity.isDead)
                     continue;
                 if (!targeted(entity) && this.getBomb() != null) {
