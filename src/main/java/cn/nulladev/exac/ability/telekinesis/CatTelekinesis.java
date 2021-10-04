@@ -36,12 +36,12 @@ public class CatTelekinesis extends Category {
         psycho_throwing.setPosition(20, 25);
         psycho_transmission.setPosition(30, 65);
 
-        psycho_needling.setPosition(70, 20);
-        insulation.setPosition(80, 50);
+        psycho_needling.setPosition(65, 20);
+        insulation.setPosition(70, 60);
 
-        cruise_bomb.setPosition(110, 25);
-        overload_thinking.setPosition(120, 75);
-        perfect_paper.setPosition(115, 95);
+        cruise_bomb.setPosition(110, 15);
+        overload_thinking.setPosition(120, 45);
+        perfect_paper.setPosition(115, 75);
 
         psycho_needling.setParent(psycho_throwing, 0.5F);
         insulation.setParent(psycho_transmission);

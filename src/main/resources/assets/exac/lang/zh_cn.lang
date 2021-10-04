@@ -76,3 +76,9 @@ item.helmetImag.name=虚能头盔
 item.chestplateImag.name=虚能胸甲
 item.leggingsImag.name=虚能护腿
 item.bootsImag.name=虚能靴子
+
+item.helmetPaper.name=纸头盔
+item.chestplatePaper.name=纸胸甲
+item.leggingsPaper.name=纸护腿
+item.bootsPaper.name=纸靴子
+item.armorPaper.desc=勉强摆成盔甲形状的一堆纸。这东西真的能穿吗？

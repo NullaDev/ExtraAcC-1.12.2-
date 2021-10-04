@@ -96,3 +96,25 @@ shaped(exac:imag_boots){
     [academy:reso_crystal,   academy:calc_chip, academy:reso_crystal]
     [exac:energy_unit_group, exac:optical_chip, exac:energy_unit_group]
 }
+
+shaped(exac:paper_helmet){
+	[paper, paper, paper]
+	[paper, nil,   paper]
+}
+
+shaped(exac:paper_chestplate){
+    [paper, nil,   paper]
+    [paper, paper, paper]
+    [paper, paper, paper]
+}
+
+shaped(exac:paper_leggings){
+    [paper, paper, paper]
+    [paper, nil,   paper]
+    [paper, nil,   paper]
+}
+
+shaped(exac:paper_boots){
+    [paper, nil, paper]
+    [paper, nil, paper]
+}

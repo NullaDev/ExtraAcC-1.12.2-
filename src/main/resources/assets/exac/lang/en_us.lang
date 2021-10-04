@@ -74,3 +74,9 @@ item.helmetImag.name=Imag Energy Helmet
 item.chestplateImag.name=Imag Energy Chestplate
 item.leggingsImag.name=Imag Energy Leggings
 item.bootsImag.name=Imag Energy Boots
+
+item.helmetPaper.name=Paper Helmet
+item.chestplatePaper.name=Paper Chestplate
+item.leggingsPaper.name=Paper Leggings
+item.bootsPaper.name=Paper Boots
+item.armorPaper.desc=A pile of paper barely placed in the shape of armor. Can this thing really wear?

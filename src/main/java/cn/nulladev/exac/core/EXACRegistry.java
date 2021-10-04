@@ -114,6 +114,11 @@ public class EXACRegistry {
 		event.getRegistry().register(EXACItems.imag_chestplate.setRegistryName(ExtraAcademy.MODID, "imag_chestplate"));
 		event.getRegistry().register(EXACItems.imag_leggings.setRegistryName(ExtraAcademy.MODID, "imag_leggings"));
 		event.getRegistry().register(EXACItems.imag_boots.setRegistryName(ExtraAcademy.MODID, "imag_boots"));
+
+		event.getRegistry().register(EXACItems.paper_helmet.setRegistryName(ExtraAcademy.MODID, "paper_helmet"));
+		event.getRegistry().register(EXACItems.paper_chestplate.setRegistryName(ExtraAcademy.MODID, "paper_chestplate"));
+		event.getRegistry().register(EXACItems.paper_leggings.setRegistryName(ExtraAcademy.MODID, "paper_leggings"));
+		event.getRegistry().register(EXACItems.paper_boots.setRegistryName(ExtraAcademy.MODID, "paper_boots"));
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             registerItemRenderers();
         }
@@ -140,6 +145,11 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_chestplate, 0, new ModelResourceLocation("exac:imag_chestplate", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_leggings, 0, new ModelResourceLocation("exac:imag_leggings", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.imag_boots, 0, new ModelResourceLocation("exac:imag_boots", "inventory"));
+
+		ModelLoader.setCustomModelResourceLocation(EXACItems.paper_helmet, 0, new ModelResourceLocation("exac:paper_helmet", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.paper_chestplate, 0, new ModelResourceLocation("exac:paper_chestplate", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.paper_leggings, 0, new ModelResourceLocation("exac:paper_leggings", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.paper_boots, 0, new ModelResourceLocation("exac:paper_boots", "inventory"));
 		
 		ModelLoader.setCustomMeshDefinition(EXACItems.energy_unit_group, new ItemMeshDefinition() {
 			@Override

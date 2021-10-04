@@ -28,4 +28,9 @@ public class EXACItems {
 	public static final Item imag_leggings = new ItemImagArmor(EntityEquipmentSlot.LEGS);
 	public static final Item imag_boots = new ItemImagArmor(EntityEquipmentSlot.FEET);
 
+	public static final Item paper_helmet = new ItemPaperArmor(EntityEquipmentSlot.HEAD);
+	public static final Item paper_chestplate = new ItemPaperArmor(EntityEquipmentSlot.CHEST);
+	public static final Item paper_leggings = new ItemPaperArmor(EntityEquipmentSlot.LEGS);
+	public static final Item paper_boots = new ItemPaperArmor(EntityEquipmentSlot.FEET);
+
 }
