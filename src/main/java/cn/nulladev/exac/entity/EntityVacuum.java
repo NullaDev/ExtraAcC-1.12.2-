@@ -1,6 +1,5 @@
 package cn.nulladev.exac.entity;
 
-import java.util.Iterator;
 import java.util.List;
 
 import cn.lambdalib2.util.MathUtils;
@@ -18,17 +17,17 @@ public class EntityVacuum extends EntityHasOwner {
 	public static final float BASIC_DAMAGE = 40;
 	public static final float MAX_DAMAGE = 60;
 	
-	private float exp;
+	private float _exp;
 	private boolean damageCaused = false;
 	
 	public EntityVacuum(World world) {
 		super(world);
 	}
 	
-	public EntityVacuum(World _world, EntityPlayer owner, float _exp) {
+	public EntityVacuum(World _world, EntityPlayer owner, float exp) {
 		super(_world);
 		this.setOwner(owner);
-		this.exp = _exp;
+		this._exp = exp;
 		this.setPosition(owner.posX, owner.posY, owner.posZ);
 	}
     
@@ -59,7 +58,7 @@ public class EntityVacuum extends EntityHasOwner {
 			if (target instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase)target;
 				if (entity.getEntityBoundingBox().grow(3F).contains(new Vec3d(this.posX, this.posY + this.getOwner().height / 2, this.posZ))) {
-					float dmg = MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
+					float dmg = MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, _exp);
             		entity.attackEntityFrom(new EntityDamageSource("drown", this.getOwner()).setDamageBypassesArmor(), dmg);
 	            }
 			} else if (target instanceof IProjectile) {

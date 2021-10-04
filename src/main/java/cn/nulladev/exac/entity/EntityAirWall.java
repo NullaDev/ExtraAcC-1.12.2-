@@ -1,6 +1,5 @@
 package cn.nulladev.exac.entity;
 
-import java.util.Iterator;
 import java.util.List;
 
 import cn.academy.ability.SkillDamageSource;
@@ -24,7 +23,7 @@ public class EntityAirWall extends EntityHasOwner {
 	public static final float BASIC_DAMAGE = 10;
 	public static final float MAX_DAMAGE = 15;
 	
-	private float exp;
+	private float _exp;
 		
 	protected static final DataParameter<Float> CurrentRadius = EntityDataManager.<Float>createKey(EntityAirWall.class, DataSerializers.FLOAT);
 	protected static final DataParameter<Float> MaxRadius = EntityDataManager.<Float>createKey(EntityAirWall.class, DataSerializers.FLOAT);
@@ -33,10 +32,10 @@ public class EntityAirWall extends EntityHasOwner {
 		super(world);
 	}
 	
-	public EntityAirWall(World _world, EntityPlayer owner, float _exp) {
+	public EntityAirWall(World _world, EntityPlayer owner, float exp) {
 		super(_world);
-        this.exp = _exp;
-		this.setMaxRadius(MathUtils.lerpf(BASIC_RADIUS, MAX_RADIUS, _exp));
+        this._exp = exp;
+		this.setMaxRadius(MathUtils.lerpf(BASIC_RADIUS, MAX_RADIUS, exp));
 		this.setOwner(owner);
 		this.setPosition(owner.posX, owner.posY, owner.posZ);
 	}
@@ -47,7 +46,7 @@ public class EntityAirWall extends EntityHasOwner {
     }
 	
 	private float getDamage() {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
 	
 	@Override

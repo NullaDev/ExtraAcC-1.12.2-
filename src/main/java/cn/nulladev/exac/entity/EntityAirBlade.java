@@ -21,8 +21,8 @@ public class EntityAirBlade extends EntityFlying {
 	public static final float DAMAGE_DECREASE_RATE = 0.75F;
 	public static final float SIZE = 2F;
 	
-	private float exp;
-	private Vec3d direc;
+	private float _exp;
+	private Vec3d _direc;
 	
 	private double offsetX = 0F;
 	private double offsetZ = 0F;
@@ -33,13 +33,13 @@ public class EntityAirBlade extends EntityFlying {
         this.setDecrease(0.99F);
     }
 	
-    public EntityAirBlade(World world, EntityPlayer thrower, float _exp, Vec3d _dir) {
-        super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, SIZE, 0.02F, getAge(_exp));
+    public EntityAirBlade(World world, EntityPlayer thrower, float exp, Vec3d dir) {
+        super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, SIZE, 0.02F, getAge(exp));
         this.setNoGravity();
         this.setDecrease(0.99F);
-        this.exp = _exp;
-        this.direc = _dir;
-        this.setVelocity(_dir, VELOCITY);
+        this._exp = exp;
+        this._direc = dir;
+        this.setVelocity(dir, VELOCITY);
         this.harvestStrength = 0.2F;
     }
      
@@ -53,7 +53,7 @@ public class EntityAirBlade extends EntityFlying {
     }
     
     private float getBasicDamage() {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
 
     private float getDamage() {

@@ -19,8 +19,8 @@ public class EntityVolcanicBall extends EntityFlying {
 	public static final float DAMAGE_DECREASE_RATE = 0.5F;
 	public static final float INITIAL_SIZE = 0.2F;
 	
-	private float exp;
-	private Vec3d direc;
+	private float _exp;
+	private Vec3d _direc;
 
 	public EntityVolcanicBall(World world) {
         super(world, INITIAL_SIZE, INITIAL_SIZE);
@@ -28,13 +28,13 @@ public class EntityVolcanicBall extends EntityFlying {
         this.setDecrease(0.98F);
     }
 	
-    public EntityVolcanicBall(World world, EntityPlayer thrower, float _exp, Vec3d _dir) {
+    public EntityVolcanicBall(World world, EntityPlayer thrower, float exp, Vec3d dir) {
         super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, INITIAL_SIZE, INITIAL_SIZE, AGE);
         this.setNoGravity();
         this.setDecrease(0.98F);
-        this.exp = _exp;
-        this.direc = _dir;
-        this.setVelocity(_dir, getVelocity());
+        this._exp = exp;
+        this._direc = dir;
+        this.setVelocity(dir, getVelocity());
 		this.harvestStrength = 0.2F;
 	}
     
@@ -44,11 +44,11 @@ public class EntityVolcanicBall extends EntityFlying {
     }
     
     private float getVelocity() {
-    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this.exp);
+    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this._exp);
     }
     
     private float getBasicDamage() {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
     
     private float getDamage() {
@@ -59,9 +59,9 @@ public class EntityVolcanicBall extends EntityFlying {
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
 			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), VolcanicBall.INSTANCE).setProjectile(), this.getDamage());
-			double v = MathUtils.lerpf(3, 6, exp) / pos.entityHit.height;
-			if (direc != null)
-				pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
+			double v = MathUtils.lerpf(3, 6, _exp) / pos.entityHit.height;
+			if (_direc != null)
+				pos.entityHit.addVelocity(v * _direc.x, v * _direc.y, v * _direc.z);
 			pos.entityHit.setAir(300);
 		}
 		this.setDead();

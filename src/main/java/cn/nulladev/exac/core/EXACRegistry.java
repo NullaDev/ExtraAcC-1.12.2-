@@ -54,6 +54,7 @@ public class EXACRegistry {
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:bomb"), EntityBomb.class, "bomb", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:bomb_controller"), EntityBombController.class, "bomb_controller", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:bomber_lance"), EntityBomberLance.class, "bomber_lance", modID++, ModObject, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation("exac:bonder"), EntityBonder.class, "bonder", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:cobblestone"), EntityCobblestone.class, "cobblestone", modID++, ModObject, 128, 1, true);
     	EntityRegistry.registerModEntity(new ResourceLocation("exac:cooler"), EntityCooler.class, "cooler", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:helicopter"), EntityHelicopter.class, "helicopter", modID++, ModObject, 128, 1, true);

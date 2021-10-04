@@ -22,22 +22,22 @@ public class EntityStormCore extends EntityHasOwner {
     public static final float ATTRACT_POWER = 0.5F;
     public static final float EXPLOSION_TIME = 80;
     public static final float AGE = 100;
-    private float exp;
+    private float _exp;
 
     public EntityStormCore(World world) {
         super(world);
     }
 
-    public EntityStormCore(World _world, EntityPlayer owner, float _exp) {
+    public EntityStormCore(World _world, EntityPlayer owner, float exp) {
         super(_world);
         this.setOwner(owner);
-        this.exp = _exp;
+        this._exp = exp;
         Vec3d pos = Raytrace.traceLiving(owner, 6, EntitySelectors.nothing()).hitVec;
         this.setPosition(pos.x, pos.y, pos.z);
     }
 
     private float getDamage() {
-        return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+        return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
 
     @Override

@@ -21,12 +21,12 @@ public class EntityBomb extends EntityFlying {
     public static final float BASIC_DAMAGE = 4F;
     public static final float MAX_DAMAGE = 8F;
 
-    private float exp;
-    private Entity target = null;
-    private double longitude = 0;
-    private double latitude = 0;
-    private float cur_velocity = 0;
-    private int time_since_lock = 0;
+    private float _exp;
+    private Entity _target = null;
+    private double _longitude = 0;
+    private double _latitude = 0;
+    private float _cur_velocity = 0;
+    private int _ticks_since_has_target = 0;
 
     public EntityBomb(World world) {
         super(world, 0.1F, 0.1F);
@@ -34,22 +34,22 @@ public class EntityBomb extends EntityFlying {
         this.setNoDecrease();
     }
 
-    public EntityBomb(World world, EntityPlayer thrower, float _exp) {
+    public EntityBomb(World world, EntityPlayer thrower, float exp) {
         super(world, thrower, thrower.posX, thrower.posY + 1, thrower.posZ, 0.1F, 0.1F, Integer.MAX_VALUE);
         this.setNoGravity();
         this.setNoDecrease();
-        this.exp = _exp;
+        this._exp = exp;
         this.harvestStrength = 0F;
         this.genRanPos();
     }
 
     private void genRanPos() {
         Random ran = new Random();
-        this.longitude = 2 * Math.PI * ran.nextDouble();
-        this.latitude = 2 * Math.PI * ran.nextDouble();
-        this.posX = this.getOwner().posX + Math.sin(latitude);
-        this.posY = this.getOwner().posY + 1 + Math.cos(latitude) * Math.cos(longitude);
-        this.posZ = this.getOwner().posZ + Math.cos(latitude) * Math.sin(longitude);
+        this._longitude = 2 * Math.PI * ran.nextDouble();
+        this._latitude = 2 * Math.PI * ran.nextDouble();
+        this.posX = this.getOwner().posX + Math.sin(_latitude);
+        this.posY = this.getOwner().posY + 1 + Math.cos(_latitude) * Math.cos(_longitude);
+        this.posZ = this.getOwner().posZ + Math.cos(_latitude) * Math.sin(_longitude);
         this.setPosition(posX, posY, posZ);
     }
 
@@ -59,16 +59,16 @@ public class EntityBomb extends EntityFlying {
     }
 
     private float getAcc() {
-        return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this.exp);
+        return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this._exp);
     }
 
     private float getDamage() {
-        return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+        return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
 
     @Override
     protected void onImpact(RayTraceResult pos) {
-        if (this.target == null)
+        if (this._target == null)
             return;
         if (pos.entityHit != null) {
             if (pos.entityHit instanceof IProjectile)
@@ -89,34 +89,34 @@ public class EntityBomb extends EntityFlying {
             this.setDead();
             return;
         }
-        if (this.target == null) {
-            this.latitude += 2 * Math.PI / 80;
-            if (this.latitude > 2 * Math.PI)
-                this.latitude -= 2 * Math.PI;
-            this.posX = this.getOwner().posX + Math.sin(latitude);
-            this.posY = this.getOwner().posY + 1 + Math.cos(latitude) * Math.cos(longitude);
-            this.posZ = this.getOwner().posZ + Math.cos(latitude) * Math.sin(longitude);
+        if (this._target == null) {
+            this._latitude += 2 * Math.PI / 80;
+            if (this._latitude > 2 * Math.PI)
+                this._latitude -= 2 * Math.PI;
+            this.posX = this.getOwner().posX + Math.sin(_latitude);
+            this.posY = this.getOwner().posY + 1 + Math.cos(_latitude) * Math.cos(_longitude);
+            this.posZ = this.getOwner().posZ + Math.cos(_latitude) * Math.sin(_longitude);
             this.setPosition(posX, posY, posZ);
         } else {
-            if (this.time_since_lock <= ACC_TIME) {
-                this.cur_velocity += this.getAcc();
-                Vec3d direc = new Vec3d(this.target.posX - this.posX, this.target.posY - this.posY, this.target.posZ - this.posZ);
-                this.setVelocity(direc, cur_velocity);
-            } else if (this.time_since_lock >= AGE) {
+            if (this._ticks_since_has_target <= ACC_TIME) {
+                this._cur_velocity += this.getAcc();
+                Vec3d direc = new Vec3d(this._target.posX - this.posX, this._target.posY - this.posY, this._target.posZ - this.posZ);
+                this.setVelocity(direc, _cur_velocity);
+            } else if (this._ticks_since_has_target >= AGE) {
                 this.setDead();
             }
-            this.time_since_lock++;
+            this._ticks_since_has_target++;
         }
     }
 
-    public Entity getTarget() {
-        return this.target;
+    public Entity get_target() {
+        return this._target;
     }
 
     public void lock(Entity entity) {
-        this.target = entity;
-        this.cur_velocity += this.getAcc();
-        Vec3d direc = new Vec3d(this.posX - this.target.posX, this.posY - this.target.posY, this.posZ - this.target.posZ);
-        this.setVelocity(direc, cur_velocity);
+        this._target = entity;
+        this._cur_velocity += this.getAcc();
+        Vec3d direc = new Vec3d(this.posX - this._target.posX, this.posY - this._target.posY - this._target.height / 2, this.posZ - this._target.posZ);
+        this.setVelocity(direc, _cur_velocity);
     }
 }

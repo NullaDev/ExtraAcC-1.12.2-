@@ -21,22 +21,22 @@ public class EntityCobblestone extends EntityFlying {
     public static final float BASIC_DAMAGE = 12;
     public static final float MAX_DAMAGE = 18;
 
-    private float exp;
-    private Vec3d direc;
-    private boolean isEtched;
+    private float _exp;
+    private Vec3d _direc;
+    private boolean _isEtched;
 
     public EntityCobblestone(World world) {
         super(world, 1, 1);
         this.setDecrease(0.99F);
     }
 
-    public EntityCobblestone(World world, EntityPlayer thrower, float _exp, Vec3d _dir, boolean etched) {
+    public EntityCobblestone(World world, EntityPlayer thrower, float exp, Vec3d dir, boolean etched) {
         super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, 1, 1, Integer.MAX_VALUE);
         this.setDecrease(0.99F);
-        this.isEtched = etched;
-        this.exp = _exp;
-        this.direc = _dir;
-        this.setVelocity(this.direc, this.getAcc());
+        this._isEtched = etched;
+        this._exp = exp;
+        this._direc = dir;
+        this.setVelocity(this._direc, this.getAcc());
         this.harvestStrength = 0F;
     }
 
@@ -46,13 +46,13 @@ public class EntityCobblestone extends EntityFlying {
     }
 
     private float getAcc() {
-        float bonus = isEtched? 1.5F:1F;
-        return bonus * MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this.exp);
+        float bonus = _isEtched ? 1.5F:1F;
+        return bonus * MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this._exp);
     }
 
     private float getDamage() {
-        float bonus = isEtched? 1.1F:1F;
-        return bonus * MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+        float bonus = _isEtched ? 1.1F:1F;
+        return bonus * MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
 
     public void addVelocity(Vec3d vDir, float v) {
@@ -69,7 +69,7 @@ public class EntityCobblestone extends EntityFlying {
         } else {
             genPos = pos.getBlockPos();
         }
-        ItemStack stack = this.isEtched? new ItemStack(EXACItems.etched_cobblestone):new ItemStack(Blocks.COBBLESTONE);
+        ItemStack stack = this._isEtched ? new ItemStack(EXACItems.etched_cobblestone):new ItemStack(Blocks.COBBLESTONE);
         EntityItem drop = new EntityItem(this.world, genPos.getX(), genPos.getY(), genPos.getZ(), stack);
         this.world.spawnEntity(drop);
         this.setDead();
@@ -77,8 +77,8 @@ public class EntityCobblestone extends EntityFlying {
 
     @Override
     public void onUpdate() {
-        if (this.ticksExisted <= ACC_TIME && this.direc != null)
-            this.addVelocity(this.direc, this.getAcc());
+        if (this.ticksExisted <= ACC_TIME && this._direc != null)
+            this.addVelocity(this._direc, this.getAcc());
         super.onUpdate();
     }
 }

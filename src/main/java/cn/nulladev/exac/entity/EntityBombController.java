@@ -152,7 +152,7 @@ public class EntityBombController extends EntityHasOwner {
 
     private boolean targeted(Entity entity) {
         for (EntityBomb bomb : this.listBomb) {
-            if (bomb.getTarget() == entity)
+            if (bomb.get_target() == entity)
                 return true;
         }
         return false;
@@ -160,7 +160,7 @@ public class EntityBombController extends EntityHasOwner {
 
     private EntityBomb getBomb() {
         for (EntityBomb bomb : this.listBomb) {
-            if (bomb.getTarget() == null)
+            if (bomb.get_target() == null)
                 return bomb;
         }
         return null;

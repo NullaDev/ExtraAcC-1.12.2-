@@ -21,8 +21,8 @@ public class EntityBomberLance extends EntityFlying {
 	
 	public static final float INITIAL_SIZE = 0.4F;
 	
-	private float exp;
-	private Vec3d direc;
+	private float _exp;
+	private Vec3d _direc;
 	
 	protected static final DataParameter<Float> StartPosX = EntityDataManager.<Float>createKey(EntityBomberLance.class, DataSerializers.FLOAT);
 	protected static final DataParameter<Float> StartPosY = EntityDataManager.<Float>createKey(EntityBomberLance.class, DataSerializers.FLOAT);
@@ -36,14 +36,14 @@ public class EntityBomberLance extends EntityFlying {
         this.ignoreFrustumCheck = true;
     }
 	
-    public EntityBomberLance(World world, EntityPlayer thrower, float _exp, Vec3d _dir) {
+    public EntityBomberLance(World world, EntityPlayer thrower, float exp, Vec3d dir) {
         super(world, thrower, thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ, INITIAL_SIZE, INITIAL_SIZE, AGE);
         this.setNoGravity();
         this.setNoDecrease();
-        this.exp = _exp;
-        this.direc = _dir;
+        this._exp = exp;
+        this._direc = dir;
         this.setStartPos(thrower.posX, thrower.posY + thrower.eyeHeight, thrower.posZ);
-        this.setVelocity(_dir, getVelocity());
+        this.setVelocity(dir, getVelocity());
         this.ignoreFrustumCheck = true;
 		this.harvestStrength = 0.4F;
     }
@@ -54,11 +54,11 @@ public class EntityBomberLance extends EntityFlying {
     }
     
     private float getVelocity() {
-    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this.exp);
+    	return MathUtils.lerpf(BASIC_VELOCITY, MAX_VELOCITY, this._exp);
     }
     
     private float getDamage() {
-    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this.exp);
+    	return MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
     
     @Override
@@ -86,9 +86,9 @@ public class EntityBomberLance extends EntityFlying {
 	protected void onImpact(RayTraceResult pos) {
 		if (pos.entityHit != null) {
 			pos.entityHit.attackEntityFrom(new SkillDamageSource(this.getOwner(), BomberLance.INSTANCE).setProjectile(), this.getDamage());
-			double v = MathUtils.lerpf(10F, 15F, exp) / pos.entityHit.height;
-			if (direc != null)
-				pos.entityHit.addVelocity(v * direc.x, v * direc.y, v * direc.z);
+			double v = MathUtils.lerpf(10F, 15F, _exp) / pos.entityHit.height;
+			if (_direc != null)
+				pos.entityHit.addVelocity(v * _direc.x, v * _direc.y, v * _direc.z);
 			pos.entityHit.setAir(300);
 		}
 		this.setDead();
