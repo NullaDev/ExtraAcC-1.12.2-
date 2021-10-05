@@ -22,6 +22,7 @@ ac.ability.telekinesis.cruise_bomb.name=巡航水弹
 ac.ability.telekinesis.overload_thinking.name=思维过载
 ac.ability.telekinesis.perfect_paper.name=浸纸念力
 ac.ability.telekinesis.psycho_slam.name=叹为观止
+ac.ability.telekinesis.psycho_harden.name=念力硬化
 ac.ability.telekinesis.liquid_shadow.name=液化人影
 
 ac.ability.aerohand.volcanic_ball.desc=将一团空气从各方向均匀压缩成球并发射，击退命中的敌人。距离越远伤害越低。
@@ -41,11 +42,12 @@ ac.ability.telekinesis.psycho_throwing.desc=用念力扔出一块圆石。如果
 ac.ability.telekinesis.psycho_transmission.desc=把视线所及的掉落物捡到包里。
 ac.ability.telekinesis.psycho_needling.desc=你现在可以精确操纵飞行物体的姿态了！用念力扔出一根针，造成破甲伤害。
 ac.ability.telekinesis.insulation.desc=被动技能，通过制造出一块阻碍电子传播的区域，少量降低受到的技能伤害。对电击使和原子崩坏尤其有效。
-ac.ability.telekinesis.cruise_bomb.desc=用念力控制小团的水球，巡航并自动攻击附近的生物和投射物。使用时请备好水桶。
+ac.ability.telekinesis.cruise_bomb.desc=用念力控制小团的水球，巡航并自动攻击附近的生物和投射物。发动需要消耗一桶水。
 ac.ability.telekinesis.overload_thinking.desc=用念力使大脑进行超速思考，消耗大量过载以回复计算力。
 ac.ability.telekinesis.perfect_paper.desc=将念力灌入纸中，使之变得既坚硬又柔韧。学习后能够使用一些特殊的物品。
 ac.ability.telekinesis.psycho_slam.desc=你现在可以操控别的生物了！用念力将敌人向斜上方击飞，然后朝下猛摔，造成多段伤害。
-ac.ability.telekinesis.liquid_shadow.desc=用水构筑人形造物，它会跟随你移动直至关闭技能或死亡。
+ac.ability.telekinesis.psycho_harden.desc=用念力使自己的身体变得无比坚硬，期间免疫任何伤害，但不能移动。
+ac.ability.telekinesis.liquid_shadow.desc=用水构筑人形造物，它会跟随你移动直至关闭技能或死亡。发动需要消耗一桶水。
 
 item.imagitem.enabled=当前状态:开启中
 item.imagitem.disabled=当前状态:关闭中

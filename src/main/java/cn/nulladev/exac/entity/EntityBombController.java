@@ -38,22 +38,6 @@ public class EntityBombController extends EntityHasOwner {
         this.setPosition(owner.posX, owner.posY, owner.posZ);
     }
 
-    private static ItemStack findBucket(EntityPlayer player) {
-        if (player.getHeldItem(EnumHand.OFF_HAND).getItem() == Items.WATER_BUCKET) {
-            return player.getHeldItem(EnumHand.OFF_HAND);
-        } else if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.WATER_BUCKET) {
-            return player.getHeldItem(EnumHand.MAIN_HAND);
-        } else {
-            for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-                ItemStack itemstack = player.inventory.getStackInSlot(i);
-                if (itemstack.getItem() == Items.WATER_BUCKET) {
-                    return itemstack;
-                }
-            }
-            return ItemStack.EMPTY;
-        }
-    }
-
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -84,17 +68,15 @@ public class EntityBombController extends EntityHasOwner {
             summon_cd--;
         } else {
             if (listBomb.size() < max_size) {
-                if (this.getOwner().capabilities.isCreativeMode || EntityBombController.findBucket(this.getOwner()) != ItemStack.EMPTY) {
-                    EntityBomb bomb = new EntityBomb(this.world, this.getOwner(), exp);
-                    if (context.get().ctx.consume(0, 50)) {
-                        context.get().ctx.addSkillExp(0.0001f);
-                        this.world.spawnEntity(bomb);
-                        listBomb.add(bomb);
-                        summon_cd = 10;
-                    } else {
-                        context.get().terminate();
-                        return;
-                    }
+                EntityBomb bomb = new EntityBomb(this.world, this.getOwner(), exp);
+                if (context.get().ctx.consume(0, 50)) {
+                    context.get().ctx.addSkillExp(0.0001f);
+                    this.world.spawnEntity(bomb);
+                    listBomb.add(bomb);
+                    summon_cd = 10;
+                } else {
+                    context.get().terminate();
+                    return;
                 }
             }
         }

@@ -7,6 +7,9 @@ import cn.lambdalib2.s11n.network.NetworkMessage;
 import cn.lambdalib2.util.MathUtils;
 import cn.nulladev.exac.entity.EntityBombController;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.Function1;
@@ -39,8 +42,33 @@ public class CruiseBomb extends Skill {
             super(_player, CruiseBomb.INSTANCE);
         }
 
+        private static ItemStack findBucket(EntityPlayer player) {
+            if (player.getHeldItem(EnumHand.OFF_HAND).getItem() == Items.WATER_BUCKET) {
+                return player.getHeldItem(EnumHand.OFF_HAND);
+            } else if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.WATER_BUCKET) {
+                return player.getHeldItem(EnumHand.MAIN_HAND);
+            } else {
+                for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+                    ItemStack itemstack = player.inventory.getStackInSlot(i);
+                    if (itemstack.getItem() == Items.WATER_BUCKET) {
+                        return itemstack;
+                    }
+                }
+                return ItemStack.EMPTY;
+            }
+        }
+
         @NetworkMessage.Listener(channel = MSG_MADEALIVE, side = Side.SERVER)
         private void s_madeAlive() {
+            ItemStack bucket = findBucket(this.player);
+            if (!this.player.capabilities.isCreativeMode && bucket == ItemStack.EMPTY) {
+                terminate();
+            } else {
+                if (!this.player.capabilities.isCreativeMode) {
+                    bucket.shrink(1);
+                    this.player.inventory.addItemStackToInventory(new ItemStack(Items.BUCKET));
+                }
+            }
             ctx.consume(20, 200);
             EntityBombController controller = new EntityBombController(player.world, player);
             player.world.spawnEntity(controller);

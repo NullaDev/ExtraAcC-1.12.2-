@@ -21,6 +21,7 @@ ac.ability.telekinesis.cruise_bomb.name=Cruise Bomb
 ac.ability.telekinesis.overload_thinking.name=Overload Thinking
 ac.ability.telekinesis.perfect_paper.name=Perfect Paper
 ac.ability.telekinesis.psycho_slam.name=Psycho Slam
+ac.ability.telekinesis.psycho_harden.name=Psycho Harden
 ac.ability.telekinesis.liquid_shadow.name=Liquid Shadow
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
@@ -40,11 +41,12 @@ ac.ability.telekinesis.psycho_throwing.desc=Throw out a piece of cobblestone thr
 ac.ability.telekinesis.psycho_transmission.desc=Pick up the falling item within sight into your bag.
 ac.ability.telekinesis.psycho_needling.desc=You can now accurately control the attitude of flying projectiles!Throw out a needle through your psychokinesis, causing passing armor damage.
 ac.ability.telekinesis.insulation.desc=Passive skill, reduce skill damage taken by creating an area that blocks electrons passing. Especially effective against electromaster and meltdowner.
-ac.ability.telekinesis.cruise_bomb.desc=Control small water balls to cruise and attack creatures and projectiles automatically. Please bring a water bucket when using.
+ac.ability.telekinesis.cruise_bomb.desc=Control small water balls to cruise and attack creatures and projectiles automatically. A bucket of water is needed.
 ac.ability.telekinesis.overload_thinking.desc=Force the brain to think over speed, consume a lot of overload to recover computing power.
 ac.ability.telekinesis.perfect_paper.desc=Passive skill, Pour your mind into the paper to make it hard and flexible. You can use some special items after learning.
 ac.ability.telekinesis.psycho_slam.desc=You can control other creatures now! Hit the enemy diagonally upward through your psychokinesis, and then slam it.
-ac.ability.telekinesis.liquid_shadow.desc=Build a humanoid creation with water, which will follow you until die or skill terminated.
+ac.ability.telekinesis.psycho_harden.desc=Make your body extremely hard through your psychokinesis. During this period, you are immune to any damage but can't move.
+ac.ability.telekinesis.liquid_shadow.desc=Build a humanoid creation with water, which will follow you until die or skill terminated. A bucket of water is needed.
 
 item.imagitem.enabled=ENABLED
 item.imagitem.disabled=DISABLED
