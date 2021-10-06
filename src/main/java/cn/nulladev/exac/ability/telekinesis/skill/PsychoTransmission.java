@@ -61,16 +61,19 @@ public class PsychoTransmission extends Skill {
                 Vec3d end = Raytrace.traceLiving(player, range, EntitySelectors.nothing()).hitVec;
                 AxisAlignedBB boundingBox = WorldUtils.getBoundingBox(start, end);
                 List<EntityItem> list = player.world.getEntitiesWithinAABB(EntityItem.class, boundingBox.expand(1.0D, 1.0D, 1.0D));
-                if (list.size() > 0) {
-                    EntityItem entityitem = list.get(0);
-                    float dist = (float)(Math.pow(start.x-entityitem.posX,2) + Math.pow(start.y-entityitem.posY,2) + Math.pow(start.z-entityitem.posZ,2));
-                    if (ctx.consume(2.5F, cp_per_dist * dist)) {
+                for (int i = 0; i<list.size(); i++) {
+                    EntityItem entityitem = list.get(i);
+                    float dist2 = (float)(Math.pow(player.posX-entityitem.posX,2) + Math.pow(player.posY-entityitem.posY,2) + Math.pow(player.posZ-entityitem.posZ,2));
+                    if (dist2 < 1)
+                        continue;
+                    if (ctx.consume(2.5F, cp_per_dist * dist2)) {
                         if(player.inventory.addItemStackToInventory(entityitem.getItem())) {
                             entityitem.setDead();
-                            ctx.addSkillExp(dist/50000F);
+                            ctx.addSkillExp(dist2/50000F);
                         }  else {
                             entityitem.setPosition(player.posX, player.posY, player.posZ);
                         }
+                        break;
                     }
                 }
             }

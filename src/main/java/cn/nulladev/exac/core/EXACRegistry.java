@@ -60,6 +60,7 @@ public class EXACRegistry {
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:helicopter"), EntityHelicopter.class, "helicopter", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:needle"), EntityNeedle.class, "needle", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:offense_armour"), EntityOffenseArmour.class, "offense_armour", modID++, ModObject, 128, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation("exac:paper_plane"), EntityPaperPlane.class, "paper_plane", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:shell"), EntityShell.class, "shell", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:storm_core"), EntityStormCore.class, "storm_core", modID++, ModObject, 128, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation("exac:thinker"), EntityThinker.class, "thinker", modID++, ModObject, 128, 1, true);
@@ -107,6 +108,8 @@ public class EXACRegistry {
 		event.getRegistry().register(EXACItems.lasor_gun.setRegistryName(ExtraAcademy.MODID, "lasor_gun"));
 		event.getRegistry().register(EXACItems.air_jet.setRegistryName(ExtraAcademy.MODID, "air_jet"));
 		event.getRegistry().register(EXACItems.teleporter.setRegistryName(ExtraAcademy.MODID, "teleporter"));
+		event.getRegistry().register(EXACItems.paper_plane.setRegistryName(ExtraAcademy.MODID, "paper_plane"));
+		event.getRegistry().register(EXACItems.drop_item_magnet.setRegistryName(ExtraAcademy.MODID, "drop_item_magnet"));
 
 		event.getRegistry().register(EXACItems.reso_helmet.setRegistryName(ExtraAcademy.MODID, "reso_helmet"));
 		event.getRegistry().register(EXACItems.reso_chestplate.setRegistryName(ExtraAcademy.MODID, "reso_chestplate"));
@@ -138,7 +141,9 @@ public class EXACRegistry {
 		ModelLoader.setCustomModelResourceLocation(EXACItems.cp_potion, 0, new ModelResourceLocation("exac:cp_potion", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.lasor_gun, 0, new ModelResourceLocation("exac:lasor_gun", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.air_jet, 0, new ModelResourceLocation("exac:air_jet", "inventory"));
-		
+		ModelLoader.setCustomModelResourceLocation(EXACItems.paper_plane, 0, new ModelResourceLocation("exac:paper_plane", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(EXACItems.drop_item_magnet, 0, new ModelResourceLocation("exac:drop_item_magnet", "inventory"));
+
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_helmet, 0, new ModelResourceLocation("exac:reso_helmet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_chestplate, 0, new ModelResourceLocation("exac:reso_chestplate", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(EXACItems.reso_leggings, 0, new ModelResourceLocation("exac:reso_leggings", "inventory"));

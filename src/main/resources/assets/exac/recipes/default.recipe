@@ -51,6 +51,17 @@ shaped(exac:teleporter){
     [ender_eye, academy:resonance_component,      ender_eye]
 }
 
+shaped(exac:paper_plane *4){
+    [paper, paper, paper]
+    [nil,   paper, nil]
+}
+
+shaped(exac:drop_item_magnet){
+    [academy:constraint_plate, nil,                              academy:constraint_plate]
+    [academy:constraint_plate, plateIron,                        academy:constraint_plate]
+    [academy:reso_crystal,     academy:energy_convert_component, academy:reso_crystal]
+}
+
 shaped(exac:reso_helmet){
 	[academy:constraint_plate, academy:reso_crystal, academy:constraint_plate]
 	[academy:constraint_plate, nil,                  academy:constraint_plate]

@@ -72,6 +72,8 @@ item.teleporter.name=手持传送器
 item.teleporter.desc=右键可以消耗一个末影珍珠把自己传送回绑定地点。
 item.teleporter.desc2=当前绑定地点:
 item.teleporter.desc3=当前未绑定地点
+item.paperPlane.name=纸飞机
+item.dropItemMagnet.name=物品磁铁
 
 item.helmetReso.name=谐振束能头盔
 item.chestplateReso.name=谐振束能胸甲

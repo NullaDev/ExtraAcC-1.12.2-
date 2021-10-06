@@ -70,6 +70,8 @@ item.teleporter.name=teleporter
 item.teleporter.desc=Right click to send yourself back to the binding location(one ender pearl needed).
 item.teleporter.desc2=Bounding location:
 item.teleporter.desc3=No bounding location.
+item.paperPlane.name=Paper Plane
+item.dropItemMagnet.name=Item Magnet
 
 item.helmetReso.name=Reso Helmet
 item.chestplateReso.name=Reso Chestplate
