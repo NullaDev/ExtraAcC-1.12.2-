@@ -80,8 +80,7 @@ public class LiquidShadow extends Skill {
             }
             if(ctx.consume(overload, cp)) {
                 World world = player.world;
-                EntityWaterman waterman = new EntityWaterman(world);
-                waterman.setOwnerId(player.getUniqueID());
+                EntityWaterman waterman = new EntityWaterman(world, player);
                 world.spawnEntity(waterman);
                 ctx.addSkillExp(0.002F);
             }

@@ -33,6 +33,12 @@ public class EntityWaterman extends EntityTameable {
         this.setTamed(true);
     }
 
+    public EntityWaterman(World worldIn, EntityPlayer player) {
+        this(worldIn);
+        this.setOwnerId(player.getUniqueID());
+        this.setPosition(player.posX, player.posY, player.posZ);
+    }
+
     @Nullable
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
