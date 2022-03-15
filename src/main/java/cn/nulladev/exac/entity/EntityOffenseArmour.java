@@ -30,7 +30,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 	public EntityOffenseArmour(World _world, EntityPlayer owner) {
 		super(_world);
 		this.setOwner(owner);
-		this.setPosition(owner.posX, owner.posY, owner.posZ);
+		this.setPosition(owner.posX, owner.posY + this.getOwner().height / 2, owner.posZ);
 	}
     
     @Override
