@@ -53,7 +53,7 @@ public class EntityOffenseArmour extends EntityHasOwner {
 			this.setDead();
 			return;
 		}
-		this.setPosition(this.getOwner().posX, this.getOwner().posY, this.getOwner().posZ);
+		this.setPosition(this.getOwner().posX, this.getOwner().posY + this.getOwner().height / 2, this.getOwner().posZ);
 		
 		List<Entity> list = this.world.getEntitiesWithinAABB(Entity.class,
 				new AxisAlignedBB(posX - 2, posY - 2, posZ - 2, posX + 2, posY + 2, posZ + 2));
@@ -62,8 +62,8 @@ public class EntityOffenseArmour extends EntityHasOwner {
 				EntityLivingBase entity = (EntityLivingBase)target;
 				if (entity == this.getOwner())
 					continue;
-				if (entity.getEntityBoundingBox().grow(1.5F).contains(new Vec3d(this.posX, this.posY + this.getOwner().height / 2, this.posZ))) {
-	            	if (context.get().ctx.consume(0, 100 * target.height)) {
+				if (entity.getEntityBoundingBox().grow(2F).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
+	            	if (context.get().ctx.consume(0, 100 * entity.height)) {
 	            		float exp = context.get().ctx.getSkillExp();
 	            		float dmg = MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, exp);
 	            		entity.attackEntityFrom(new SkillDamageSource(this.getOwner(), OffenseArmour.INSTANCE), dmg);

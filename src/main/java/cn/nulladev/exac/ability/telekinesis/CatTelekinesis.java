@@ -21,6 +21,7 @@ public class CatTelekinesis extends Category {
     public static Skill psycho_harden = PsychoHarden.INSTANCE;
 
     public static Skill liquid_shadow = LiquidShadow.INSTANCE;
+    public static Skill paper_drill = PaperDrill.INSTANCE;
 
     public CatTelekinesis() {
         super("telekinesis");
@@ -40,6 +41,7 @@ public class CatTelekinesis extends Category {
         addSkill(psycho_harden);
 
         addSkill(liquid_shadow);
+        addSkill(paper_drill);
 
         VanillaCategories.addGenericSkills(this);
 
@@ -47,16 +49,17 @@ public class CatTelekinesis extends Category {
         psycho_transmission.setPosition(30, 65);
 
         psycho_needling.setPosition(65, 20);
-        insulation.setPosition(70, 60);
+        insulation.setPosition(70, 70);
 
         cruise_bomb.setPosition(110, 15);
-        overload_thinking.setPosition(120, 45);
-        perfect_paper.setPosition(115, 75);
+        overload_thinking.setPosition(115, 55);
+        perfect_paper.setPosition(120, 85);
 
-        psycho_slam.setPosition(160, 15);
-        psycho_harden.setPosition(165, 70);
+        psycho_slam.setPosition(160, 30);
+        psycho_harden.setPosition(165, 60);
 
-        liquid_shadow.setPosition(200, 50);
+        liquid_shadow.setPosition(190, 15);
+        paper_drill.setPosition(205, 80);
 
         psycho_needling.setParent(psycho_throwing, 0.5F);
         insulation.setParent(psycho_transmission);
@@ -69,6 +72,7 @@ public class CatTelekinesis extends Category {
         psycho_harden.setParent(overload_thinking, 0.5F);
 
         liquid_shadow.setParent(cruise_bomb, 0.9F);
+        paper_drill.setParent(perfect_paper, 0.5F);
     }
 
 }

@@ -1,4 +1,5 @@
 ac.ability.aerohand.name=Aero Hand
+ac.ability.telekinesis.name=Telekinesis
 
 ac.ability.aerohand.volcanic_ball.name=Volcanic Ball
 ac.ability.aerohand.ascending_air.name=Ascending Air
@@ -23,6 +24,7 @@ ac.ability.telekinesis.perfect_paper.name=Perfect Paper
 ac.ability.telekinesis.psycho_slam.name=Psycho Slam
 ac.ability.telekinesis.psycho_harden.name=Psycho Harden
 ac.ability.telekinesis.liquid_shadow.name=Liquid Shadow
+ac.ability.telekinesis.paper_drill.name=Perfect Paper Drill
 
 ac.ability.aerohand.volcanic_ball.desc=Compress a large mass of air then launch it. Knock back the enemy hit. The longer distance, the less damage.
 ac.ability.aerohand.ascending_air.desc=Passive skill, your fallen damage won't be more than a maximum value.
@@ -47,6 +49,8 @@ ac.ability.telekinesis.perfect_paper.desc=Passive skill, Pour your mind into the
 ac.ability.telekinesis.psycho_slam.desc=You can control other creatures now! Hit the enemy diagonally upward through your psychokinesis, and then slam it.
 ac.ability.telekinesis.psycho_harden.desc=Make your body extremely hard through your psychokinesis. During this period, you are immune to any damage but can't move.
 ac.ability.telekinesis.liquid_shadow.desc=Build a humanoid creation with water, which will follow you until die or skill terminated. A bucket of water is needed.
+ac.ability.telekinesis.paper_drill.desc=Use Perfect Paper to create a huge drill which will follow your eyesight and continuously cause damage. A set of paper is needed.
+
 
 item.imagitem.enabled=ENABLED
 item.imagitem.disabled=DISABLED

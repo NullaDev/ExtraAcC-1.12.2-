@@ -28,7 +28,7 @@ public class EntityVacuum extends EntityHasOwner {
 		super(_world);
 		this.setOwner(owner);
 		this._exp = exp;
-		this.setPosition(owner.posX, owner.posY, owner.posZ);
+		this.setPosition(owner.posX, owner.posY + owner.height / 2, owner.posZ);
 	}
     
     @Override
@@ -57,7 +57,7 @@ public class EntityVacuum extends EntityHasOwner {
 		for (Entity target : list) {
 			if (target instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase)target;
-				if (entity.getEntityBoundingBox().grow(3F).contains(new Vec3d(this.posX, this.posY + this.getOwner().height / 2, this.posZ))) {
+				if (entity.getEntityBoundingBox().grow(3F).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
 					float dmg = MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, _exp);
             		entity.attackEntityFrom(new EntityDamageSource("drown", this.getOwner()).setDamageBypassesArmor(), dmg);
 	            }

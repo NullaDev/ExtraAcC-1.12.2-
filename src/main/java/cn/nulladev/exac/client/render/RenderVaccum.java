@@ -28,7 +28,7 @@ public class RenderVaccum extends Render<EntityVacuum> {
 			return;
 		
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(x, y + entity.getOwner().height / 2, z);
+		GlStateManager.translate(x, y, z);
 		
 		GlStateManager.disableTexture2D();
 		GlStateManager.disableLighting();
