@@ -30,7 +30,7 @@ public class EntityPaperDrill extends EntityHasOwner {
     public EntityPaperDrill(World _world, EntityPlayer owner) {
         super(_world);
         this.setOwner(owner);
-        this.setPosition(owner.posX, owner.posY, owner.posZ);
+        this.setPosition(owner.posX, owner.posY + owner.eyeHeight, owner.posZ);
     }
 
     @Override
@@ -41,22 +41,21 @@ public class EntityPaperDrill extends EntityHasOwner {
     @Override
     public void onUpdate() {
         super.onUpdate();
+        if (this.world.isRemote) {
+            return;
+        }
         EntityPlayer owner = this.getOwner();
         if (this.getOwner() == null) {
             this.setDead();
-            if (!this.world.isRemote) {
-                EntityItem drop = new EntityItem(this.world, posX, posY, posZ, new ItemStack(Items.PAPER, 64));
-                this.world.spawnEntity(drop);
-            }
+            EntityItem drop = new EntityItem(this.world, posX, posY, posZ, new ItemStack(Items.PAPER, 64));
+            this.world.spawnEntity(drop);
             return;
         }
         Optional<PaperDrill.ContextPaperDrill> context = ContextManager.instance.find(PaperDrill.ContextPaperDrill.class);
         if(!context.isPresent() || (context.get().getStatus() != Context.Status.ALIVE && context.get().player == this.getOwner())) {
             this.setDead();
-            if (!this.world.isRemote) {
-                EntityItem drop = new EntityItem(this.world, posX, posY, posZ, new ItemStack(Items.PAPER, 64));
-                this.world.spawnEntity(drop);
-            }
+            EntityItem drop = new EntityItem(this.world, posX, posY, posZ, new ItemStack(Items.PAPER, 64));
+            this.world.spawnEntity(drop);
             return;
         }
         this.setPosition(owner.posX, owner.posY + owner.eyeHeight, owner.posZ);
