@@ -75,7 +75,6 @@ public class EXACRegistry {
 		MinecraftForge.EVENT_BUS.register(AscendingAir.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(Airflow.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(Insulation.INSTANCE);
-		MinecraftForge.EVENT_BUS.register(EXACItems.lasor_gun);
 	}
 	
 	public void registerRecipes() {

@@ -66,7 +66,6 @@ item.avalon.desc=Scabbard of legendary sword "Excalibur" imitated by modern tech
 item.CPPotion.name=CP Potion
 item.CPPotion.desc=Use to recover 2000cp, but up to half of the maximum CP value.
 item.lasorGun.name=lasor gun
-item.lasorGun.desc=Because of Minecraft's bullsh*t code, it can only be implemented in strange ways, so there must be bugs.
 item.airJet.name=air jet
 item.airJet.desc=Right click to eject a short distance towards the visual direction. 10s cooling.
 item.airJet.desc2=Cooling time rest:

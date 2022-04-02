@@ -24,6 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemRayTwister extends ItemEnergyBase {
 
+	public static final double ENERGY_COST = 1D;
+
 	public ItemRayTwister() {
 		super(10000, 100);
 		this.setUnlocalizedName("rayTwister");
@@ -39,7 +41,7 @@ public class ItemRayTwister extends ItemEnergyBase {
 
 	    if (EXACUtils.isActive(stack)) {
 	    	EXACUtils.setActive(stack, false);
-	    } else if (player.capabilities.isCreativeMode || itemManager.pull(stack, 200, true) >= 200) {
+	    } else if (player.capabilities.isCreativeMode || itemManager.getEnergy(stack) > ENERGY_COST * 40) {
 	    	EXACUtils.setActive(stack, true);
 	    }
 	    
@@ -59,11 +61,11 @@ public class ItemRayTwister extends ItemEnergyBase {
 				return;
 			}
 			if (entity instanceof EntityPlayer) {
-				if(!((EntityPlayer)entity).capabilities.isCreativeMode && itemManager.pull(stack, 5, true) < 5) {
+				if(!((EntityPlayer)entity).capabilities.isCreativeMode && itemManager.pull(stack, ENERGY_COST, true) < ENERGY_COST) {
 					EXACUtils.setActive(stack, false);
 			    	return;
 				}
-			} else if (itemManager.pull(stack, 5, true) < 5) {
+			} else if (itemManager.pull(stack, ENERGY_COST, true) < ENERGY_COST) {
 				EXACUtils.setActive(stack, false);
 		    	return;
 		    }

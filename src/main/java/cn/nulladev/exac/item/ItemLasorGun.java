@@ -1,10 +1,5 @@
 package cn.nulladev.exac.item;
 
-import java.util.HashMap;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import cn.academy.AcademyCraft;
 import cn.academy.entity.EntityMineRayBasic;
 import cn.academy.event.BlockDestroyEvent;
@@ -14,39 +9,78 @@ import cn.lambdalib2.util.Raytrace;
 import cn.nulladev.exac.core.EXACUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public class ItemLasorGun extends ItemEnergyBase {
-		
+
+	public static final double ENERGY_COST = 2D;
+
 	public ItemLasorGun() {
 		super(100000, 200);
 		this.setUnlocalizedName("lasorGun");
 		this.setCreativeTab(AcademyCraft.cct);
 		this.bFull3D = true;
 	}
-	
+
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack) {
-        return 72000;
-    }
-	
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		ItemStack stack = player.getHeldItem(hand);
+		if (world.isRemote) {
+			if (!EXACUtils.isActive(stack)) {
+				createRay(player);
+			} else {
+				killRay(player);
+			}
+			return new ActionResult(EnumActionResult.PASS, stack);
+		}
+
+		if (EXACUtils.isActive(stack)) {
+			turnOff(stack);
+		} else if (player.capabilities.isCreativeMode || itemManager.getEnergy(stack) > 10 * ENERGY_COST) {
+			EXACUtils.setActive(stack, true);
+		}
+
+		return new ActionResult(EnumActionResult.SUCCESS, stack);
+	}
+
+	private static void turnOff(ItemStack stack) {
+		EXACUtils.setActive(stack, false);
+		setHarvestBlockPos(stack, new BlockPos(-1, -1, -1));
+		setHarvestLeft(stack, Float.MAX_VALUE);
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static void createRay(EntityPlayer player) {
+		EntityMineRayBasic entityRay = new EntityMineRayBasic(player);
+		entityRay.length = 8D;
+		player.world.spawnEntity(entityRay);
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static void killRay(EntityPlayer player) {
+		AxisAlignedBB aabb = player.getEntityBoundingBox().grow(5);
+		for(EntityMineRayBasic ray: player.world.getEntitiesWithinAABB(EntityMineRayBasic.class, aabb)) {
+			ray.setDead();
+		}
+	}
+
 	private static BlockPos getHarvestBlockPos(ItemStack stack) {
 		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
 		if (nbt.hasKey("harvestX") && nbt.hasKey("harvestY") && nbt.hasKey("harvestZ")) {
@@ -80,31 +114,38 @@ public class ItemLasorGun extends ItemEnergyBase {
 		NBTTagCompound nbt = EXACUtils.get_or_create_nbt(stack);
 		nbt.setFloat("harvestLeft", value);
 	}
-	
-	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void harvest(PlayerTickEvent event) {
-		EntityPlayer player = event.player;
-		ItemStack stack = player.getHeldItemMainhand();
-		if (stack == null || stack.getItem() != this) {
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+		if (!(entity instanceof EntityPlayer)) {
 			return;
 		}
-		if (!Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
-			setHarvestBlockPos(stack, new BlockPos(-1, -1, -1));
-			setHarvestLeft(stack, Float.MAX_VALUE);
-			RayFinder.killRay(player);
+		EntityPlayer player = (EntityPlayer) entity;
+
+		if (!EXACUtils.isActive(stack)) {
 			return;
 		}
-		if (!player.capabilities.isCreativeMode && itemManager.pull(stack, 20, true) < 20) {
+
+		if (!isSelected) {
+			turnOff(stack);
+			killRay(player);
 			return;
 		}
-		RayFinder.pushRay(player);
+
+		if (!player.capabilities.isCreativeMode && itemManager.pull(stack, 2, true) < 2) {
+			turnOff(stack);
+			killRay(player);
+			return;
+		}
+
 		RayTraceResult result = Raytrace.traceLiving(player, 8, EntitySelectors.nothing());
 		if (result != null) {
 			BlockPos pos = result.getBlockPos();
 			if (!pos.equals(getHarvestBlockPos(stack))) {
 				IBlockState is = player.world.getBlockState(pos);
 				Block block = is.getBlock();
+				if (block == Blocks.AIR)
+					return;
 				if (!(MinecraftForge.EVENT_BUS.post(new BlockDestroyEvent(player, pos))) && block.getHarvestLevel(is) <= 3) {
 					setHarvestBlockPos(stack, pos);
 					float hardness = block.getBlockHardness(is, player.world, pos);
@@ -139,56 +180,21 @@ public class ItemLasorGun extends ItemEnergyBase {
 		block.dropBlockAsItemWithChance(world, pos, world.getBlockState(pos), 1.0f, 0);
 		world.setBlockState(pos, Blocks.AIR.getDefaultState());
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
-		tooltip.add(I18n.translateToLocal("item.lasorGun.desc"));
+	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+		if (EXACUtils.isActive(stack)) {
+			tooltip.add(I18n.translateToLocal("item.imagitem.enabled"));
+		} else {
+			tooltip.add(I18n.translateToLocal("item.imagitem.disabled"));
+		}
 		super.addInformation(stack, world, tooltip, flag);
-    }
-	
+	}
+
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return false;
     }
 
-}
-
-class RayFinder {
-	public static final HashMap<EntityPlayer, Entity> map = new HashMap<EntityPlayer, Entity>();
-	
-	public static boolean hasRay(EntityPlayer entity) {
-		return map.containsKey(entity);
-	}
-	
-	public static Entity getRay(EntityPlayer entity) {
-		if (hasRay(entity)) {
-			return map.get(entity);
-		} else {
-			return null;
-		}
-	}
-	
-	public static void removeRay(EntityPlayer entity) {
-		if (hasRay(entity))
-			map.remove(entity);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public static void pushRay(EntityPlayer player) {
-		if (RayFinder.getRay(player) == null || RayFinder.getRay(player).isDead) {
-			removeRay(player);
-			Entity entityRay = new EntityMineRayBasic(player);
-			player.world.spawnEntity(entityRay);
-			map.put(player, entityRay);
-		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public static void killRay(EntityPlayer player) {
-		if (RayFinder.getRay(player) != null) {
-			RayFinder.getRay(player).setDead();
-			RayFinder.removeRay(player);
-		}
-	}
 }

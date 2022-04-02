@@ -19,6 +19,8 @@ import java.util.List;
 
 public class ItemDropItemMagnet extends ItemEnergyBase {
 
+    public static final double ENERGY_COST = 2D;
+
     public ItemDropItemMagnet() {
         super(10000, 100);
         this.setUnlocalizedName("dropItemMagnet");
@@ -29,7 +31,7 @@ public class ItemDropItemMagnet extends ItemEnergyBase {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
-        if (player.capabilities.isCreativeMode || itemManager.getEnergy(stack) > 10) {
+        if (player.capabilities.isCreativeMode || itemManager.getEnergy(stack) > ENERGY_COST) {
             player.setActiveHand(hand);
             return new ActionResult(EnumActionResult.SUCCESS, stack);
         } else {
@@ -53,7 +55,7 @@ public class ItemDropItemMagnet extends ItemEnergyBase {
             return;
         EntityPlayer player = (EntityPlayer) entity;
         int time = getMaxItemUseDuration(stack) - count;
-        if (player.capabilities.isCreativeMode || itemManager.getEnergy(stack) > 10 * time) {
+        if (player.capabilities.isCreativeMode || itemManager.getEnergy(stack) > ENERGY_COST * time) {
             List<EntityItem> list = player.world.getEntitiesWithinAABB(EntityItem.class,
                     new AxisAlignedBB(player.posX - 8, player.posY - 8, player.posZ - 8, player.posX + 8, player.posY + 8, player.posZ + 8));
             for (EntityItem item:list) {
@@ -75,7 +77,7 @@ public class ItemDropItemMagnet extends ItemEnergyBase {
             return;
         EntityPlayer player = (EntityPlayer) entity;
         if(!player.capabilities.isCreativeMode)
-            itemManager.pull(stack, 10 * time, true);
+            itemManager.pull(stack, ENERGY_COST * time, true);
     }
 
 }
