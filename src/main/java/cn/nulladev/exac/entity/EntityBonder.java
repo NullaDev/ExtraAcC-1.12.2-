@@ -10,11 +10,11 @@ import net.minecraft.world.World;
 
 public class EntityBonder extends EntityHasOwner {
 
-    public static final float BASIC_DAMAGE = 10;
+    public static final float BASIC_DAMAGE = 15;
     public static final float MAX_DAMAGE = 20;
     public static final float PUSH_POWER = 0.2F;
-    public static final int SLAM_TIME = 20;
-    public static final int AGE = 40;
+    public static final int SLAM_TIME = 30;
+    public static final int AGE = 45;
 
     private EntityLivingBase _target;
     private float _exp;
@@ -53,8 +53,8 @@ public class EntityBonder extends EntityHasOwner {
             Vec3d direc = new Vec3d(this._direcXZ.x, Math.sqrt(3), this._direcXZ.z).normalize();
             this._target.addVelocity(PUSH_POWER * direc.x, PUSH_POWER * direc.y, PUSH_POWER * direc.z);
         } else if (this.ticksExisted == SLAM_TIME) {
-            this._target.setVelocity(0, -1, 0);
-            this._target.attackEntityFrom(new SkillDamageSource(this.getOwner(), PsychoSlam.INSTANCE), getDamage());
+            this._target.setVelocity(0, -2, 0);
+            this._target.attackEntityFrom(new SkillDamageSource(this.getOwner(), PsychoSlam.INSTANCE), 2 * getDamage());
         }
     }
 }

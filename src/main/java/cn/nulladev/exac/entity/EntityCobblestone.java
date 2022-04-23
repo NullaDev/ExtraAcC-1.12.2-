@@ -19,7 +19,7 @@ public class EntityCobblestone extends EntityFlying {
     public static final float BASIC_VELOCITY = 0.1F;
     public static final float MAX_VELOCITY = 0.15F;
     public static final float BASIC_DAMAGE = 12;
-    public static final float MAX_DAMAGE = 18;
+    public static final float MAX_DAMAGE = 16;
 
     private float _exp;
     private Vec3d _direc;
@@ -51,12 +51,12 @@ public class EntityCobblestone extends EntityFlying {
     }
 
     private float getDamage() {
-        float bonus = _isEtched ? 1.1F:1F;
+        float bonus = _isEtched ? 1.25F:1F;
         return bonus * MathUtils.lerpf(BASIC_DAMAGE, MAX_DAMAGE, this._exp);
     }
 
     public void addVelocity(Vec3d vDir, float v) {
-        vDir.normalize();
+        vDir = vDir.normalize();
         this.addVelocity(v * vDir.x, v * vDir.y, v * vDir.z);
     }
 

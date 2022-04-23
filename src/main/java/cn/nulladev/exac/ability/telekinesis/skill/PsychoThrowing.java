@@ -54,7 +54,7 @@ public class PsychoThrowing extends Skill {
 
         public ContextPsychoThrowing(EntityPlayer _player) {
             super(_player, PsychoThrowing.INSTANCE);
-            cp = MathUtils.lerpf(400, 800, ctx.getSkillExp());
+            cp = MathUtils.lerpf(400, 200, ctx.getSkillExp());
             overload = MathUtils.lerpf(30, 20, ctx.getSkillExp());
         }
 
